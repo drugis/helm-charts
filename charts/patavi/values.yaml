@@ -58,5 +58,5 @@ apiKey: xxxxx
 
 rabbit: 
   host: rabbitmq
-  user: guest
-  password: develop
+  user: drugis
+  password: verysecret

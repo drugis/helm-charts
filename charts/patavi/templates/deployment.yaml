@@ -55,11 +55,14 @@ spec:
             - name: PATAVI_HOST
               value: {{ .Values.hostLink }}
             - name: PATAVI_BROKER_HOST
-              value: rabbitmq
+              value: {{ .Values.rabbit.host }}
             - name: PATAVI_BROKER_USER
-              value: guest
+              value: {{ .Values.rabbit.user }}
             - name: PATAVI_BROKER_PASSWORD
-              value: develop
+              valueFrom:
+                secretKeyRef:
+                  name: secret-{{ include "patavi.fullname" . }}
+                  key: rabbit-password 
             - name: SECURE_TRAFFIC
               value: "true"
             - name: PATAVI_PROXY_HOST

@@ -5,20 +5,20 @@ image:
   pullPolicy: IfNotPresent
   tag: "4.5.0"
 
+web:
+  user: admin
+  password: xxxx
+
+mariadb:
+  auth:
+    forcePassword: false
+    database: "drugis"
+    username: "matomoDrugis"
+    password: "test"
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-
-serviceAccount:
-  create: true
-  annotations: {}
-  name: ""
-
-podAnnotations: {}
-
-podSecurityContext: {}
-
-securityContext: {}
 
 service:
   type: ClusterIP
@@ -37,21 +37,19 @@ ingress:
 
 resources: {}
 
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
 
 nodeSelector: {}
 
 tolerations: []
 
 affinity: {}
-
-mariadb: 
-  auth: 
-    forcePassword: false
-    database: "drugis"
-    username: "matomoDrugis"
-    password: "test"

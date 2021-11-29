@@ -1,13 +1,13 @@
 ategories:
   - analytics
 questions:
-  - variable: user
+  - variable: web.user
     type: string
     label: Matomo username
     required: true
     default: drugis
     group: Matomo
-  - variable: password
+  - variable: web.password
     type: password
     label: Matomo password
     required: true

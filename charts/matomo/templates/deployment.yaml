@@ -24,7 +24,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: MATOMO_USERNAME
-              value: {{ .Values.user }}
+              value: {{ .Values.web.user }}
             - name: MATOMO_PASSWORD
               valueFrom:
                 secretKeyRef:

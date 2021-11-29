@@ -84,8 +84,8 @@ questions:
     required: true
     default: guest
     group: Rabbit
-  - variable: rabbit.host
-    type: string
+  - variable: rabbit.password
+    type: password
     label: Patavi broker password
     required: true
     default: develop

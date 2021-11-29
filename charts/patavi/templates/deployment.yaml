@@ -51,7 +51,7 @@ spec:
             - name: PATAVI_DB_USER
               value: {{ .Values.postgresql.postgresqlUsername }}
             - name: PATAVI_PORT
-              value: {{ .Values.service.port }}
+              value: "{{ .Values.service.port }}"
             - name: PATAVI_HOST
               value: {{ .Values.hostLink }}
             - name: PATAVI_BROKER_HOST
@@ -61,7 +61,7 @@ spec:
             - name: PATAVI_BROKER_PASSWORD
               value: develop
             - name: SECURE_TRAFFIC
-              value: true
+              value: "true"
             - name: PATAVI_PROXY_HOST
               value: {{ .Values.proxyHost }}
           ports:

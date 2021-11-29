@@ -1,0 +1,36 @@
+categories:
+- patavi
+questions:
+- variable: image.repository
+  label: Repository
+  description: "Repository for Patavi worker"
+  type: string
+  required: true
+  default: addis/patavi-smaa-worker
+  group: Provisioning
+- variable: image.tag
+  label: Version
+  description: "Version for Patavi worker"
+  type: string
+  required: true
+  default: latest
+  group: Provisioning  
+- variable: rabbitmq.user
+  label: User
+  description: "User for RabbitMQ"
+  type: string
+  required: true
+  group: RabbitMQ
+- variable: rabbitmq.password
+  label: Password
+  description: "Password for RabbitMQ"
+  type: password
+  required: true
+  group: RabbitMQ
+- variable: rabbitmq.brokerHost
+  label: Host
+  description: "Host for RabbitMQ (service.namespace.svc)"
+  type: string
+  default: rabbitmq.rabbitmq.svc
+  required: true
+  group: RabbitMQ

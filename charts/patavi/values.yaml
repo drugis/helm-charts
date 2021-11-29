@@ -49,14 +49,12 @@ affinity: {}
 postgresql:
   # initdbScriptsConfigMap: "{{ .Release.Name }}-uta-config"
   postgresqlUsername: patavi
-  # postgresqlPassword: develop
   postgresqlDatabase: patavi
-
-db: 
-  host: postgres
+  postgresqlPassword: xxxxx
 
 hostLink: patavi.dev.drugis.molgenis.org
 proxyHost: patavi.dev.drugis.molgenis.org
+apiKey: xxxxx
 
 rabbit: 
   host: rabbitmq

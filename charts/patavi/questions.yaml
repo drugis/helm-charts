@@ -2,23 +2,23 @@ ategories:
   - Patavi
   - R
 questions:
-  - variable: db.user
+  - variable: postgresql.postgresqlUsername
     type: string
     label: Patavi database username
     required: true
     default: patavi
-    group: Patavi
-  - variable: db.name
+    group: Database
+  - variable: postgresql.postgresqlDatabase
     type: string
-    label: Patavi database username
+    label: Patavi database name
     required: true
     default: patavi
-    group: Patavi
-  - variable: db.password
+    group: Database
+  - variable: postgresql.postgresqlPassword
     type: password
     label: Patavi database password
     required: true
-    group: Patavi
+    group: Database
   - variable: hostLink
     type: string
     label: Patavi host link
@@ -29,18 +29,25 @@ questions:
     label: Patavi proxy host
     required: true
     group: Patavi
+    default: patavi.dev.drugis.molgenis.org
+  - variable: apiKey
+    type: password
+    label: Patavi API key
+    required: true
+    group: Patavi
+    default: patavi.dev.drugis.molgenis.org
   - variable: image.repository
     type: string
     label: Patavi image repository
     required: true
     default: addis/patavi
-    group: Patavi
+    group: Provisioning
   - variable: image.tag
     type: string
     label: Patavi image tag
     required: true
     default: secure6
-    group: Patavi
+    group: Provisioning
   - variable: ingress.enabled
     type: boolean
     label: Ingress enabled
@@ -70,16 +77,16 @@ questions:
     label: Patavi broker host
     required: true
     default: rabbitmq
-    group: Patavi 
+    group: Rabbit
   - variable: rabbit.user
     type: string
     label: Patavi broker user
     required: true
     default: guest
-    group: Patavi 
+    group: Rabbit
   - variable: rabbit.host
     type: string
     label: Patavi broker password
     required: true
     default: develop
-    group: Patavi
+    group: Rabbit

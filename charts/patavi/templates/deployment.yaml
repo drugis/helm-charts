@@ -34,18 +34,18 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: PATAVI_DB_PASSWORD
+            - name: PATAVI_DB_PASSWORD 
               valueFrom:
                 secretKeyRef:
-                  name: secret-{{ include "patavi.fullname" . }}
-                  key: patavi-password  
+                  name: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
+                  key: postgresql-password
             - name: PATAVI_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: secret-{{ include "patavi.fullname" . }}
                   key: api-key  
             - name: PATAVI_DB_HOST
-              value: {{ .Values.db.host }}
+              value: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
             - name: PATAVI_DB_NAME
               value: {{ .Values.postgresql.postgresqlDatabase }}
             - name: PATAVI_DB_USER

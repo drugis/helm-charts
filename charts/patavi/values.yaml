@@ -5,6 +5,20 @@ image:
   pullPolicy: IfNotPresent
   tag: "secure6"
 
+postgresql:
+  postgresqlUsername: patavi
+  postgresqlDatabase: patavi
+  postgresqlPassword: xxxxx
+
+hostLink: patavi.dev.molgenis.org
+proxyHost: patavi.dev.molgenis.org
+apiKey: xxxxx
+
+rabbit:
+  host: rabbitmq
+  user: drugis
+  password: verysecret
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -44,19 +58,3 @@ autoscaling:
 nodeSelector: {}
 tolerations: []
 affinity: {}
-
-
-postgresql:
-  # initdbScriptsConfigMap: "{{ .Release.Name }}-uta-config"
-  postgresqlUsername: patavi
-  postgresqlDatabase: patavi
-  postgresqlPassword: xxxxx
-
-hostLink: patavi.dev.molgenis.org
-proxyHost: patavi.dev.molgenis.org
-apiKey: xxxxx
-
-rabbit: 
-  host: rabbitmq
-  user: drugis
-  password: verysecret

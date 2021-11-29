@@ -3,6 +3,7 @@ appVersion: "latest"
 name: patavi-mcda-worker
 description: A Helm chart for deploying the Patavi MCDA R worker
 version: 0.2.0
+icon: https://github.com/drugis/patavi/raw/master/server/public/img/patavi_small.png
 maintainers:
 - name: chinook25
 - name: sidohaakma

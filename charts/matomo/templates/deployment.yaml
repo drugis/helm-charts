@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "matomo.fullname" . }}
+  labels:
+    {{- include "matomo.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "matomo.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "matomo.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "matomo.serviceAccountName" . }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MATOMO_USERNAME
+              value: {{ .Values.user }}
+            - name: MATOMO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret-{{ include "matomo.fullname" . }}
+                  key: matomo-password  
+            - name: MATOMO_DATABASE_USER
+              value: {{ .Values.mariadb.db.user }}
+            - name: MATOMO_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "call-nested" (list $ "mariadb" "mariadb.fullname") }}
+                  key: mariadb-password
+            - name: MATOMO_DATABASE_NAME
+              value: {{ .Values.mariadb.db.name }}
+            - name: MATOMO_DATABASE_HOST
+              value: {{ include "call-nested" (list $ "mariadb" "mariadb.fullname") }}
+            - name: MARIADB_HOST
+              value: {{ include "call-nested" (list $ "mariadb" "mariadb.fullname") }}
+            - name: MARIADB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "call-nested" (list $ "mariadb" "mariadb.fullname") }}
+                  key: mariadb-root-password
+            {{- range .Values.ingress.hosts }}
+            - name: MATOMO_WEBSITE_HOST
+              value: http://{{ .host }}
+            {{- end }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

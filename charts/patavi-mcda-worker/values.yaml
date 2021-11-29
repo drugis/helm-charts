@@ -5,7 +5,7 @@ image:
   tag: "latest"
 
 rabbitmq:
-  brokerHost: rabbitmq.rabbitmq.svc:5672
+  brokerHost: rabbitmq.rabbitmq.svc
   user: rabbitmq
   password: xxxx
   # existingSecret: "rabbitmqSecret"

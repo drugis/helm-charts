@@ -31,6 +31,6 @@ questions:
   label: Host
   description: "Host for RabbitMQ (service.namespace.svc)"
   type: string
-  default: rabbitmq.rabbitmq.svc:5672
+  default: rabbitmq.rabbitmq.svc
   required: true
   group: RabbitMQ

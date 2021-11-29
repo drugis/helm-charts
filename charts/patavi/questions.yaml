@@ -1,0 +1,85 @@
+ategories:
+  - Patavi
+  - R
+questions:
+  - variable: db.user
+    type: string
+    label: Patavi database username
+    required: true
+    default: patavi
+    group: Patavi
+  - variable: db.name
+    type: string
+    label: Patavi database username
+    required: true
+    default: patavi
+    group: Patavi
+  - variable: db.password
+    type: password
+    label: Patavi database password
+    required: true
+    group: Patavi
+  - variable: hostLink
+    type: string
+    label: Patavi host link
+    required: true
+    group: Patavi
+  - variable: proxyHost
+    type: string
+    label: Patavi proxy host
+    required: true
+    group: Patavi
+  - variable: image.repository
+    type: string
+    label: Patavi image repository
+    required: true
+    default: addis/patavi
+    group: Patavi
+  - variable: image.tag
+    type: string
+    label: Patavi image tag
+    required: true
+    default: secure6
+    group: Patavi
+  - variable: ingress.enabled
+    type: boolean
+    label: Ingress enabled
+    required: true
+    default: true
+    group: Provisioning
+  - variable: ingress.hosts[0].host
+    type: string
+    label: Patavi host
+    required: true
+    default: patavi.drugis.org
+    group: Provisioning
+  - variable: ingress.hosts[0].paths[0].path
+    type: string
+    label: Patavi host path
+    required: true
+    default: /
+    group: Provisioning
+  - variable: ingress.hosts[0].paths[0].pathType
+    type: string
+    label: Patavi host pathtype
+    required: true
+    default: ImplementationSpecific
+    group: Provisioning
+  - variable: rabbit.host
+    type: string
+    label: Patavi broker host
+    required: true
+    default: rabbitmq
+    group: Patavi 
+  - variable: rabbit.user
+    type: string
+    label: Patavi broker user
+    required: true
+    default: guest
+    group: Patavi 
+  - variable: rabbit.host
+    type: string
+    label: Patavi broker password
+    required: true
+    default: develop
+    group: Patavi

@@ -1,0 +1,64 @@
+replicaCount: 1
+
+image:
+  repository: addis/patavi
+  pullPolicy: IfNotPresent
+  tag: "secure6"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+podSecurityContext: {}
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 3000
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: patavi.drugis.org
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+
+resources: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+
+postgresql:
+  # initdbScriptsConfigMap: "{{ .Release.Name }}-uta-config"
+  postgresqlUsername: patavi
+  # postgresqlPassword: develop
+  postgresqlDatabase: patavi
+
+db: 
+  host: postgres
+
+hostLink: patavi.dev.drugis.molgenis.org
+proxyHost: patavi.dev.drugis.molgenis.org
+
+rabbit: 
+  host: rabbitmq
+  user: guest
+  password: develop

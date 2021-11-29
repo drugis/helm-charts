@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "patavi.fullname" . }}
+  labels:
+    {{- include "patavi.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "patavi.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "patavi.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "patavi.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: PATAVI_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret-{{ include "patavi.fullname" . }}
+                  key: patavi-password  
+            - name: PATAVI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: secret-{{ include "patavi.fullname" . }}
+                  key: api-key  
+            - name: PATAVI_DB_HOST
+              value: {{ .Values.db.host }}
+            - name: PATAVI_DB_NAME
+              value: {{ .Values.postgresql.postgresqlDatabase }}
+            - name: PATAVI_DB_USER
+              value: {{ .Values.postgresql.postgresqlUsername }}
+            - name: PATAVI_PORT
+              value: {{ .Values.service.port }}
+            - name: PATAVI_HOST
+              value: {{ .Values.hostLink }}
+            - name: PATAVI_BROKER_HOST
+              value: rabbitmq
+            - name: PATAVI_BROKER_USER
+              value: guest
+            - name: PATAVI_BROKER_PASSWORD
+              value: develop
+            - name: SECURE_TRAFFIC
+              value: true
+            - name: PATAVI_PROXY_HOST
+              value: {{ .Values.proxyHost }}
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

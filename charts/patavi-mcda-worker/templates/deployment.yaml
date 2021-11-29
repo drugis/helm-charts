@@ -34,8 +34,17 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env: 
+            - name: PATAVI_BROKER_USER
+              value: {{ .Values.rabbitmq.user }}
+            - name: PATAVI_BROKER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "patavi-mcda-worker.fullname" . }}
+                  key: rabbitmq-password
+            - name: PATAVI_BROKER_HOST_URI
+              value: {{ .Values.rabbitmq.brokerHost }}
             - name: PATAVI_BROKER_HOST
-              value: {{ .Values.brokerHost }}
+              value: $(PATAVI_BROKER_USER):$(PATAVI_BROKER_PASSWORD)@$(PATAVI_BROKER_HOST_URI)
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

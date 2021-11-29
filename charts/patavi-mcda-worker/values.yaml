@@ -4,6 +4,12 @@ image:
   pullPolicy: IfNotPresent
   tag: "latest"
 
+rabbitmq:
+  brokerHost: rabbitmq.rabbitmq.svc
+  user: rabbitmq
+  password: xxxx
+  # existingSecret: "rabbitmqSecret"
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -17,17 +23,6 @@ podAnnotations: {}
 podSecurityContext: {}
 securityContext: {}
 
-ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls: []
-
 resources: {}
 
 autoscaling:
@@ -39,5 +34,3 @@ autoscaling:
 nodeSelector: {}
 tolerations: []
 affinity: {}
-
-brokerHost: rabbitmq.rabbitmq.svc

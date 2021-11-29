@@ -52,8 +52,8 @@ postgresql:
   postgresqlDatabase: patavi
   postgresqlPassword: xxxxx
 
-hostLink: patavi.dev.drugis.molgenis.org
-proxyHost: patavi.dev.drugis.molgenis.org
+hostLink: patavi.dev.molgenis.org
+proxyHost: patavi.dev.molgenis.org
 apiKey: xxxxx
 
 rabbit: 

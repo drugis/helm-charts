@@ -1,0 +1,7 @@
+chart-dirs:
+  - charts
+chart-repos:
+  - stable=https://charts.helm.sh/stable
+  - bitnami=https://charts.bitnami.com/bitnami
+  - molgenis=https://helm.molgenis.org
+  - molgenis-helm=https://registry.molgenis.org/repository/helm

@@ -19,6 +19,17 @@ questions:
     label: Patavi database password
     required: true
     group: Database
+  - variable: postgresql.initdbUser
+    type: string
+    label: User for database initialisation
+    required: true
+    default: patavi
+    group: Database
+  - variable: postgresql.initdbPassword
+    type: password
+    label: Password for database initialisation
+    required: true
+    group: Database
   - variable: hostLink
     type: string
     label: Patavi host link

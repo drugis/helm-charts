@@ -9,10 +9,12 @@ postgresql:
   postgresqlUsername: patavi
   postgresqlDatabase: patavi
   postgresqlPassword: xxxxx
+  initdbUser: patavi
+  initdbPassword: patavi
   master:
     extraInitContainers:
       - name: bootstrap-database
-        image: k8s.gcr.io/git-sync:v3.0.1
+        image: k8s.gcr.io/git-sync/git-sync:v3.3.5
         volumeMounts:
         - name: initdb
           mountPath: /docker-entrypoint-initdb.d
@@ -25,8 +27,10 @@ postgresql:
           value: "1"
         - name: GIT_SYNC_ONE_TIME
           value: "true"
+        # - name: GIT_SYNC_ROOT
+          # value: /docker-entrypoint-initdb.d
         - name: GIT_SYNC_SPARSE_CHECKOUT_FILE
-          value: "server/schema.sql"
+          value: "*.sql"
     extraVolumes: 
       - name: initdb  
         emptyDir: {}

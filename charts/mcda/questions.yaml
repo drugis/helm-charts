@@ -30,7 +30,7 @@ questions:
     label: Patavi port
     required: true
     group: Patavi
-    default: 3000
+    default: "3000"
   - variable: patavi.apiKey
     type: password
     label: Patavi API key

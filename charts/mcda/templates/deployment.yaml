@@ -78,15 +78,17 @@ spec:
           ports:
             - name: https
               containerPort: 3002
-              protocol: https
+              protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /
-              port: https
+            tcpSocket:
+              port: 3002
+            initialDelaySeconds: 5
+            periodSeconds: 10
           readinessProbe:
-            httpGet:
-              path: /
-              port: https
+            tcpSocket:
+              port: 3002
+            initialDelaySeconds: 5
+            periodSeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

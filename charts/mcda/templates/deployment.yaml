@@ -65,7 +65,7 @@ spec:
             - name: PATAVI_HOST
               value: {{ .Values.patavi.host }}
             - name: PATAVI_PORT
-              value: {{ .Values.patavi.port }}
+              value: "{{ .Values.patavi.port }}"
             - name: PATAVI_API_KEY
               valueFrom:
                 secretKeyRef:

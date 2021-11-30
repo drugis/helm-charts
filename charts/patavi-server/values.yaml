@@ -9,7 +9,31 @@ postgresql:
   postgresqlUsername: patavi
   postgresqlDatabase: patavi
   postgresqlPassword: xxxxx
-
+  master:
+    extraInitContainers:
+      - name: bootstrap-database
+        image: k8s.gcr.io/git-sync:v3.0.1
+        volumeMounts:
+        - name: initdb
+          mountPath: /docker-entrypoint-initdb.d
+        env:
+        - name: GIT_SYNC_REPO
+          value: https://github.com/drugis/patavi
+        - name: GIT_SYNC_BRANCH
+          value: master
+        - name: GIT_SYNC_DEPTH
+          value: "1"
+        - name: GIT_SYNC_ONE_TIME
+          value: "true"
+        - name: GIT_SYNC_SPARSE_CHECKOUT_FILE
+          value: "server/schema.sql"
+    extraVolumes: 
+      - name: initdb  
+        emptyDir: {}
+    extraVolumeMounts:
+      - name: initdb
+        mountPath: /docker-entrypoint-initdb.d
+  
 hostLink: patavi.dev.molgenis.org
 proxyHost: patavi.dev.molgenis.org
 apiKey: xxxxx

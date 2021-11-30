@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mcda.fullname" . }}
+  labels:
+    {{- include "mcda.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "mcda.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "mcda.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "mcda.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MCDAWEB_DB_USER
+              value: {{ .Values.postgresql.postgresqlUsername }}
+            - name: MCDAWEB_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret-{{ include "mcda.fullname" . }}
+                  key: database-password
+            - name: MCDAWEB_DB_HOST
+              value: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
+            - name: MCDAWEB_DB_NAME
+              value: {{ .Values.postgresql.postgresqlDatabase }}
+            - name: MCDAWEB_GOOGLE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: secret-{{ include "mcda.fullname" . }}
+                  key: google-key
+            - name: MCDAWEB_GOOGLE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: secret-{{ include "mcda.fullname" . }}
+                  key: google-secret
+            - name: MCDAWEB_COOKIE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: secret-{{ include "mcda.fullname" . }}
+                  key: cookie-secret
+            - name: MCDA_HOST
+              value: {{ .Values.mcda.host }}
+            - name: PATAVI_HOST
+              value: {{ .Values.patavi.host }}
+            - name: PATAVI_PORT
+              value: {{ .Values.patavi.port }}
+            - name: PATAVI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: secret-{{ include "mcda.fullname" . }}
+                  key: api-key
+            - name: SECURE_TRAFFIC
+              value: {{ .Values.mcda.secure }}
+            - name: MCDAWEB_AUTHENTICATION_METHOD
+              value: {{ .Values.mcda.authenticationMethod }}
+
+          ports:
+            - name: http
+              containerPort: 3002
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

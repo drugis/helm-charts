@@ -75,19 +75,18 @@ spec:
               value: "{{ .Values.mcda.secure }}"
             - name: MCDAWEB_AUTHENTICATION_METHOD
               value: {{ .Values.mcda.authenticationMethod }}
-
           ports:
-            - name: http
+            - name: https
               containerPort: 3002
-              protocol: TCP
+              protocol: https
           livenessProbe:
             httpGet:
               path: /
-              port: http
+              port: https
           readinessProbe:
             httpGet:
               path: /
-              port: http
+              port: https
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

@@ -80,12 +80,14 @@ spec:
               containerPort: 3002
               protocol: TCP
           livenessProbe:
-            tcpSocket:
+            httpGet:
+              scheme: HTTPS
               port: 3002
             initialDelaySeconds: 5
             periodSeconds: 10
           readinessProbe:
-            tcpSocket:
+            httpGet:
+              scheme: HTTPS
               port: 3002
             initialDelaySeconds: 5
             periodSeconds: 10

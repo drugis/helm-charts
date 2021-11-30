@@ -1,21 +1,21 @@
 categories:
-  - MCDA
+  - GeMTC
 questions:
   - variable: postgresql.postgresqlUsername
     type: string
-    label: Mcda database username
+    label: GeMTC database username
     required: true
-    default: mcda
+    default: gemtc
     group: Database
   - variable: postgresql.postgresqlDatabase
     type: string
-    label: Mcda database name
+    label: GeMTC database name
     required: true
-    default: mcda
+    default: gemtc
     group: Database
   - variable: postgresql.postgresqlPassword
     type: password
-    label: Mcda database password
+    label: GeMTC database password
     required: true
     group: Database
 # 
@@ -39,13 +39,13 @@ questions:
 # 
   - variable: image.repository
     type: string
-    label: Mcda image repository
+    label: GeMTC image repository
     required: true
-    default: addis/mcda
+    default: addis/gemtc
     group: Provisioning
   - variable: image.tag
     type: string
-    label: Mcda image tag
+    label: GeMTC image tag
     required: true
     default: test
     group: Provisioning
@@ -57,54 +57,54 @@ questions:
     group: Provisioning
   - variable: ingress.hosts[0].host
     type: string
-    label: Mcda host
+    label: GeMTC host
     required: true
-    default: mcda.dev.molgenis.org
+    default: gemtc.dev.molgenis.org
     group: Provisioning
   - variable: ingress.hosts[0].paths[0].path
     type: string
-    label: Mcda host path
+    label: GeMTC host path
     required: true
     default: /
     group: Provisioning
   - variable: ingress.hosts[0].paths[0].pathType
     type: string
-    label: Mcda host pathtype
+    label: GeMTC host pathtype
     required: true
     default: ImplementationSpecific
     group: Provisioning
 # 
-  - variable: mcda.secure
+  - variable: gemtc.secure
     type: string
     label: Use secure traffic
     required: true
     default: "true"
-    group: MCDA
-  - variable: mcda.host
+    group: GeMTC
+  - variable: gemtc.host
     type: string
-    label: Mcda host url
+    label: GeMTC host url
     required: true
-    default: mcda.dev.molgenis.org
-    group: MCDA
-  - variable: mcda.authenticationMethod
+    default: gemtc.dev.molgenis.org
+    group: GeMTC
+  - variable: gemtc.authenticationMethod
     type: string
-    label: Mcda authentication method
+    label: GeMTC authentication method
     required: true
     default: GOOGLE
-    group: MCDA
-  - variable: mcda.cookieSecret
+    group: GeMTC
+  - variable: gemtc.cookieSecret
     type: password
     required: false
     label: Secret for session cookie
-    group: MCDA
-  - variable: mcda.googleKey
+    group: GeMTC
+  - variable: gemtc.googleKey
     type: password
     required: false
     label: Key for google oauth2
-    group: MCDA
-  - variable: mcda.googleSecret
+    group: GeMTC
+  - variable: gemtc.googleSecret
     type: password
     required: false
     label: Secret for google oauth2
-    group: MCDA
+    group: GeMTC
     

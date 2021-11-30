@@ -1,7 +1,7 @@
 apiVersion: v1
 appVersion: "latest"
-name: patavi-mcda-worker
-description: A Helm chart for deploying the Patavi MCDA R worker
+name: patavi-worker
+description: A Helm chart for deploying the Patavi R workers (MCDA/GeMTC)
 version: 0.2.0
 maintainers:
 - name: chinook25

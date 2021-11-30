@@ -72,7 +72,7 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Provisioning
-  - variable: rabbitmq.host
+  - variable: rabbitmq.brokerHost
     type: string
     label: Patavi broker host
     required: true

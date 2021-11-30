@@ -15,7 +15,7 @@ proxyHost: patavi.dev.molgenis.org
 apiKey: xxxxx
 
 rabbitmq:
-  host: rabbitmq.rabbitmq.svc
+  brokerHost: rabbitmq.rabbitmq.svc
   user: drugis
   password: verysecret
 

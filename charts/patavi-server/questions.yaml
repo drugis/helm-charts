@@ -72,19 +72,19 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Provisioning
-  - variable: rabbit.host
+  - variable: rabbitmq.host
     type: string
     label: Patavi broker host
     required: true
     default: rabbitmq.rabbitmq.svc
     group: Rabbit
-  - variable: rabbit.user
+  - variable: rabbitmq.user
     type: string
     label: Patavi broker user
     required: true
     default: drugis
     group: Rabbit
-  - variable: rabbit.password
+  - variable: rabbitmq.password
     type: password
     label: Patavi broker password
     required: true

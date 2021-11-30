@@ -54,15 +54,17 @@ spec:
               value: "{{ .Values.service.port }}"
             - name: PATAVI_HOST
               value: {{ .Values.hostLink }}
-            - name: PATAVI_BROKER_HOST
-              value: {{ .Values.rabbit.host }}
             - name: PATAVI_BROKER_USER
-              value: {{ .Values.rabbit.user }}
+              value: {{ .Values.rabbitmq.user }}
             - name: PATAVI_BROKER_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: secret-{{ include "patavi.fullname" . }}
-                  key: rabbit-password 
+                  key: rabbit-password
+            - name: PATAVI_BROKER_HOST_URI
+              value: {{ .Values.rabbitmq.brokerHost }}
+            - name: PATAVI_BROKER_HOST
+              value: $(PATAVI_BROKER_USER):$(PATAVI_BROKER_PASSWORD)@$(PATAVI_BROKER_HOST_URI)
             - name: SECURE_TRAFFIC
               value: "true"
             - name: PATAVI_PROXY_HOST

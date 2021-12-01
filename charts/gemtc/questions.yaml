@@ -23,7 +23,7 @@ questions:
     type: string
     label: Patavi host link
     required: true
-    default: patavi.dev.molgenis.org
+    default: patavi-server.patavi-server.svc
     group: Patavi
   - variable: patavi.port
     type: string

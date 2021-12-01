@@ -35,13 +35,13 @@ postgresql:
         volumeMounts:
         - name: initdb
           mountPath: /docker-entrypoint-initdb.d
-    extraVolumes: 
-      - name: initdb  
+    extraVolumes:
+      - name: initdb
         emptyDir: {}
     extraVolumeMounts:
       - name: initdb
         mountPath: /docker-entrypoint-initdb.d
-  
+
 hostLink: patavi.dev.molgenis.org
 proxyHost: patavi.dev.molgenis.org
 apiKey: xxxxx

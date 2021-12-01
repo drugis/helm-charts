@@ -76,17 +76,15 @@ spec:
             - name: GEMTC_AUTHENTICATION_METHOD
               value: {{ .Values.gemtc.authenticationMethod }}
           ports:
-            - name: https
+            - name: http
               containerPort: 3001
           livenessProbe:
-            httpGet:
-              scheme: HTTPS
+            tcpSocket:
               port: 3001
             initialDelaySeconds: 5
             periodSeconds: 10
           readinessProbe:
-            httpGet:
-              scheme: HTTPS
+            tcpSocket:
               port: 3001
             initialDelaySeconds: 5
             periodSeconds: 10

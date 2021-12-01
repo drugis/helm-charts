@@ -7,7 +7,7 @@ image:
 
 patavi:
   apiKey: xxxxx
-  host: patavi.patavi-patavi-server.svc
+  host: patavi-patavi-server.patavi.svc
   port: 3000
 
 postgresql:

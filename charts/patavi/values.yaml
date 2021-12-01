@@ -1,0 +1,52 @@
+patavi-server:
+  postgresql:
+    postgresqlPassword: xxxxx
+    initdbPassword: patavi
+    image:
+      debug: true
+  image:
+    repository: addis/patavi
+    tag: "secure6"
+  hostLink: patavi.dev.molgenis.org
+  proxyHost: patavi.dev.molgenis.org
+  apiKey: xxxxx
+  rabbitmq:
+    brokerHost: rabbitmq.rabbitmq.svc
+    password: xxxxx
+  ingress:
+    enabled: true
+    hosts:
+      - host: patavi.drugis.org
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+
+patavi-smaa-worker:
+  image:
+    repository: addis/patavi-smaa-worker
+    tag: "latest"
+  rabbitmq:
+    brokerHost: rabbitmq.rabbitmq.svc
+    user: drugis
+    password: xxxxx
+
+patavi-gemtc-worker:
+  image:
+    repository: addis/patavi-gemtc-worker
+    tag: "latest"
+  rabbitmq:
+    brokerHost: rabbitmq.rabbitmq.svc
+    user: drugis
+    password: xxxxx
+
+rabbitmq:
+  extraEnvVars:
+    - name: RABBITMQ_NODE_NAME
+      value: rabbit@$(MY_POD_NAME).$(K8S_SERVICE_NAME).$(MY_POD_NAMESPACE).svc
+  clustering:
+    enabled: false
+  extraConfiguration: |-
+    cluster_formation.k8s.host = kubernetes.default.svc
+  auth:
+    username: drugis
+    password: xxxxxx

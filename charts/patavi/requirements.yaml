@@ -3,11 +3,11 @@ dependencies:
     version: 0.2.1
     repository: https://registry.molgenis.org/repository/helm
   - name: patavi-worker
-    version: 0.2.1
+    version: 0.2.2
     repository: https://registry.molgenis.org/repository/helm
     alias: patavi-smaa-worker
   - name: patavi-worker
-    version: 0.2.1
+    version: 0.2.2
     repository: https://registry.molgenis.org/repository/helm
     alias: patavi-gemtc-worker
   - name: rabbitmq

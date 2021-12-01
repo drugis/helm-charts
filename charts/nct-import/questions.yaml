@@ -1,0 +1,18 @@
+categories:
+- importer
+questions:
+- variable: image.repository
+  label: Repository
+  description: "Repository for the NCT importer"
+  type: string
+  required: true
+  default: addis/nct-import
+  group: Provisioning
+- variable: image.tag
+  label: Version
+  description: "Version for the NCT importer"
+  type: string
+  required: true
+  default: "1.2.2"
+  group: Provisioning
+  

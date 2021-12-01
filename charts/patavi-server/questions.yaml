@@ -1,0 +1,102 @@
+ategories:
+  - Patavi
+  - R
+questions:
+  - variable: postgresql.postgresqlUsername
+    type: string
+    label: Patavi database username
+    required: true
+    default: patavi
+    group: Database
+  - variable: postgresql.postgresqlDatabase
+    type: string
+    label: Patavi database name
+    required: true
+    default: patavi
+    group: Database
+  - variable: postgresql.postgresqlPassword
+    type: password
+    label: Patavi database password
+    required: true
+    group: Database
+  - variable: postgresql.initdbUser
+    type: string
+    label: User for database initialisation
+    required: true
+    default: patavi
+    group: Database
+  - variable: postgresql.initdbPassword
+    type: password
+    label: Password for database initialisation
+    required: true
+    group: Database
+  - variable: hostLink
+    type: string
+    label: Patavi host link
+    required: true
+    default: patavi.dev.molgenis.org
+    group: Patavi
+  - variable: proxyHost
+    type: string
+    label: Patavi proxy host
+    required: true
+    group: Patavi
+    default: patavi.dev.molgenis.org
+  - variable: apiKey
+    type: password
+    label: Patavi API key
+    required: true
+    group: Patavi
+  - variable: image.repository
+    type: string
+    label: Patavi image repository
+    required: true
+    default: addis/patavi
+    group: Provisioning
+  - variable: image.tag
+    type: string
+    label: Patavi image tag
+    required: true
+    default: secure6
+    group: Provisioning
+  - variable: ingress.enabled
+    type: boolean
+    label: Ingress enabled
+    required: true
+    default: true
+    group: Provisioning
+  - variable: ingress.hosts[0].host
+    type: string
+    label: Patavi host
+    required: true
+    default: patavi.dev.molgenis.org
+    group: Provisioning
+  - variable: ingress.hosts[0].paths[0].path
+    type: string
+    label: Patavi host path
+    required: true
+    default: /
+    group: Provisioning
+  - variable: ingress.hosts[0].paths[0].pathType
+    type: string
+    label: Patavi host pathtype
+    required: true
+    default: ImplementationSpecific
+    group: Provisioning
+  - variable: rabbitmq.brokerHost
+    type: string
+    label: Patavi broker host
+    required: true
+    default: rabbitmq.rabbitmq.svc
+    group: Rabbit
+  - variable: rabbitmq.user
+    type: string
+    label: Patavi broker user
+    required: true
+    default: drugis
+    group: Rabbit
+  - variable: rabbitmq.password
+    type: password
+    label: Patavi broker password
+    required: true
+    group: Rabbit

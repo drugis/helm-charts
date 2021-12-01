@@ -41,8 +41,10 @@ spec:
                 secretKeyRef:
                   name: {{ include "patavi-worker.fullname" . }}
                   key: rabbitmq-password
-            - name: PATAVI_BROKER_HOST
+            - name: PATAVI_BROKER_HOST_URI
               value: {{ .Values.rabbitmq.brokerHost }}
+            - name: PATAVI_BROKER_HOST
+              value: $(PATAVI_BROKER_USER):$(PATAVI_BROKER_PASSWORD)@$(PATAVI_BROKER_HOST_URI)
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

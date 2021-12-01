@@ -10,7 +10,7 @@ postgresql:
   postgresqlDatabase: patavi
   postgresqlPassword: xxxxxx
   initdbUser: patavi
-  initdbPassword: patavi
+  initdbPassword: xxxxxx
   master:
     extraInitContainers:
       - name: get-database-schema

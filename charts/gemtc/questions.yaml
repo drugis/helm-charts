@@ -25,12 +25,6 @@ questions:
     required: true
     default: patavi.dev.molgenis.org
     group: Patavi
-  - variable: patavi.port
-    type: string
-    label: Patavi port
-    required: true
-    group: Patavi
-    default: "3000"
   - variable: patavi.apiKey
     type: password
     label: Patavi API key
@@ -78,7 +72,7 @@ questions:
     type: string
     label: Use secure traffic
     required: true
-    default: "true"
+    default: "false"
     group: GeMTC
   - variable: gemtc.host
     type: string

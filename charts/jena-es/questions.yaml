@@ -23,7 +23,7 @@ questions:
   type: string
   label: Jena-as host
   required: true
-  default: jena-es.dev.molgenis.org
+  default: jena.dev.molgenis.org
   group: Provisioning
 - variable: ingress.hosts[0].paths[0].path
   type: string

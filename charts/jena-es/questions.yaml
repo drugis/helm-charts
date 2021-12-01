@@ -11,7 +11,7 @@ questions:
   label: Jena-es version tag
   type: string
   required: true
-  default: latest
+  default: test
   group: Provisioning  
 - variable: ingress.enabled
   type: boolean

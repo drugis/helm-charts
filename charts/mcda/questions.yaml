@@ -9,13 +9,13 @@ questions:
     group: MCDA
   - variable: mcda.host
     type: string
-    label: Mcda host url
+    label: Host url
     required: true
     default: mcda.dev.molgenis.org
     group: MCDA
   - variable: mcda.authenticationMethod
     type: string
-    label: Mcda authentication method
+    label: Authentication method
     required: true
     default: GOOGLE
     group: MCDA
@@ -68,7 +68,7 @@ questions:
     type: string
     label: Patavi host link
     required: true
-    default: patavi-server.patavi-server.svc
+    default: patavi.patavi-patavi-server.svc
     group: Patavi
   - variable: patavi.port
     type: string

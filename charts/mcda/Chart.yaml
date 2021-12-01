@@ -3,7 +3,7 @@ name: mcda
 description: A Helm chart for Kubernetes
 version: 0.1.0
 appVersion: "1.1.0"
-icon: https://github.com/drugis/gemtc/raw/master/server/public/img/favicon.png
+icon: https://raw.githubusercontent.com/drugis/mcda-elicitation-web/develop/public/img/favicon.png
 maintainers:
 - name: chinook25
 - name: sidohaakma

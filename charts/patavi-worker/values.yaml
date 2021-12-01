@@ -6,7 +6,7 @@ image:
 
 rabbitmq:
   brokerHost: rabbitmq.rabbitmq.svc
-  user: rabbitmq
+  user: drugis
   password: xxxx
   # existingSecret: "rabbitmqSecret"
 

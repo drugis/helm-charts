@@ -19,6 +19,7 @@ questions:
   label: User
   description: "User for RabbitMQ"
   type: string
+  default: drugis
   required: true
   group: RabbitMQ
 - variable: rabbitmq.password

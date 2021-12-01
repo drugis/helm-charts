@@ -8,7 +8,7 @@ image:
 postgresql:
   postgresqlUsername: patavi
   postgresqlDatabase: patavi
-  postgresqlPassword: xxxxx
+  postgresqlPassword: xxxxxx
   initdbUser: patavi
   initdbPassword: patavi
   master:
@@ -49,7 +49,7 @@ apiKey: xxxxx
 rabbitmq:
   brokerHost: rabbitmq.rabbitmq.svc
   user: drugis
-  password: verysecret
+  password: xxxxx
 
 imagePullSecrets: []
 nameOverride: ""

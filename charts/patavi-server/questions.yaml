@@ -86,17 +86,18 @@ questions:
   - variable: rabbitmq.brokerHost
     type: string
     label: Patavi broker host
+    description: "Host for RabbitMQ (service.namespace.svc)"
     required: true
     default: rabbitmq.rabbitmq.svc
-    group: Rabbit
+    group: RabbitMQ
   - variable: rabbitmq.user
     type: string
     label: Patavi broker user
     required: true
     default: drugis
-    group: Rabbit
+    group: RabbitMQ
   - variable: rabbitmq.password
     type: password
     label: Patavi broker password
     required: true
-    group: Rabbit
+    group: RabbitMQ

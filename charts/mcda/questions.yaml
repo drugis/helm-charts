@@ -1,0 +1,110 @@
+categories:
+  - MCDA
+questions:
+  - variable: postgresql.postgresqlUsername
+    type: string
+    label: Mcda database username
+    required: true
+    default: mcda
+    group: Database
+  - variable: postgresql.postgresqlDatabase
+    type: string
+    label: Mcda database name
+    required: true
+    default: mcda
+    group: Database
+  - variable: postgresql.postgresqlPassword
+    type: password
+    label: Mcda database password
+    required: true
+    group: Database
+# 
+  - variable: patavi.host
+    type: string
+    label: Patavi host link
+    required: true
+    default: patavi-server.patavi-server.svc
+    group: Patavi
+  - variable: patavi.port
+    type: string
+    label: Patavi port
+    required: true
+    group: Patavi
+    default: "3000"
+  - variable: patavi.apiKey
+    type: password
+    label: Patavi API key
+    required: true
+    group: Patavi
+# 
+  - variable: image.repository
+    type: string
+    label: Mcda image repository
+    required: true
+    default: addis/mcda
+    group: Provisioning
+  - variable: image.tag
+    type: string
+    label: Mcda image tag
+    required: true
+    default: test
+    group: Provisioning
+  - variable: ingress.enabled
+    type: boolean
+    label: Ingress enabled
+    required: true
+    default: true
+    group: Provisioning
+  - variable: ingress.hosts[0].host
+    type: string
+    label: Mcda host
+    required: true
+    default: mcda.dev.molgenis.org
+    group: Provisioning
+  - variable: ingress.hosts[0].paths[0].path
+    type: string
+    label: Mcda host path
+    required: true
+    default: /
+    group: Provisioning
+  - variable: ingress.hosts[0].paths[0].pathType
+    type: string
+    label: Mcda host pathtype
+    required: true
+    default: ImplementationSpecific
+    group: Provisioning
+# 
+  - variable: mcda.secure
+    type: string
+    label: Use secure traffic
+    required: true
+    default: "false"
+    group: MCDA
+  - variable: mcda.host
+    type: string
+    label: Mcda host url
+    required: true
+    default: mcda.dev.molgenis.org
+    group: MCDA
+  - variable: mcda.authenticationMethod
+    type: string
+    label: Mcda authentication method
+    required: true
+    default: GOOGLE
+    group: MCDA
+  - variable: mcda.cookieSecret
+    type: password
+    required: false
+    label: Secret for session cookie
+    group: MCDA
+  - variable: mcda.googleKey
+    type: password
+    required: false
+    label: Key for google oauth2
+    group: MCDA
+  - variable: mcda.googleSecret
+    type: password
+    required: false
+    label: Secret for google oauth2
+    group: MCDA
+    

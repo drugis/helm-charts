@@ -1,0 +1,110 @@
+categories:
+  - GeMTC
+questions:
+  - variable: postgresql.postgresqlUsername
+    type: string
+    label: GeMTC database username
+    required: true
+    default: gemtc
+    group: Database
+  - variable: postgresql.postgresqlDatabase
+    type: string
+    label: GeMTC database name
+    required: true
+    default: gemtc
+    group: Database
+  - variable: postgresql.postgresqlPassword
+    type: password
+    label: GeMTC database password
+    required: true
+    group: Database
+# 
+  - variable: patavi.host
+    type: string
+    label: Patavi host link
+    required: true
+    default: patavi-server.patavi-server.svc
+    group: Patavi
+  - variable: patavi.port
+    type: string
+    label: Patavi port
+    required: true
+    group: Patavi
+    default: "3000"
+  - variable: patavi.apiKey
+    type: password
+    label: Patavi API key
+    required: true
+    group: Patavi
+# 
+  - variable: image.repository
+    type: string
+    label: GeMTC image repository
+    required: true
+    default: addis/gemtc
+    group: Provisioning
+  - variable: image.tag
+    type: string
+    label: GeMTC image tag
+    required: true
+    default: test
+    group: Provisioning
+  - variable: ingress.enabled
+    type: boolean
+    label: Ingress enabled
+    required: true
+    default: true
+    group: Provisioning
+  - variable: ingress.hosts[0].host
+    type: string
+    label: GeMTC host
+    required: true
+    default: gemtc.dev.molgenis.org
+    group: Provisioning
+  - variable: ingress.hosts[0].paths[0].path
+    type: string
+    label: GeMTC host path
+    required: true
+    default: /
+    group: Provisioning
+  - variable: ingress.hosts[0].paths[0].pathType
+    type: string
+    label: GeMTC host pathtype
+    required: true
+    default: ImplementationSpecific
+    group: Provisioning
+# 
+  - variable: gemtc.secure
+    type: string
+    label: Use secure traffic
+    required: true
+    default: "false"
+    group: GeMTC
+  - variable: gemtc.host
+    type: string
+    label: GeMTC host url
+    required: true
+    default: gemtc.dev.molgenis.org
+    group: GeMTC
+  - variable: gemtc.authenticationMethod
+    type: string
+    label: GeMTC authentication method
+    required: true
+    default: GOOGLE
+    group: GeMTC
+  - variable: gemtc.cookieSecret
+    type: password
+    required: false
+    label: Secret for session cookie
+    group: GeMTC
+  - variable: gemtc.googleKey
+    type: password
+    required: false
+    label: Key for google oauth2
+    group: GeMTC
+  - variable: gemtc.googleSecret
+    type: password
+    required: false
+    label: Secret for google oauth2
+    group: GeMTC
+    

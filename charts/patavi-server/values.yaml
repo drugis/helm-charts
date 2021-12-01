@@ -13,7 +13,7 @@ postgresql:
   initdbPassword: patavi
   master:
     extraInitContainers:
-      - name: bootstrap-database
+      - name: get-database-schema
         image: k8s.gcr.io/git-sync/git-sync:v3.3.5
         volumeMounts:
         - name: initdb
@@ -29,8 +29,9 @@ postgresql:
           value: "true"
         - name: GIT_SYNC_ROOT
           value: /docker-entrypoint-initdb.d
-      - name: busybox
-        command: cd /docker-entrypoint-initdb.d && find . ! -name 'schema.sql' -type f -exec rm -f {} +
+      - name: cleanup-repo
+        image: busybox:1.28
+        command: ['sh', '-c', "cd /docker-entrypoint-initdb.d && find . ! -name 'schema.sql' -type f -exec rm -f {} +"]
         volumeMounts:
         - name: initdb
           mountPath: /docker-entrypoint-initdb.d

@@ -25,6 +25,12 @@ questions:
     required: true
     default: patavi-server.patavi-server.svc
     group: Patavi
+  - variable: patavi.port
+    type: string
+    label: Patavi port
+    required: true
+    group: Patavi
+    default: "3000"
   - variable: patavi.apiKey
     type: password
     label: Patavi API key

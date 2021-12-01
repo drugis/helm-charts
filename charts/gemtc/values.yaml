@@ -48,6 +48,7 @@ affinity: {}
 patavi:
   apiKey: xxxxx
   host: patavi-server.patavi-server.svc
+  port: 3000
 
 postgresql:
   postgresqlUsername: gemtc

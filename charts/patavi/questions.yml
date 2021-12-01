@@ -65,8 +65,9 @@ questions:
   - variable: patavi-server.rabbitmq.brokerHost
     type: string
     label: Patavi broker host
+    description: RabbitMQ host (point to the rabbitmq service, normally 'release-rabbitmq')
     required: true
-    default: rabbitmq.rabbitmq.svc
+    default: patavi-rabbitmq
     group: Patavi Server - RabbitMQ
   - variable: rabbitmq.user
     type: string
@@ -92,7 +93,8 @@ questions:
   - variable: patavi-smaa-worker.rabbitmq.brokerHost
     type: string
     label: RabbitMQ host
-    default: rabbitmq.rabbitmq.svc
+    description: RabbitMQ host (point to the rabbitmq service, normally 'release-rabbitmq')
+    default: patavi-rabbitmq
     required: true
     group: Patavi Worker SMAA - RabbitMQ
   - variable: patavi-gemtc-worker.rabbitmq.password
@@ -103,6 +105,7 @@ questions:
   - variable: patavi-gemtc-worker.rabbitmq.brokerHost
     type: string
     label: RabbitMQ host
-    default: rabbitmq.rabbitmq.svc
+    description: RabbitMQ host (point to the rabbitmq service, normally 'release-rabbitmq')
+    default: patavi-rabbitmq
     required: true
     group: Patavi Worker GEMTC - RabbitMQ

@@ -11,7 +11,7 @@ patavi-server:
   proxyHost: patavi.dev.molgenis.org
   apiKey: xxxxx
   rabbitmq:
-    brokerHost: rabbitmq.rabbitmq.svc
+    brokerHost: patavi-rabbitmq
     password: xxxxx
   ingress:
     enabled: true
@@ -26,7 +26,7 @@ patavi-smaa-worker:
     repository: addis/patavi-smaa-worker
     tag: "latest"
   rabbitmq:
-    brokerHost: rabbitmq.rabbitmq.svc
+    brokerHost: patavi-rabbitmq
     user: drugis
     password: xxxxx
 
@@ -35,7 +35,7 @@ patavi-gemtc-worker:
     repository: addis/patavi-gemtc-worker
     tag: "latest"
   rabbitmq:
-    brokerHost: rabbitmq.rabbitmq.svc
+    brokerHost: patavi-rabbitmq
     user: drugis
     password: xxxxx
 

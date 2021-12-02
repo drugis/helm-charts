@@ -48,3 +48,7 @@ affinity: {}
 jena:
   apiKey: xxxx
   eventSourceUriPrefix: https://jena.dev.molgenis.org
+
+persistence:
+  enabled: true
+  # existingClaim: pv-jena

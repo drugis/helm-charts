@@ -1,0 +1,111 @@
+questions:
+  - variable: patavi-server.postgresql.postgresqlPassword
+    type: password
+    label: Patavi database password
+    required: true
+    group: Patavi Server - Database
+  - variable: patavi-server.postgresql.initdbPassword
+    type: password
+    label: Password for database initialisation
+    required: true
+    group: Patavi Server - Database
+  - variable: patavi-server.hostLink
+    type: string
+    label: Patavi host link
+    required: true
+    default: patavi.dev.molgenis.org
+    group: Patavi Server
+  - variable: patavi-server.proxyHost
+    type: string
+    label: Patavi proxy host
+    required: true
+    group: Patavi Server
+    default: patavi.dev.molgenis.org
+  - variable: patavi-server.apiKey
+    type: password
+    label: Patavi API key
+    required: true
+    group: Patavi Server
+  - variable: patavi-server.image.repository
+    type: string
+    label: Patavi image repository
+    required: true
+    default: addis/patavi
+    group: Patavi Server - Provisioning
+  - variable: patavi-server.image.tag
+    type: string
+    label: Patavi image tag
+    required: true
+    default: secure6
+    group: Patavi Server - Provisioning
+  - variable: patavi-server.ingress.enabled
+    type: boolean
+    label: Ingress enabled
+    required: true
+    default: true
+    group: Patavi Server - Provisioning
+  - variable: patavi-server.ingress.hosts[0].host
+    type: string
+    label: Patavi host
+    required: true
+    default: patavi.dev.molgenis.org
+    group: Patavi Server - Provisioning
+  - variable: patavi-server.ingress.hosts[0].paths[0].path
+    type: string
+    label: Patavi host path
+    required: true
+    default: /
+    group: Patavi Server - Provisioning
+  - variable: patavi-server.ingress.hosts[0].paths[0].pathType
+    type: string
+    label: Patavi host pathtype
+    required: true
+    default: ImplementationSpecific
+    group: Patavi Server - Provisioning
+  - variable: patavi-server.rabbitmq.brokerHost
+    type: string
+    label: Patavi broker host
+    description: RabbitMQ host (point to the rabbitmq service, normally 'release-rabbitmq')
+    required: true
+    default: patavi-rabbitmq
+    group: Patavi Server - RabbitMQ
+  - variable: rabbitmq.user
+    type: string
+    label: Patavi broker user
+    required: true
+    default: drugis
+    group: Patavi Server - RabbitMQ
+  - variable: patavi-server.rabbitmq.password
+    type: password
+    label: Patavi broker password
+    required: true
+    group: Patavi Server - RabbitMQ
+  - variable: rabbitmq.auth.password
+    type: password
+    label: RabbitMQ password
+    required: true
+    group: RabbitMQ
+  - variable: patavi-smaa-worker.rabbitmq.password
+    type: password
+    label: RabbitMQ password
+    required: true
+    group: Patavi Worker SMAA - RabbitMQ
+  - variable: patavi-smaa-worker.rabbitmq.brokerHost
+    type: string
+    label: RabbitMQ host
+    description: RabbitMQ host (point to the rabbitmq service, normally 'release-rabbitmq')
+    default: patavi-rabbitmq
+    required: true
+    group: Patavi Worker SMAA - RabbitMQ
+  - variable: patavi-gemtc-worker.rabbitmq.password
+    type: password
+    label: RabbitMQ password
+    required: true
+    group: Patavi Worker GEMTC - RabbitMQ
+  - variable: patavi-gemtc-worker.rabbitmq.brokerHost
+    type: string
+    label: RabbitMQ host
+    description: RabbitMQ host (point to the rabbitmq service, normally 'release-rabbitmq')
+    default: patavi-rabbitmq
+    required: true
+    group: Patavi Worker GEMTC - RabbitMQ

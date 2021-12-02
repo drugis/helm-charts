@@ -1,0 +1,15 @@
+dependencies:
+  - name: patavi-server
+    version: 0.2.1
+    repository: https://registry.molgenis.org/repository/helm
+  - name: patavi-worker
+    version: 0.2.2
+    repository: https://registry.molgenis.org/repository/helm
+    alias: patavi-smaa-worker
+  - name: patavi-worker
+    version: 0.2.2
+    repository: https://registry.molgenis.org/repository/helm
+    alias: patavi-gemtc-worker
+  - name: rabbitmq
+    version: 8.24.8
+    repository: https://charts.bitnami.com/bitnami

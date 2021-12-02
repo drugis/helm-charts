@@ -51,8 +51,8 @@ mcda:
   googleKey: xxxx
   googleSecret: xxxx
   cookieSecret: xxxx
-  host: mcda.dev.molgenis.org
-  secure: "false"
+  host: https://mcda.dev.molgenis.org
+  secure: false
   authenticationMethod: GOOGLE
 
 imagePullSecrets: []

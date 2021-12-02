@@ -2,6 +2,24 @@ ategories:
   - Patavi
   - R
 questions:
+  - variable: hostLink
+    type: string
+    label: Patavi host link
+    required: true
+    default: patavi.dev.molgenis.org
+    group: Patavi
+  - variable: proxyHost
+    type: string
+    label: Patavi proxy host
+    required: true
+    group: Patavi
+    default: patavi.dev.molgenis.org
+  - variable: apiKey
+    type: password
+    label: Patavi API key
+    required: true
+    group: Patavi
+#
   - variable: postgresql.postgresqlUsername
     type: string
     label: Patavi database username
@@ -30,23 +48,7 @@ questions:
     label: Password for database initialisation
     required: true
     group: Database
-  - variable: hostLink
-    type: string
-    label: Patavi host link
-    required: true
-    default: patavi.dev.molgenis.org
-    group: Patavi
-  - variable: proxyHost
-    type: string
-    label: Patavi proxy host
-    required: true
-    group: Patavi
-    default: patavi.dev.molgenis.org
-  - variable: apiKey
-    type: password
-    label: Patavi API key
-    required: true
-    group: Patavi
+#
   - variable: image.repository
     type: string
     label: Patavi image repository
@@ -83,6 +85,7 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Provisioning
+#
   - variable: rabbitmq.brokerHost
     type: string
     label: Patavi broker host

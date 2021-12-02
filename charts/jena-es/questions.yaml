@@ -1,0 +1,50 @@
+categories:
+- Jena-es
+questions:
+- variable: image.repository
+  type: string
+  label: Image Repository
+  required: true
+  default: addis/jena-es
+  group: Provisioning
+- variable: image.tag
+  label: Jena-es version tag
+  type: string
+  required: true
+  default: test
+  group: Provisioning  
+- variable: ingress.enabled
+  type: boolean
+  label: Ingress enabled
+  required: true
+  default: true
+  group: Provisioning
+- variable: ingress.hosts[0].host
+  type: string
+  label: Jena-as host
+  required: true
+  default: jena.dev.molgenis.org
+  group: Provisioning
+- variable: ingress.hosts[0].paths[0].path
+  type: string
+  label: Jena-es host path
+  required: true
+  default: /
+  group: Provisioning
+- variable: ingress.hosts[0].paths[0].pathType
+  type: string
+  label: Jena-es host pathtype
+  required: true
+  default: ImplementationSpecific
+  group: Provisioning
+- variable: jena.apiKey
+  type: password
+  label: Jena-es API-key
+  required: true
+  group: Jena-es
+- variable: jena.eventSourceUriPrefix
+  type: string
+  label: Jena-es URI prefix
+  required: true
+  default: https://jena.dev.molgenis.org
+  group: Jena-es

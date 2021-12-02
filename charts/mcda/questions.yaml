@@ -3,7 +3,8 @@ categories:
 questions:
   - variable: mcda.secure
     type: string
-    label: Use secure traffic
+    label: Use secure traffic for Patavi
+    description: Use secure traffic for Patavi communication (when service is used the traffic can be unsecure)
     required: true
     default: "false"
     group: MCDA
@@ -11,7 +12,7 @@ questions:
     type: string
     label: Host url
     required: true
-    default: mcda.dev.molgenis.org
+    default: https://mcda.dev.molgenis.org
     group: MCDA
   - variable: mcda.authenticationMethod
     type: string

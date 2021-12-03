@@ -74,15 +74,17 @@ spec:
               containerPort: 3000
               protocol: TCP
           livenessProbe:
-            tcpSocket:
-              port: 3000
-            initialDelaySeconds: 5
-            periodSeconds: 10
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 20
           readinessProbe:
-            tcpSocket:
-              port: 3000
-            initialDelaySeconds: 5
-            periodSeconds: 10
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 20
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

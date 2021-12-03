@@ -70,17 +70,6 @@ questions:
     label: GeMTC database password
     required: true
     group: Database
-  - variable: postgresql.initdbUser
-    type: string
-    label: User for database initialisation
-    required: true
-    default: gemtc
-    group: Database
-  - variable: postgresql.initdbPassword
-    type: password
-    label: Password for database initialisation
-    required: true
-    group: Database
 # 
   - variable: image.repository
     type: string

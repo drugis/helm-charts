@@ -5,6 +5,17 @@ image:
   pullPolicy: IfNotPresent
   tag: "test"
 
+jena:
+  apiKey: xxxx
+  eventSourceUriPrefix: https://jena.dev.molgenis.org
+
+persistence:
+  enabled: true
+  storageClass: ""
+  accessMode: ReadWriteMany
+  size: 10Gi
+  # existingClaim: ""
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -44,11 +55,3 @@ autoscaling:
 nodeSelector: {}
 tolerations: []
 affinity: {}
-
-jena:
-  apiKey: xxxx
-  eventSourceUriPrefix: https://jena.dev.molgenis.org
-
-persistence:
-  enabled: true
-  # existingClaim: pv-jena

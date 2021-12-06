@@ -35,6 +35,12 @@ questions:
     required: false
     label: Secret for google oauth2
     group: MCDA
+  - variable: mcda.schema.version
+    type: string
+    required: true
+    label: Schema version for MCDA
+    default: develop
+    group: MCDA
 #
   - variable: postgresql.postgresqlUsername
     type: string
@@ -51,17 +57,6 @@ questions:
   - variable: postgresql.postgresqlPassword
     type: password
     label: Mcda database password
-    required: true
-    group: Database
-  - variable: postgresql.initdbUser
-    type: string
-    label: User for database initialisation
-    required: true
-    default: mcda
-    group: Database
-  - variable: postgresql.initdbPassword
-    type: password
-    label: Password for database initialisation
     required: true
     group: Database
 #

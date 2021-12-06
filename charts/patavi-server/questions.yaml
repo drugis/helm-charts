@@ -2,22 +2,28 @@ ategories:
   - Patavi
   - R
 questions:
-  - variable: hostLink
+  - variable: patavi.hostLink
     type: string
     label: Patavi host link
     required: true
     default: patavi.dev.molgenis.org
     group: Patavi
-  - variable: proxyHost
+  - variable: patavi.proxyHost
     type: string
     label: Patavi proxy host
     required: true
     group: Patavi
     default: patavi.dev.molgenis.org
-  - variable: apiKey
+  - variable: patavi.apiKey
     type: password
     label: Patavi API key
     required: true
+    group: Patavi
+  - variable: patavi.schema.name
+    type: string
+    label: Patavi schema name
+    required: true
+    default: develop
     group: Patavi
 #
   - variable: postgresql.postgresqlUsername

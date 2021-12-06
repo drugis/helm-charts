@@ -53,17 +53,6 @@ questions:
     label: Mcda database password
     required: true
     group: Database
-  - variable: postgresql.initdbUser
-    type: string
-    label: User for database initialisation
-    required: true
-    default: mcda
-    group: Database
-  - variable: postgresql.initdbPassword
-    type: password
-    label: Password for database initialisation
-    required: true
-    group: Database
 #
   - variable: patavi.host
     type: string

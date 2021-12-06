@@ -30,7 +30,7 @@ spec:
       initContainers:
         - name: get-liquibase-changelog
           image: busybox:1.34.1
-          command: ['sh', '-c', "mkdir -p /liquibase/changelog && wget -O /liquibase/changelog/liquibase-changelog.sql https://raw.githubusercontent.com/drugis/mcda-elicitation-web/develop/database.pg.sql"]
+          command: ['sh', '-c', "mkdir -p /liquibase/changelog && wget -O /liquibase/changelog/liquibase-changelog.sql https://raw.githubusercontent.com/drugis/mcda-elicitation-web/{{ .Values.mcda.schema.version }}/database.pg.sql"]
           volumeMounts:
             - name: liquibase-changelog
               mountPath: /liquibase/changelog

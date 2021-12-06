@@ -22,6 +22,8 @@ mcda:
   host: https://mcda.dev.molgenis.org
   secure: false
   authenticationMethod: GOOGLE
+  schema:
+    version: develop
 
 imagePullSecrets: []
 nameOverride: ""

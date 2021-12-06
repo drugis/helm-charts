@@ -1,111 +1,88 @@
 questions:
-  - variable: patavi-server.postgresql.postgresqlPassword
+  - variable: addis-core.postgresql.postgresqlPassword
     type: password
-    label: Patavi database password
+    label: Addis database password
     required: true
-    group: Patavi Server - Database
-  - variable: patavi-server.postgresql.initdbPassword
+    group: Addis - Database
+  - variable: addis-core.postgresql.initdbPassword
     type: password
     label: Password for database initialisation
     required: true
-    group: Patavi Server - Database
-  - variable: patavi-server.hostLink
-    type: string
-    label: Patavi host link
+    group: Addis - Database
+  - variable: addis-core.addis.googleKey
+    type: password
+    label: Addis google oauth2 key
     required: true
-    default: patavi.dev.molgenis.org
-    group: Patavi Server
-  - variable: patavi-server.proxyHost
-    type: string
-    label: Patavi proxy host
+    group: Addis
+  - variable: addis-core.addis.googleSecret
+    type: password
+    label: Addis google oauth2 secret
     required: true
-    group: Patavi Server
-    default: patavi.dev.molgenis.org
-  - variable: patavi-server.apiKey
+    group: Addis
+#
+  - variable: addis-core.patavi.apiKey
     type: password
     label: Patavi API key
     required: true
-    group: Patavi Server
-  - variable: patavi-server.image.repository
+    group: Addis - Patavi
+  - variable: addis-core.patavi.host
     type: string
-    label: Patavi image repository
+    label: Patavi host adres
     required: true
-    default: addis/patavi
-    group: Patavi Server - Provisioning
-  - variable: patavi-server.image.tag
+    default: http://patavi-patavi-server.patavi.svc
+    group: Addis - Patavi
+#
+  - variable: addis-core.jena.apiKey
+    type: password
+    label: Jena API key
+    required: true
+    group: Addis - Jena
+  - variable: addis-core.jena.uriPrefix
     type: string
-    label: Patavi image tag
+    label: Jena URI prefix
     required: true
-    default: secure6
-    group: Patavi Server - Provisioning
-  - variable: patavi-server.ingress.enabled
+    default: https://jena.dev.molgenis.org
+    group: Addis - Jena
+  - variable: addis-core.jena.baseUri
+    type: string
+    label: Jena base URI
+    required: true
+    default: http://jena-es.jena-es.svc
+    group: Addis - Jena
+# 
+ - variable: addis-core.image.repository
+    type: string
+    label: Addis image repository
+    required: true
+    default: addis/addis
+    group: Addis - Provisioning
+  - variable: addis-core.image.tag
+    type: string
+    label: Addis image tag
+    required: true
+    default: test=20211203
+    group: Addis - Provisioning
+  - variable: addis-core.ingress.enabled
     type: boolean
     label: Ingress enabled
     required: true
     default: true
-    group: Patavi Server - Provisioning
-  - variable: patavi-server.ingress.hosts[0].host
+    group: Addis - Provisioning
+  - variable: addis-core.ingress.hosts[0].host
     type: string
-    label: Patavi host
+    label: Addis host
     required: true
     default: patavi.dev.molgenis.org
-    group: Patavi Server - Provisioning
-  - variable: patavi-server.ingress.hosts[0].paths[0].path
+    group: Addis - Provisioning
+  - variable: addis-core.ingress.hosts[0].paths[0].path
     type: string
-    label: Patavi host path
+    label: Addis host path
     required: true
     default: /
-    group: Patavi Server - Provisioning
-  - variable: patavi-server.ingress.hosts[0].paths[0].pathType
+    group: Addis - Provisioning
+  - variable: addis-core.ingress.hosts[0].paths[0].pathType
     type: string
-    label: Patavi host pathtype
+    label: Addis host pathtype
     required: true
     default: ImplementationSpecific
-    group: Patavi Server - Provisioning
-  - variable: patavi-server.rabbitmq.brokerHost
-    type: string
-    label: Patavi broker host
-    description: RabbitMQ host (point to the rabbitmq service, normally 'release-rabbitmq')
-    required: true
-    default: patavi-rabbitmq
-    group: Patavi Server - RabbitMQ
-  - variable: rabbitmq.user
-    type: string
-    label: Patavi broker user
-    required: true
-    default: drugis
-    group: Patavi Server - RabbitMQ
-  - variable: patavi-server.rabbitmq.password
-    type: password
-    label: Patavi broker password
-    required: true
-    group: Patavi Server - RabbitMQ
-  - variable: rabbitmq.auth.password
-    type: password
-    label: RabbitMQ password
-    required: true
-    group: RabbitMQ
-  - variable: patavi-smaa-worker.rabbitmq.password
-    type: password
-    label: RabbitMQ password
-    required: true
-    group: Patavi Worker SMAA - RabbitMQ
-  - variable: patavi-smaa-worker.rabbitmq.brokerHost
-    type: string
-    label: RabbitMQ host
-    description: RabbitMQ host (point to the rabbitmq service, normally 'release-rabbitmq')
-    default: patavi-rabbitmq
-    required: true
-    group: Patavi Worker SMAA - RabbitMQ
-  - variable: patavi-gemtc-worker.rabbitmq.password
-    type: password
-    label: RabbitMQ password
-    required: true
-    group: Patavi Worker GEMTC - RabbitMQ
-  - variable: patavi-gemtc-worker.rabbitmq.brokerHost
-    type: string
-    label: RabbitMQ host
-    description: RabbitMQ host (point to the rabbitmq service, normally 'release-rabbitmq')
-    default: patavi-rabbitmq
-    required: true
-    group: Patavi Worker GEMTC - RabbitMQ
+    group: Addis - Provisioning

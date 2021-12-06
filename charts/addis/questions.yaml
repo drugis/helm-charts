@@ -1,0 +1,122 @@
+categories:
+  - addis
+questions:
+  - variable: addis.secure
+    type: string
+    label: Use secure traffic with patavi
+    required: true
+    default: "false"
+    group: Addis
+  - variable: addis.importer
+    type: string
+    label: NCT-importer url
+    required: true
+    default: http://nct-import.nct-import.svc
+    group: Addis
+  - variable: addis.googleKey
+    type: password
+    required: false
+    label: Key for google oauth2
+    group: Addis
+  - variable: addis.googleSecret
+    type: password
+    required: false
+    label: Secret for google oauth2
+    group: Addis
+  - variable: addis.host
+    type: string
+    label: Addis host url
+    required: true
+    default: addis.dev.molgenis.org
+    group: Addis
+  - variable: addis.schema.version
+    type: string
+    label: Addis schema version
+    required: true
+    default: develop
+    group: Addis
+# 
+  - variable: jena.apiKey
+    type: password
+    label: Jena API key
+    required: true
+    group: Jena
+  - variable: jena.uriPrefix
+    type: string
+    label: Event sourcing uri prefix
+    default: https://jena.dev.molgenis.org
+    required: true
+    group: Jena
+  - variable: jena.baseUri
+    type: string
+    label: Jena base uri
+    default: http://jena-es.jena-es.svc
+    required: true
+    group: Jena
+#
+  - variable: postgresql.postgresqlUsername
+    type: string
+    label: Database username
+    required: true
+    default: addis
+    group: Database
+  - variable: postgresql.postgresqlDatabase
+    type: string
+    label: Database name
+    required: true
+    default: addis
+    group: Database
+  - variable: postgresql.postgresqlPassword
+    type: password
+    label: Database password
+    required: true
+    group: Database
+# 
+  - variable: patavi.host
+    type: string
+    label: Patavi host link
+    required: true
+    default: http://patavi-patavi-server.patavi.svc
+    group: Patavi
+  - variable: patavi.apiKey
+    type: password
+    label: Patavi API key
+    required: true
+    group: Patavi
+# 
+  - variable: image.repository
+    type: string
+    label: Addis image repository
+    required: true
+    default: addis/addis
+    group: Provisioning
+  - variable: image.tag
+    type: string
+    label: addis image tag
+    required: true
+    default: test-20211203
+    group: Provisioning
+  - variable: ingress.enabled
+    type: boolean
+    label: Ingress enabled
+    required: true
+    default: true
+    group: Provisioning
+  - variable: ingress.hosts[0].host
+    type: string
+    label: addis host
+    required: true
+    default: addis.dev.molgenis.org
+    group: Provisioning
+  - variable: ingress.hosts[0].paths[0].path
+    type: string
+    label: addis host path
+    required: true
+    default: /
+    group: Provisioning
+  - variable: ingress.hosts[0].paths[0].pathType
+    type: string
+    label: addis host pathtype
+    required: true
+    default: ImplementationSpecific
+    group: Provisioning

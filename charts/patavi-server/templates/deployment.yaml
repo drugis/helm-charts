@@ -41,7 +41,7 @@ spec:
           args: ["-c", "fabric8-dependency-wait-service-linux-amd64 $(POSTGRESQL_URI)"]
         - name: get-liquibase-changelog
           image: busybox:1.34.1
-          command: ['sh', '-c', "mkdir -p /liquibase/changelog && wget -O /liquibase/changelog/liquibase-changelog.sql https://raw.githubusercontent.com/drugis/addis-core/{{ .Values.schema.version }}/database.sql"]
+          command: ['sh', '-c', "mkdir -p /liquibase/changelog && wget -O /liquibase/changelog/liquibase-changelog.sql https://raw.githubusercontent.com/drugis/patavi/{{ .Values.patavi.schema.version }}/server/schema.sql"]
           volumeMounts:
             - name: liquibase-changelog
               mountPath: /liquibase/changelog
@@ -118,6 +118,9 @@ spec:
             periodSeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: liquibase-changelog
+          emptyDir: {}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

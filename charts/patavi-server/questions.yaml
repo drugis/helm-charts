@@ -19,9 +19,9 @@ questions:
     label: Patavi API key
     required: true
     group: Patavi
-  - variable: patavi.schema.name
+  - variable: patavi.schema.version
     type: string
-    label: Patavi schema name
+    label: Patavi schema version
     required: true
     default: develop
     group: Patavi
@@ -41,17 +41,6 @@ questions:
   - variable: postgresql.postgresqlPassword
     type: password
     label: Patavi database password
-    required: true
-    group: Database
-  - variable: postgresql.initdbUser
-    type: string
-    label: User for database initialisation
-    required: true
-    default: patavi
-    group: Database
-  - variable: postgresql.initdbPassword
-    type: password
-    label: Password for database initialisation
     required: true
     group: Database
 #

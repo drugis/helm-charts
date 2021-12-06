@@ -1,7 +1,7 @@
 patavi-server:
   postgresql:
     postgresqlPassword: xxxxx
-    initdbPassword: patavi
+    initdbPassword: xxxx
     image:
       debug: true
   image:

@@ -30,7 +30,7 @@ spec:
       initContainers:
         - name: get-liquibase-changelog
           image: busybox:1.34.1
-          command: ['sh', '-c', "mkdir -p /liquibase/changelog && wget -O /liquibase/changelog/liquibase-changelog.sql https://raw.githubusercontent.com/drugis/gemtc-web/develop/liquibase/liquibase-changelog.sql"]
+          command: ['sh', '-c', "mkdir -p /liquibase/changelog && wget -O /liquibase/changelog/liquibase-changelog.sql https://raw.githubusercontent.com/drugis/gemtc-web/{{ .Values.gemtc.schema.version }}/liquibase/liquibase-changelog.sql"]
           volumeMounts:
             - name: liquibase-changelog
               mountPath: /liquibase/changelog

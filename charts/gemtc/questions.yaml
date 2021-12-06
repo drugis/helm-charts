@@ -34,6 +34,12 @@ questions:
     required: false
     label: Secret for google oauth2
     group: GeMTC
+  - variable: gemtc.schema.version
+    type: string
+    required: true
+    label: GeMTC database schema version
+    default: develop
+    group: GeMTC
 #
   - variable: patavi.host
     type: string

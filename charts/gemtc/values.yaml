@@ -22,6 +22,8 @@ gemtc:
   host: gemtc.dev.molgenis.org
   secure: "false"
   authenticationMethod: GOOGLE
+  schema:
+    version: develop
 
 imagePullSecrets: []
 nameOverride: ""

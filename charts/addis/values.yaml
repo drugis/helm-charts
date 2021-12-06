@@ -1,20 +1,32 @@
 replicaCount: 1
 
 image:
-  repository: addis/jena-es
+  repository: addis/addis
   pullPolicy: IfNotPresent
-  tag: "test"
+  tag: "test-20211203"
+
+addis:
+  googleKey: xxxx
+  googleSecret: xxxx
+  importer: http://nct-import.nct-import.svc
+  secure: false
+  host: addis.dev.molgenis.org
+  schema:
+    version: develop
 
 jena:
   apiKey: xxxx
-  eventSourceUriPrefix: https://jena.dev.molgenis.org
+  uriPrefix: https://jena.dev.molgenis.org
+  baseUri: http://jena-es.jena-es.svc
 
-persistence:
-  enabled: true
-  storageClass: ""
-  accessMode: ReadWriteMany
-  size: 10Gi
-  # existingClaim: ""
+patavi:
+  apiKey: xxxx
+  host: http://patavi-patavi-server.patavi.svc
+
+postgresql:
+  postgresqlUsername: addis
+  postgresqlDatabase: addis
+  postgresqlPassword: xxxxx
 
 imagePullSecrets: []
 nameOverride: ""
@@ -31,14 +43,14 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 8090
 
 ingress:
   enabled: false
   className: ""
   annotations: {}
   hosts:
-    - host: jena.dev.molgenis.org
+    - host: addis.dev.molgenis.org
       paths:
         - path: /
           pathType: ImplementationSpecific

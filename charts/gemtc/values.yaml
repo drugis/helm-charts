@@ -5,6 +5,26 @@ image:
   pullPolicy: IfNotPresent
   tag: "test"
 
+patavi:
+  apiKey: xxxxx
+  host: patavi-patavi-server.patavi.svc
+  port: 3000
+
+postgresql:
+  postgresqlUsername: gemtc
+  postgresqlDatabase: gemtc
+  postgresqlPassword: xxxxx
+
+gemtc:
+  googleKey: xxxx
+  googleSecret: xxxx
+  cookieSecret: xxxx
+  host: gemtc.dev.molgenis.org
+  secure: "false"
+  authenticationMethod: GOOGLE
+  schema:
+    version: develop
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -44,21 +64,3 @@ autoscaling:
 nodeSelector: {}
 tolerations: []
 affinity: {}
-
-patavi:
-  apiKey: xxxxx
-  host: patavi-server.patavi-server.svc
-  port: 3000
-
-postgresql:
-  postgresqlUsername: gemtc
-  postgresqlDatabase: gemtc
-  postgresqlPassword: xxxxx
-
-gemtc:
-  googleKey: xxxx
-  googleSecret: xxxx
-  cookieSecret: xxxx
-  host: gemtc.dev.molgenis.org
-  secure: "false"
-  authenticationMethod: GOOGLE

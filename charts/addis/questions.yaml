@@ -1,78 +1,83 @@
 categories:
-  - MCDA
+  - addis
 questions:
-  - variable: mcda.secure
+  - variable: addis.secure
     type: string
-    label: Use secure traffic for Patavi
-    description: Use secure traffic for Patavi communication (when service is used the traffic can be unsecure)
+    label: Use secure traffic with patavi
     required: true
     default: "false"
-    group: MCDA
-  - variable: mcda.host
+    group: Addis
+  - variable: addis.importer
     type: string
-    label: Host url
+    label: NCT-importer url
     required: true
-    default: https://mcda.dev.molgenis.org
-    group: MCDA
-  - variable: mcda.authenticationMethod
-    type: string
-    label: Authentication method
-    required: true
-    default: GOOGLE
-    group: MCDA
-  - variable: mcda.cookieSecret
-    type: password
-    required: false
-    label: Secret for session cookie
-    group: MCDA
-  - variable: mcda.googleKey
+    default: http://nct-import.nct-import.svc
+    group: Addis
+  - variable: addis.googleKey
     type: password
     required: false
     label: Key for google oauth2
-    group: MCDA
-  - variable: mcda.googleSecret
+    group: Addis
+  - variable: addis.googleSecret
     type: password
     required: false
     label: Secret for google oauth2
-    group: MCDA
-  - variable: mcda.schema.version
+    group: Addis
+  - variable: addis.host
     type: string
+    label: Addis host url
     required: true
-    label: Schema version for MCDA
+    default: addis.dev.molgenis.org
+    group: Addis
+  - variable: addis.schema.version
+    type: string
+    label: Addis schema version
+    required: true
     default: develop
-    group: MCDA
+    group: Addis
+# 
+  - variable: jena.apiKey
+    type: password
+    label: Jena API key
+    required: true
+    group: Jena
+  - variable: jena.uriPrefix
+    type: string
+    label: Event sourcing uri prefix
+    default: https://jena.dev.molgenis.org
+    required: true
+    group: Jena
+  - variable: jena.baseUri
+    type: string
+    label: Jena base uri
+    default: http://jena-es.jena-es.svc
+    required: true
+    group: Jena
 #
   - variable: postgresql.postgresqlUsername
     type: string
-    label: Mcda database username
+    label: Database username
     required: true
-    default: mcda
+    default: addis
     group: Database
   - variable: postgresql.postgresqlDatabase
     type: string
-    label: Mcda database name
+    label: Database name
     required: true
-    default: mcda
+    default: addis
     group: Database
   - variable: postgresql.postgresqlPassword
     type: password
-    label: Mcda database password
+    label: Database password
     required: true
     group: Database
-#
+# 
   - variable: patavi.host
     type: string
     label: Patavi host link
     required: true
-    description: Patavi server url, we point to the service usually (service.namespace.svc)
-    default: patavi-patavi-server.patavi.svc
+    default: http://patavi-patavi-server.patavi.svc
     group: Patavi
-  - variable: patavi.port
-    type: string
-    label: Patavi port
-    required: true
-    group: Patavi
-    default: "3000"
   - variable: patavi.apiKey
     type: password
     label: Patavi API key
@@ -81,15 +86,15 @@ questions:
 # 
   - variable: image.repository
     type: string
-    label: Mcda image repository
+    label: Addis image repository
     required: true
-    default: addis/mcda
+    default: addis/addis
     group: Provisioning
   - variable: image.tag
     type: string
-    label: Mcda image tag
+    label: addis image tag
     required: true
-    default: test
+    default: test-20211203
     group: Provisioning
   - variable: ingress.enabled
     type: boolean
@@ -99,19 +104,19 @@ questions:
     group: Provisioning
   - variable: ingress.hosts[0].host
     type: string
-    label: Mcda host
+    label: addis host
     required: true
-    default: mcda.dev.molgenis.org
+    default: addis.dev.molgenis.org
     group: Provisioning
   - variable: ingress.hosts[0].paths[0].path
     type: string
-    label: Mcda host path
+    label: addis host path
     required: true
     default: /
     group: Provisioning
   - variable: ingress.hosts[0].paths[0].pathType
     type: string
-    label: Mcda host pathtype
+    label: addis host pathtype
     required: true
     default: ImplementationSpecific
     group: Provisioning

@@ -1,6 +1,64 @@
 categories:
   - GeMTC
 questions:
+  - variable: gemtc.secure
+    type: string
+    label: Use secure traffic
+    required: true
+    default: "false"
+    group: GeMTC
+  - variable: gemtc.host
+    type: string
+    label: GeMTC host url
+    required: true
+    default: gemtc.dev.molgenis.org
+    group: GeMTC
+  - variable: gemtc.authenticationMethod
+    type: string
+    label: GeMTC authentication method
+    required: true
+    default: GOOGLE
+    group: GeMTC
+  - variable: gemtc.cookieSecret
+    type: password
+    required: false
+    label: Secret for session cookie
+    group: GeMTC
+  - variable: gemtc.googleKey
+    type: password
+    required: false
+    label: Key for google oauth2
+    group: GeMTC
+  - variable: gemtc.googleSecret
+    type: password
+    required: false
+    label: Secret for google oauth2
+    group: GeMTC
+  - variable: gemtc.schema.version
+    type: string
+    required: true
+    label: GeMTC database schema version
+    default: develop
+    group: GeMTC
+#
+  - variable: patavi.host
+    type: string
+    label: Patavi host link
+    required: true
+    default: patavi-patavi-server.patavi.svc
+    group: Patavi
+  - variable: patavi.port
+    type: string
+    label: Patavi port
+    required: true
+    group: Patavi
+    default: "3000"
+  - variable: patavi.apiKey
+    type: password
+    label: Patavi API key
+    required: true
+    group: Patavi
+# 
   - variable: postgresql.postgresqlUsername
     type: string
     label: GeMTC database username
@@ -18,24 +76,6 @@ questions:
     label: GeMTC database password
     required: true
     group: Database
-# 
-  - variable: patavi.host
-    type: string
-    label: Patavi host link
-    required: true
-    default: patavi-server.patavi-server.svc
-    group: Patavi
-  - variable: patavi.port
-    type: string
-    label: Patavi port
-    required: true
-    group: Patavi
-    default: "3000"
-  - variable: patavi.apiKey
-    type: password
-    label: Patavi API key
-    required: true
-    group: Patavi
 # 
   - variable: image.repository
     type: string
@@ -73,38 +113,3 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Provisioning
-# 
-  - variable: gemtc.secure
-    type: string
-    label: Use secure traffic
-    required: true
-    default: "false"
-    group: GeMTC
-  - variable: gemtc.host
-    type: string
-    label: GeMTC host url
-    required: true
-    default: gemtc.dev.molgenis.org
-    group: GeMTC
-  - variable: gemtc.authenticationMethod
-    type: string
-    label: GeMTC authentication method
-    required: true
-    default: GOOGLE
-    group: GeMTC
-  - variable: gemtc.cookieSecret
-    type: password
-    required: false
-    label: Secret for session cookie
-    group: GeMTC
-  - variable: gemtc.googleKey
-    type: password
-    required: false
-    label: Key for google oauth2
-    group: GeMTC
-  - variable: gemtc.googleSecret
-    type: password
-    required: false
-    label: Secret for google oauth2
-    group: GeMTC
-    

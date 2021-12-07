@@ -1,9 +1,6 @@
 addis-core:
   postgresql:
     postgresqlPassword: xxxx
-    initdbPassword: xxxx
-    image:
-      debug: true
   image:
     repository: addis/addis
     tag: "test-20211203"
@@ -17,7 +14,7 @@ addis-core:
     baseUri: http://jena-es.jena-es.svc
   patavi:
     apiKey: xxxx
-    host: http://patavi-patavi-server.patavi.svc
+    host: http://patavi-patavi-server.patavi.svc:3000
   ingress:
     enabled: true
     hosts:

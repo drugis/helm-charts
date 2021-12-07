@@ -1,0 +1,12 @@
+dependencies:
+- name: addis-core
+  repository: https://registry.molgenis.org/repository/helm
+  version: 0.3.4
+- name: jena-es
+  repository: https://registry.molgenis.org/repository/helm
+  version: 0.2.1
+- name: nct-import
+  repository: https://registry.molgenis.org/repository/helm
+  version: 0.2.1
+digest: sha256:3d50cb92a765c9e3d2b5e8d458726e4db1dcbe5f3d2d773aeb80447104c2d303
+generated: "2021-12-07T14:18:13.777147084+01:00"

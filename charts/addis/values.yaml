@@ -11,10 +11,10 @@ addis-core:
   jena:
     apiKey: xxxx
     uriPrefix: https://jena.dev.molgenis.org
-    baseUri: http://jena-es.jena-es.svc
+    baseUri: http://addis-jena-es.addis.svc
   patavi:
     apiKey: xxxx
-    host: http://patavi-patavi-server.patavi.svc:3000
+    host: http://patavi.patavi-patavi-server.svc:3000
   ingress:
     enabled: true
     hosts:

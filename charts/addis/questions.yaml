@@ -29,7 +29,7 @@ questions:
     type: string
     label: Patavi host adres
     required: true
-    default: http://patavi-patavi-server.patavi.svc
+    default: http://patavi-patavi-server.patavi.svc:3000
     group: Addis - Patavi
 #
   - variable: addis-core.jena.apiKey
@@ -47,7 +47,7 @@ questions:
     type: string
     label: Jena base URI
     required: true
-    default: http://jena-es.jena-es.svc
+    default: http://addis-jena-es.addis.svc
     group: Addis - Jena
 # 
  - variable: addis-core.image.repository

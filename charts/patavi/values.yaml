@@ -1,18 +1,22 @@
 patavi-server:
   postgresql:
     postgresqlPassword: xxxxx
-    initdbPassword: patavi
-    image:
-      debug: true
+
   image:
     repository: addis/patavi
     tag: "secure6"
-  hostLink: patavi.dev.molgenis.org
-  proxyHost: patavi.dev.molgenis.org
-  apiKey: xxxxx
+
+  patavi:
+    hostLink: patavi.dev.molgenis.org
+    proxyHost: patavi.dev.molgenis.org
+    apiKey: xxxxx
+    schema:
+      version: develop
+
   rabbitmq:
     brokerHost: patavi-rabbitmq
     password: xxxxx
+
   ingress:
     enabled: true
     hosts:

@@ -2,7 +2,7 @@ apiVersion: v1
 appVersion: "latest"
 description: Complete deployment of Patavi cluster environment
 name: patavi
-version: 0.0.1
+version: 0.1.0
 icon: https://github.com/drugis/patavi/raw/master/server/public/img/patavi_small.png
 maintainers:
   - name: sidohaakma

@@ -1,4 +1,4 @@
-addisCore:
+addis-core:
   postgresql:
     postgresqlPassword: xxxx
   image:

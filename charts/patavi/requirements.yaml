@@ -1,6 +1,6 @@
 dependencies:
   - name: patavi-server
-    version: 0.2.1
+    version: 0.2.3
     repository: https://registry.molgenis.org/repository/helm
   - name: patavi-worker
     version: 0.2.2

@@ -86,3 +86,41 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Addis - Provisioning
+# 
+  - variable: jena-es.image.repository
+    type: string
+    label: Jena image repository
+    required: true
+    default: addis/jena-es
+    group: Jena - Provisioning
+  - variable: jena-es.image.tag
+    type: string
+    label: Jena image tag
+    required: true
+    default: test
+    group: Jena - Provisioning
+# 
+  - variable: jena-es.jena.apiKey
+    type: password
+    label: Jena API key
+    required: true
+    group: Jena - Jena
+  - variable: jena-es.jena.eventSourceUriPrefix
+    type: string
+    label: Jena event source URI prefix
+    required: true
+    default: http://jena.dev.molgenis.org
+    group: Jena - Jena
+# 
+  - variable: nct-import.image.repository
+    type: string
+    label: Jena image repository
+    required: true
+    default: addis/jena-es
+    group: NCT-importer - Provisioning
+  - variable: nct-import.image.tag
+    type: string
+    label: Jena image tag
+    required: true
+    default: latest
+    group: NCT-importer - Provisioning

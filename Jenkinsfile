@@ -8,9 +8,9 @@ pipeline {
         stage('Prepare') {
             steps {
                 container('chart-testing') {
-                    sh "helm repo add stable https://charts.helm.sh/stable"
-                    sh "helm repo add molgenis https://helm.molgenis.org"
-                    sh "helm repo add bitnami https://charts.bitnami.com/bitnami"
+                    sh 'helm repo add stable https://charts.helm.sh/stable'
+                    sh 'helm repo add molgenis https://helm.molgenis.org'
+                    sh 'helm repo add bitnami https://charts.bitnami.com/bitnami'
                 }
             }
         }
@@ -19,8 +19,8 @@ pipeline {
                 changeRequest()
             }
             environment {
-                CT_REMOTE='origin'
-                CT_BUILD_ID="${CHANGE_ID}"
+                CT_REMOTE = 'origin'
+                CT_BUILD_ID = "${CHANGE_ID}"
             }
             steps {
                 container('chart-testing') {
@@ -37,7 +37,7 @@ pipeline {
             }
             steps {
                 container('chart-testing') {
-                    sh "ct lint --all --validate-maintainers=false"
+                    sh 'ct lint --all --validate-maintainers=false'
                     sh 'mkdir target'
                     sh 'for dir in charts/*; do helm package --destination target "$dir"; done'
                 }

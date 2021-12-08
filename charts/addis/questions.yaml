@@ -46,13 +46,19 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Addis - Provisioning
-  #
+#
   - variable: addis-core.postgresql.postgresqlPassword
     type: password
     label: Addis database password
     required: true
     group: Addis - Database
-  #
+  - variable: addis-core.postgresql.persistence.existingClaim
+    type: string
+    label: Existing volume
+    description: Define the existing claim when the instance needs to be restored from an existing database
+    required: false
+    group: Database 
+#
   - variable: addis-core.patavi.apiKey
     type: password
     label: Patavi API key
@@ -142,7 +148,13 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Jena-es
-  #
+  - variable: jena-es.persistence.existingClaim
+    type: string
+    label: Existing volume
+    description: Define the existing claim when the instance needs to be restored from an existing volume for Jena-es
+    required: false
+    group: Database 
+#
   - variable: nct-import.image.repository
     type: string
     label: NCT-importer image repository

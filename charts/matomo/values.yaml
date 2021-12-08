@@ -16,7 +16,7 @@ mariadb:
     username: "matomoDrugis"
     password: "test"
   # persistence:
-  #   existingClaim: 
+  #   existingClaim:
 
 imagePullSecrets: []
 nameOverride: ""

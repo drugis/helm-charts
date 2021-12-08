@@ -15,7 +15,7 @@ postgresql:
   postgresqlDatabase: gemtc
   postgresqlPassword: xxxxx
   # persistence:
-  #   existingClaim: 
+  #   existingClaim: data-gemtc-postgresql-0
 
 gemtc:
   googleKey: xxxx

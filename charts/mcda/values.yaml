@@ -15,7 +15,7 @@ postgresql:
   postgresqlDatabase: mcda
   postgresqlPassword: xxxxx
   # persistence:
-  #   existingClaim: xxxx
+  #   existingClaim: data-mcda-postgresql-0
 
 mcda:
   googleKey: xxxx

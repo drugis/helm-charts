@@ -28,7 +28,7 @@ postgresql:
   postgresqlDatabase: addis
   postgresqlPassword: xxxxx
   # persistence:
-  #   existingClaim: 
+  #   existingClaim: data-addis-postgresql-0
 
 imagePullSecrets: []
 nameOverride: ""

@@ -14,7 +14,7 @@ persistence:
   storageClass: ""
   accessMode: ReadWriteMany
   size: 10Gi
-  # existingClaim: ""
+  # existingClaim: jena-es
 
 imagePullSecrets: []
 nameOverride: ""

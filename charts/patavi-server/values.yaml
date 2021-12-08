@@ -10,7 +10,7 @@ postgresql:
   postgresqlDatabase: patavi
   postgresqlPassword: xxxxxx
   # persistence:
-  #   existingClaim: 
+  #   existingClaim: data-patavi-server-postgresql-0
 
 patavi:
   hostLink: patavi.dev.molgenis.org

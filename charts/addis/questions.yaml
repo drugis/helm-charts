@@ -32,7 +32,7 @@ questions:
     type: string
     label: Addis host
     required: true
-    default: patavi.dev.molgenis.org
+    default: addis.dev.molgenis.org
     group: Addis - Provisioning
   - variable: addis-core.ingress.hosts[0].paths[0].path
     type: string

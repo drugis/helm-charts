@@ -24,6 +24,13 @@ addis-core:
             pathType: ImplementationSpecific
 
 jena-es:
+  ingress:
+    enabled: true
+    hosts:
+      - host: jena.dev.molgenis.org
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
   image:
     repository: addis/jena-es
     tag: "test"

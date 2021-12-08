@@ -95,24 +95,48 @@ questions:
     label: Jena image repository
     required: true
     default: addis/jena-es
-    group: Jena
+    group: Jena-es
   - variable: jena-es.image.tag
     type: string
     label: Jena image tag
     required: true
     default: test
-    group: Jena
+    group: Jena-es
   - variable: jena-es.jena.apiKey
     type: password
     label: Jena API key
     required: true
-    group: Jena
+    group: Jena-es
   - variable: jena-es.jena.eventSourceUriPrefix
     type: string
     label: Jena event source URI prefix
     required: true
     default: http://jena.dev.molgenis.org
-    group: Jena
+    group: Jena-es
+  - variable: ingress.enabled
+    type: boolean
+    label: Ingress enabled
+    required: true
+    default: true
+    group: Jena-es
+  - variable: ingress.hosts[0].host
+    type: string
+    label: Jena-as host
+    required: true
+    default: jena.dev.molgenis.org
+    group: Jena-es
+  - variable: ingress.hosts[0].paths[0].path
+    type: string
+    label: Jena-es host path
+    required: true
+    default: /
+    group: Jena-es
+  - variable: ingress.hosts[0].paths[0].pathType
+    type: string
+    label: Jena-es host pathtype
+    required: true
+    default: ImplementationSpecific
+    group: Jena-es
 # 
   - variable: nct-import.image.repository
     type: string

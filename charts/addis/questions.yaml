@@ -87,7 +87,7 @@ questions:
     type: string
     label: NCT Importer endpoint
     required: true
-    default: http://nct-import.nct-import.svc
+    default: http://addis-nct-import.addis.svc
     group: Addis - NCT importer
 # 
   - variable: jena-es.image.repository

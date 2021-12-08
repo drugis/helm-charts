@@ -7,7 +7,7 @@ addis-core:
   addis:
     googleKey: xxxx
     googleSecret: xxxx
-    importer: http://nct-import.nct-import.svc
+    importer: http://addis-nct-import.addis.svc
   jena:
     apiKey: xxxx
     uriPrefix: https://jena.dev.molgenis.org

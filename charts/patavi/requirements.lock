@@ -1,7 +1,7 @@
 dependencies:
 - name: patavi-server
   repository: https://registry.molgenis.org/repository/helm
-  version: 0.2.3
+  version: 0.2.4
 - name: patavi-worker
   repository: https://registry.molgenis.org/repository/helm
   version: 0.2.2
@@ -11,5 +11,5 @@ dependencies:
 - name: rabbitmq
   repository: https://charts.bitnami.com/bitnami
   version: 8.24.8
-digest: sha256:4e2fc2fb63bb6ad60a003719cac64ec453bb176a6a42d31271f56c413bafb392
-generated: "2021-12-07T13:01:16.954676+01:00"
+digest: sha256:65eb592d7092f5eac9e191f576ea99e9195ec40f76e5f380fb77f1108864df18
+generated: "2021-12-07T13:42:41.359255+01:00"

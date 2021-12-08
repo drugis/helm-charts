@@ -21,7 +21,7 @@ jena:
 
 patavi:
   apiKey: xxxx
-  host: http://patavi-patavi-server.patavi.svc
+  host: http://patavi-patavi-server.patavi.svc:3000
 
 postgresql:
   postgresqlUsername: addis

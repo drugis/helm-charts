@@ -20,7 +20,7 @@ questions:
     type: string
     label: Addis image tag
     required: true
-    default: test=20211203
+    default: test-20211203
     group: Addis - Provisioning
   - variable: addis-core.ingress.enabled
     type: boolean
@@ -116,13 +116,13 @@ questions:
 # 
   - variable: nct-import.image.repository
     type: string
-    label: Jena image repository
+    label: NCT-importer image repository
     required: true
-    default: addis/jena-es
+    default: addis/nct-import
     group: NCT-importer
   - variable: nct-import.image.tag
     type: string
-    label: Jena image tag
+    label: NCT-importer image tag
     required: true
     default: latest
     group: NCT-importer

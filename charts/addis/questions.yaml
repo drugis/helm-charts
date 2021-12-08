@@ -1,14 +1,4 @@
 questions:
-  - variable: addis-core.postgresql.postgresqlPassword
-    type: password
-    label: Addis database password
-    required: true
-    group: Addis - Database
-  - variable: addis-core.postgresql.initdbPassword
-    type: password
-    label: Password for database initialisation
-    required: true
-    group: Addis - Database
   - variable: addis-core.addis.googleKey
     type: password
     label: Addis google oauth2 key
@@ -19,36 +9,6 @@ questions:
     label: Addis google oauth2 secret
     required: true
     group: Addis
-#
-  - variable: addis-core.patavi.apiKey
-    type: password
-    label: Patavi API key
-    required: true
-    group: Addis - Patavi
-  - variable: addis-core.patavi.host
-    type: string
-    label: Patavi host adres
-    required: true
-    default: http://patavi-patavi-server.patavi.svc:3000
-    group: Addis - Patavi
-#
-  - variable: addis-core.jena.apiKey
-    type: password
-    label: Jena API key
-    required: true
-    group: Addis - Jena
-  - variable: addis-core.jena.uriPrefix
-    type: string
-    label: Jena URI prefix
-    required: true
-    default: https://jena.dev.molgenis.org
-    group: Addis - Jena
-  - variable: addis-core.jena.baseUri
-    type: string
-    label: Jena base URI
-    required: true
-    default: http://addis-jena-es.addis.svc
-    group: Addis - Jena
 # 
   - variable: addis-core.image.repository
     type: string
@@ -86,41 +46,83 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Addis - Provisioning
+#
+  - variable: addis-core.postgresql.postgresqlPassword
+    type: password
+    label: Addis database password
+    required: true
+    group: Addis - Database
+#
+  - variable: addis-core.patavi.apiKey
+    type: password
+    label: Patavi API key
+    required: true
+    group: Addis - Patavi
+  - variable: addis-core.patavi.host
+    type: string
+    label: Patavi host adres
+    required: true
+    default: http://patavi-patavi-server.patavi.svc:3000
+    group: Addis - Patavi
+#
+  - variable: addis-core.jena.apiKey
+    type: password
+    label: Jena API key
+    required: true
+    group: Addis - Jena
+  - variable: addis-core.jena.uriPrefix
+    type: string
+    label: Jena URI prefix
+    required: true
+    default: https://jena.dev.molgenis.org
+    group: Addis - Jena
+  - variable: addis-core.jena.baseUri
+    type: string
+    label: Jena base URI
+    required: true
+    default: http://addis-jena-es.addis.svc
+    group: Addis - Jena
+#
+  - variable: addis-core.addis.importer
+    type: string
+    label: NCT Importer endpoint
+    required: true
+    default: http://nct-import.nct-import.svc
+    group: Addis - NCT importer
 # 
   - variable: jena-es.image.repository
     type: string
     label: Jena image repository
     required: true
     default: addis/jena-es
-    group: Jena - Provisioning
+    group: Jena
   - variable: jena-es.image.tag
     type: string
     label: Jena image tag
     required: true
     default: test
-    group: Jena - Provisioning
-# 
+    group: Jena
   - variable: jena-es.jena.apiKey
     type: password
     label: Jena API key
     required: true
-    group: Jena - Jena
+    group: Jena
   - variable: jena-es.jena.eventSourceUriPrefix
     type: string
     label: Jena event source URI prefix
     required: true
     default: http://jena.dev.molgenis.org
-    group: Jena - Jena
+    group: Jena
 # 
   - variable: nct-import.image.repository
     type: string
     label: Jena image repository
     required: true
     default: addis/jena-es
-    group: NCT-importer - Provisioning
+    group: NCT-importer
   - variable: nct-import.image.tag
     type: string
     label: Jena image tag
     required: true
     default: latest
-    group: NCT-importer - Provisioning
+    group: NCT-importer

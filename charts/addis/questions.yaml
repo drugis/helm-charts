@@ -50,7 +50,7 @@ questions:
     default: http://addis-jena-es.addis.svc
     group: Addis - Jena
 # 
- - variable: addis-core.image.repository
+  - variable: addis-core.image.repository
     type: string
     label: Addis image repository
     required: true

@@ -38,8 +38,13 @@ questions:
 #
   - variable: patavi-server.postgresql.postgresqlPassword
     type: password
-    label: Patavi database password
+    label: Database password
     required: true
+    group: Patavi Server - Database
+  - variable: patavi-server.postgresql.persistence.existingClaim
+    type: string
+    label: Existing claim
+    required: false
     group: Patavi Server - Database
 #
   - variable: patavi-server.image.repository

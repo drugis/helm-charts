@@ -3,7 +3,7 @@ addis-core:
     postgresqlPassword: xxxx
   image:
     repository: addis/addis
-    tag: "test-20211203"
+    tag: "test20211208-2"
   addis:
     googleKey: xxxx
     googleSecret: xxxx

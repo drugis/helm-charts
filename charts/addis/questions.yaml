@@ -9,7 +9,7 @@ questions:
     label: Addis google oauth2 secret
     required: true
     group: Addis
-# 
+  #
   - variable: addis-core.image.repository
     type: string
     label: Addis image repository
@@ -20,7 +20,7 @@ questions:
     type: string
     label: Addis image tag
     required: true
-    default: test-20211203
+    default: test20211208-2
     group: Addis - Provisioning
   - variable: addis-core.ingress.enabled
     type: boolean
@@ -46,13 +46,13 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Addis - Provisioning
-#
+  #
   - variable: addis-core.postgresql.postgresqlPassword
     type: password
     label: Addis database password
     required: true
     group: Addis - Database
-#
+  #
   - variable: addis-core.patavi.apiKey
     type: password
     label: Patavi API key
@@ -64,7 +64,7 @@ questions:
     required: true
     default: http://patavi-patavi-server.patavi.svc:3000
     group: Addis - Patavi
-#
+  #
   - variable: addis-core.jena.apiKey
     type: password
     label: Jena API key
@@ -82,14 +82,14 @@ questions:
     required: true
     default: http://addis-jena-es
     group: Addis - Jena
-#
+  #
   - variable: addis-core.addis.importer
     type: string
     label: NCT Importer endpoint
     required: true
     default: http://addis-nct-import
     group: Addis - NCT importer
-# 
+  #
   - variable: jena-es.image.repository
     type: string
     label: Jena image repository
@@ -137,7 +137,7 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Jena-es
-# 
+  #
   - variable: nct-import.image.repository
     type: string
     label: NCT-importer image repository

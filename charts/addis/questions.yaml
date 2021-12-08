@@ -80,14 +80,14 @@ questions:
     type: string
     label: Jena base URI
     required: true
-    default: http://addis-jena-es.addis.svc
+    default: http://addis-jena-es
     group: Addis - Jena
 #
   - variable: addis-core.addis.importer
     type: string
     label: NCT Importer endpoint
     required: true
-    default: http://addis-nct-import.addis.svc
+    default: http://addis-nct-import
     group: Addis - NCT importer
 # 
   - variable: jena-es.image.repository

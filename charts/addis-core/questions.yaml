@@ -76,7 +76,7 @@ questions:
     type: string
     label: Patavi host link
     required: true
-    default: http://patavi-patavi-server.patavi.svc
+    default: http://patavi-patavi-server.patavi.svc:3000
     group: Patavi
   - variable: patavi.apiKey
     type: password

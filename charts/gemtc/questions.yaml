@@ -11,7 +11,7 @@ questions:
     type: string
     label: GeMTC host url
     required: true
-    default: gemtc.dev.molgenis.org
+    default: https://gemtc.dev.molgenis.org
     group: GeMTC
   - variable: gemtc.authenticationMethod
     type: string
@@ -40,7 +40,7 @@ questions:
     label: GeMTC database schema version
     default: develop
     group: GeMTC
-#
+  #
   - variable: patavi.host
     type: string
     label: Patavi host link
@@ -58,7 +58,7 @@ questions:
     label: Patavi API key
     required: true
     group: Patavi
-# 
+  #
   - variable: postgresql.postgresqlUsername
     type: string
     label: GeMTC database username
@@ -76,7 +76,7 @@ questions:
     label: GeMTC database password
     required: true
     group: Database
-# 
+  #
   - variable: image.repository
     type: string
     label: GeMTC image repository

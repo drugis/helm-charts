@@ -1,7 +1,6 @@
 patavi-server:
   postgresql:
     postgresqlPassword: xxxxx
-
   image:
     repository: addis/patavi
     tag: "secure6"

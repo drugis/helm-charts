@@ -21,7 +21,7 @@ gemtc:
   googleKey: xxxx
   googleSecret: xxxx
   cookieSecret: xxxx
-  host: gemtc.dev.molgenis.org
+  host: https://gemtc.dev.molgenis.org
   secure: "false"
   authenticationMethod: GOOGLE
   schema:
@@ -49,7 +49,7 @@ ingress:
   className: ""
   annotations: {}
   hosts:
-    - host: mcda.dev.molgenis.org
+    - host: gemtc.dev.molgenis.org
       paths:
         - path: /
           pathType: ImplementationSpecific

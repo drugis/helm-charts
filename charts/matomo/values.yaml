@@ -10,11 +10,13 @@ web:
   password: xxxx
 
 mariadb:
-  auth:
+  db:
     forcePassword: false
     database: "drugis"
     username: "matomoDrugis"
     password: "test"
+  # persistence:
+  #   existingClaim: 
 
 imagePullSecrets: []
 nameOverride: ""

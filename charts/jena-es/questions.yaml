@@ -37,6 +37,7 @@ questions:
   required: true
   default: ImplementationSpecific
   group: Provisioning
+#
 - variable: jena.apiKey
   type: password
   label: Jena-es API-key
@@ -48,3 +49,10 @@ questions:
   required: true
   default: https://jena.dev.molgenis.org
   group: Jena-es
+#
+- variable: persistence.existingClaim
+  type: string
+  label: Existing volume
+  description: Define the existing claim when the instance needs to be restored from an existing database
+  required: false
+  group: Persistence

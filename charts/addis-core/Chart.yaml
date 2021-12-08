@@ -1,9 +1,9 @@
 apiVersion: v1
 name: addis-core
 description: A Helm chart for Addis Core service
-version: 0.3.4
+version: 0.4.0
 appVersion: "0.14.0"
 icon: https://raw.githubusercontent.com/drugis/addis-core/master/src/main/webapp/resources/public/img/favicon.ico
 maintainers:
-- name: chinook25
-- name: sidohaakma
+  - name: chinook25
+  - name: sidohaakma

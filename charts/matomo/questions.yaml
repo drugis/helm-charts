@@ -24,6 +24,7 @@ questions:
     required: true
     default: 4.5.0
     group: Matomo
+#
   - variable: ingress.enabled
     type: boolean
     label: Ingress enabled
@@ -48,6 +49,7 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Provisioning
+#
   - variable: mariadb.db.user
     type: string
     label: Username for MariaDB
@@ -58,4 +60,10 @@ questions:
     type: password
     label: Password for MariaDB
     required: true
+    group: Database
+  - variable: mariadb.persistence.existingClaim
+    type: string
+    label: Existing volume
+    description: Define the existing claim when the instance needs to be restored from an existing database
+    required: false
     group: Database

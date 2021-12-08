@@ -28,20 +28,26 @@ questions:
 #
   - variable: postgresql.postgresqlUsername
     type: string
-    label: Patavi database username
+    label: Database username
     required: true
     default: patavi
     group: Database
   - variable: postgresql.postgresqlDatabase
     type: string
-    label: Patavi database name
+    label: Database name
     required: true
     default: patavi
     group: Database
   - variable: postgresql.postgresqlPassword
     type: password
-    label: Patavi database password
+    label: Database password
     required: true
+    group: Database
+  - variable: postgresql.persistence.existingClaim
+    type: string
+    label: Existing volume
+    description: Define the existing claim when the instance needs to be restored from an existing database
+    required: false
     group: Database
 #
   - variable: image.repository

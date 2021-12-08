@@ -9,6 +9,8 @@ postgresql:
   postgresqlUsername: patavi
   postgresqlDatabase: patavi
   postgresqlPassword: xxxxxx
+  # persistence:
+  #   existingClaim: 
 
 patavi:
   hostLink: patavi.dev.molgenis.org

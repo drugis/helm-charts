@@ -71,6 +71,12 @@ questions:
     label: Database password
     required: true
     group: Database
+  - variable: postgresql.persistence.existingClaim
+    type: string
+    label: Existing volume
+    description: Define the existing claim when the instance needs to be restored from an existing database
+    required: false
+    group: Database 
 # 
   - variable: patavi.host
     type: string

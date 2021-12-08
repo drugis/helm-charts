@@ -1,9 +1,9 @@
 dependencies:
   - name: addis-core
-    version: 0.3.4
+    version: 0.4.0
     repository: https://registry.molgenis.org/repository/helm
   - name: jena-es
-    version: 0.2.1
+    version: 0.3.0
     repository: https://registry.molgenis.org/repository/helm
   - name: nct-import
     version: 0.2.1

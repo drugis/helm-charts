@@ -1,0 +1,93 @@
+categories:
+- Survey
+questions:
+- variable: patavi.apiKey
+  type: password
+  label: Patavi API-key
+  required: true
+  group: Patavi
+- variable: patavi.port
+  type: string
+  label: Patavi host port
+  required: true
+  default: "3000"
+  group: Patavi
+- variable: patavi.host
+  type: string
+  label: Patavi host
+  required: true
+  default: "http://patavi-patavi-server.patavi.svc"
+  group: Patavi
+#
+- variable: mcda.cookieSecret
+  type: password
+  label: MCDA cookie secret
+  required: true
+  group: MCDA
+- variable: mcda.cookieDomain
+  type: string
+  label: MCDA cookie domain
+  required: true
+  default: "dev.molgenis.org"
+  group: MCDA
+- variable: mcda.host
+  type: string
+  label: MCDA host url
+  required: true
+  default: http://mcda.mcda.svc
+  group: MCDA
+  # 
+- variable: image.repository
+  type: string
+  label: Image Repository
+  required: true
+  default: registry.drugis.org/survey
+  group: Provisioning
+- variable: image.tag
+  label: Jena-es version tag
+  type: string
+  required: true
+  default: test
+  group: Provisioning  
+- variable: ingress.enabled
+  type: boolean
+  label: Ingress enabled
+  required: true
+  default: true
+  group: Provisioning
+- variable: ingress.hosts[0].host
+  type: string
+  label: survey host
+  required: true
+  default: survey.dev.molgenis.org
+  group: Provisioning
+- variable: ingress.hosts[0].paths[0].path
+  type: string
+  label: Survey host path
+  required: true
+  default: /
+  group: Provisioning
+- variable: ingress.hosts[0].paths[0].pathType
+  type: string
+  label: Survey host pathtype
+  required: true
+  default: ImplementationSpecific
+  group: Provisioning
+#
+- variable: postgresql.postgresqlUsername
+  type: string
+  label: PostgreSQL username
+  required: true
+  default: mcda
+  group: Database
+- variable: postgresql.postgresqlPassword
+  type: password
+  label: PostgreSQL password
+  required: true
+  group: Database
+- variable: postgresql.postgresqlDatabase
+  type: string
+  label: PostgreSQL database
+  required: true
+  default: mcda
+  group: Database

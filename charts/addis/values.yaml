@@ -1,0 +1,44 @@
+addis-core:
+  postgresql:
+    postgresqlPassword: xxxx
+  image:
+    repository: addis/addis
+    tag: "test20211208-2"
+  addis:
+    googleKey: xxxx
+    googleSecret: xxxx
+    importer: http://addis-nct-import.addis.svc
+  jena:
+    apiKey: xxxx
+    uriPrefix: https://jena.dev.molgenis.org
+    baseUri: http://addis-jena-es.addis.svc
+  patavi:
+    apiKey: xxxx
+    host: http://patavi.patavi-patavi-server.svc:3000
+  ingress:
+    enabled: true
+    hosts:
+      - host: addis.drugis.org
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+
+jena-es:
+  ingress:
+    enabled: true
+    hosts:
+      - host: jena.dev.molgenis.org
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+  image:
+    repository: addis/jena-es
+    tag: "test"
+  jena:
+    apiKey: xxxx
+    eventSourceUriPrefix: https://jena.dev.molgenis.org
+
+nct-import:
+  image:
+    repository: addis/nct-import
+    tag: "latest"

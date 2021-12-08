@@ -1,0 +1,157 @@
+questions:
+  - variable: addis-core.addis.googleKey
+    type: password
+    label: Addis google oauth2 key
+    required: true
+    group: Addis
+  - variable: addis-core.addis.googleSecret
+    type: password
+    label: Addis google oauth2 secret
+    required: true
+    group: Addis
+  #
+  - variable: addis-core.image.repository
+    type: string
+    label: Addis image repository
+    required: true
+    default: addis/addis
+    group: Addis - Provisioning
+  - variable: addis-core.image.tag
+    type: string
+    label: Addis image tag
+    required: true
+    default: test20211208-2
+    group: Addis - Provisioning
+  - variable: addis-core.ingress.enabled
+    type: boolean
+    label: Ingress enabled
+    required: true
+    default: true
+    group: Addis - Provisioning
+  - variable: addis-core.ingress.hosts[0].host
+    type: string
+    label: Addis host
+    required: true
+    default: addis.dev.molgenis.org
+    group: Addis - Provisioning
+  - variable: addis-core.ingress.hosts[0].paths[0].path
+    type: string
+    label: Addis host path
+    required: true
+    default: /
+    group: Addis - Provisioning
+  - variable: addis-core.ingress.hosts[0].paths[0].pathType
+    type: string
+    label: Addis host pathtype
+    required: true
+    default: ImplementationSpecific
+    group: Addis - Provisioning
+  #
+  - variable: addis-core.postgresql.postgresqlPassword
+    type: password
+    label: Addis database password
+    required: true
+    group: Addis - Database
+  #
+  - variable: addis-core.patavi.apiKey
+    type: password
+    label: Patavi API key
+    description: Make sure to use the same key as set in the Patavi service
+    required: true
+    group: Addis - Patavi
+  - variable: addis-core.patavi.host
+    type: string
+    label: Patavi host adres
+    required: true
+    default: http://patavi-patavi-server.patavi.svc:3000
+    group: Addis - Patavi
+  #
+  - variable: addis-core.jena.apiKey
+    type: password
+    label: Jena API key
+    description: Make sure to set the same key as in the Jena service
+    required: true
+    group: Addis - Jena
+  - variable: addis-core.jena.uriPrefix
+    type: string
+    label: Jena URI prefix
+    required: true
+    description: Make sure to use the same prefix as in the Jena service
+    default: https://jena.dev.molgenis.org
+    group: Addis - Jena
+  - variable: addis-core.jena.baseUri
+    type: string
+    label: Jena base URI
+    required: true
+    default: http://addis-jena-es
+    group: Addis - Jena
+  #
+  - variable: addis-core.addis.importer
+    type: string
+    label: NCT Importer endpoint
+    required: true
+    default: http://addis-nct-import
+    group: Addis - NCT importer
+  #
+  - variable: jena-es.image.repository
+    type: string
+    label: Jena image repository
+    required: true
+    default: addis/jena-es
+    group: Jena-es
+  - variable: jena-es.image.tag
+    type: string
+    label: Jena image tag
+    required: true
+    default: test
+    group: Jena-es
+  - variable: jena-es.jena.apiKey
+    type: password
+    label: Jena API key
+    description: Make sure to set the same key as in the ADDIS service
+    required: true
+    group: Jena-es
+  - variable: jena-es.jena.eventSourceUriPrefix
+    type: string
+    label: Jena event source URI prefix
+    required: true
+    description: Make sure to use the same prefix as the Jena base URI in ADDIS
+    default: https://jena.dev.molgenis.org
+    group: Jena-es
+  - variable: ingress.enabled
+    type: boolean
+    label: Ingress enabled
+    required: true
+    default: true
+    group: Jena-es
+  - variable: ingress.hosts[0].host
+    type: string
+    label: Jena-as host
+    required: true
+    default: jena.dev.molgenis.org
+    group: Jena-es
+  - variable: ingress.hosts[0].paths[0].path
+    type: string
+    label: Jena-es host path
+    required: true
+    default: /
+    group: Jena-es
+  - variable: ingress.hosts[0].paths[0].pathType
+    type: string
+    label: Jena-es host pathtype
+    required: true
+    default: ImplementationSpecific
+    group: Jena-es
+  #
+  - variable: nct-import.image.repository
+    type: string
+    label: NCT-importer image repository
+    required: true
+    default: addis/nct-import
+    group: NCT-importer
+  - variable: nct-import.image.tag
+    type: string
+    label: NCT-importer image tag
+    required: true
+    default: latest
+    group: NCT-importer

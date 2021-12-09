@@ -184,7 +184,7 @@ questions:
     label: Storage class for persistent volume
     description: You can choose delete or retain. For production deployments use retain.
     default: nfs-provisioner-retain
-    group: Persistence
+    group: Jena-es
 #
   - variable: nct-import.image.repository
     type: string

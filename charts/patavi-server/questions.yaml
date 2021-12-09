@@ -127,7 +127,6 @@ questions:
     label: Patavi broker password
     required: true
     group: RabbitMQ
-
 #
   - variable: image.imagePullSecrets[0].name
     type: string

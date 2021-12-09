@@ -18,6 +18,7 @@ jena:
   apiKey: xxxx
   uriPrefix: https://jena.dev.molgenis.org
   baseUri: http://jena-es.jena-es.svc
+  
 
 patavi:
   apiKey: xxxx

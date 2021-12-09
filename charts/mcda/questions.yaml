@@ -47,7 +47,7 @@ questions:
   - variable: mcda.enterprise.enabled
     type: boolean
     required: true
-    label: Enabled enterprise
+    label: Enable enterprise
     default: false
     group: MCDA
 #

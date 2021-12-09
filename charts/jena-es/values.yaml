@@ -12,7 +12,7 @@ jena:
 persistence:
   enabled: true
   storageClass: "nfs-provisioner-retain"
-  accessMode: ReadWriteMany
+  accessMode: ReadWriteOnce
   size: 10Gi
   useExistingClaim: false
   # existingClaim: jena-es

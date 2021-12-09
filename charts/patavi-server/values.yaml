@@ -4,8 +4,6 @@ image:
   repository: addis/patavi
   pullPolicy: IfNotPresent
   tag: "secure6"
-  # imagePullSecrets:
-  #   - name: drugis
 
 postgresql:
   postgresqlUsername: patavi

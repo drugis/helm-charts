@@ -1,11 +1,14 @@
 addis-core:
   postgresql:
     postgresqlPassword: xxxx
-    # persistence:
-    #   existingClaim: data-addis-postgresql-0
+    persistence:
+      useExistingClaim: false
+    # existingClaim: data-patavi-server-postgresql-0
+      storageClass: nfs-provisioner-retain
   image:
     repository: addis/addis
     tag: "test20211208-2"
+
   addis:
     googleKey: xxxx
     googleSecret: xxxx

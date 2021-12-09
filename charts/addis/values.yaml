@@ -8,7 +8,6 @@ addis-core:
   image:
     repository: addis/addis
     tag: "test20211208-2"
-
   addis:
     googleKey: xxxx
     googleSecret: xxxx

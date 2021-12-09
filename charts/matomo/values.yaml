@@ -15,8 +15,10 @@ mariadb:
     database: "drugis"
     username: "matomoDrugis"
     password: "test"
-  # persistence:
-  #   existingClaim:
+  persistence:
+    useExistingClaim: false
+  #   existingClaim: data-matomo-mariadb-0
+    storageClass: nfs-provisioner-retain
 
 imagePullSecrets: []
 nameOverride: ""

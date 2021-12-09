@@ -4,13 +4,17 @@ image:
   repository: addis/patavi
   pullPolicy: IfNotPresent
   tag: "secure6"
+  # imagePullSecrets:
+  #   - name: drugis
 
 postgresql:
   postgresqlUsername: patavi
   postgresqlDatabase: patavi
   postgresqlPassword: xxxxxx
-  # persistence:
+  persistence:
+    useExistingClaim: false
   #   existingClaim: data-patavi-server-postgresql-0
+    storageClass: nfs-provisioner-retain
 
 patavi:
   hostLink: patavi.dev.molgenis.org
@@ -18,6 +22,8 @@ patavi:
   apiKey: xxxxx
   schema:
     version: develop
+  enterprise:
+    enabled: false
 
 rabbitmq:
   brokerHost: rabbitmq.rabbitmq.svc

@@ -39,6 +39,17 @@ spec:
               value: "true"
           command: ["/bin/sh"]
           args: ["-c", "fabric8-dependency-wait-service-linux-amd64 $(JENA_URI)"]
+        - name: init-nct-import
+          image: fabric8/fabric8-dependency-wait-service
+          env:
+            - name: NCT_IMPORT_URI
+              value: {{ .Values.addis.importer }}
+            - name: DEPENDENCY_POLL_INTERVAL
+              value: "10"
+            - name: DEPENDENCY_LOG_VERBOSE
+              value: "true"
+          command: ["/bin/sh"]
+          args: ["-c", "fabric8-dependency-wait-service-linux-amd64 $(NCT_IMPORT_URI)"]
         - name: init-db
           image: fabric8/fabric8-dependency-wait-service
           env:

@@ -1,8 +1,6 @@
 patavi-server:
   postgresql:
     postgresqlPassword: xxxxx
-    # persistence:
-    #   existingClaim: data-patavi-server-postgresql-0
   image:
     repository: addis/patavi
     tag: "secure6"

@@ -39,8 +39,7 @@ jena-es:
   jena:
     apiKey: xxxx
     eventSourceUriPrefix: https://jena.dev.molgenis.org
-  persistence:
-    enabled: true
+  # persistence:
   #   existingClaim: addis-jena-es
 
 nct-import:

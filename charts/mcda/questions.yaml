@@ -115,6 +115,23 @@ questions:
     required: true
     default: test
     group: Provisioning
+  - variable: image.useImagePullSecrets
+    type: boolean
+    label: Use image pull secrets
+    description: You need to specify the image pull secret to pull from the private Drugis docker repository
+    required: true
+    default: false
+    group: Provisioning
+    show_subquestion_if: true
+    subquestions:
+    - variable: image.imagePullSecrets[0].name
+      type: string
+      label: Image pull secrets
+      description: You need to specify the image pull secret to pull from the private Drugis docker repository
+      required: true
+      showif: 
+      default: drugis
+      group: Provisioning
   - variable: ingress.enabled
     type: boolean
     label: Ingress enabled

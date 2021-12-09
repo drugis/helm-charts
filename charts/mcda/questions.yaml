@@ -21,6 +21,7 @@ questions:
     options:
      - GOOGLE
      - LOCAL
+    default: GOOGLE
     group: MCDA
   - variable: mcda.cookieSecret
     type: password

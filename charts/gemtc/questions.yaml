@@ -20,6 +20,7 @@ questions:
     options:
      - GOOGLE
      - LOCAL
+    default: GOOGLE
     group: GeMTC
   - variable: gemtc.cookieSecret
     type: password

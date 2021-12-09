@@ -25,7 +25,7 @@ questions:
     required: true
     default: develop
     group: Patavi
-  - variable: mcda.enterprise.enabled
+  - variable: patavi.enterprise.enabled
     type: boolean
     required: true
     label: Enable enterprise

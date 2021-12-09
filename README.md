@@ -4,6 +4,7 @@
 
 ### Recover a persistent volume
 When you delete an application and delete the namespace the volume is still recoverable. 
+> This will only work when a `nfs-provisioner-retain` *StorageClass* is chosen.
 
 1. Navigate to the cluster level 
 2. Click "Storage" and then "Persistent Volumes"

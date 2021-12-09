@@ -76,3 +76,10 @@ questions:
       description: Define the existing claim when the instance needs to be restored from an existing database
       required: false
       group: Database
+  - variable: mariadb.persistence.storageClass
+    type: string
+    label: Storage class for persistent volume
+    description: You can choose delete or retain. For production deployments use retain.
+    default: nfs-provisioner-retain
+    required: true
+    group: Database

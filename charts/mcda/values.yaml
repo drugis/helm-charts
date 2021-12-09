@@ -4,9 +4,9 @@ image:
   repository: addis/mcda
   pullPolicy: IfNotPresent
   tag: "test"
-  # imagePullSecrets: 
+  # imagePullSecrets:
   #   - name: drugis
-  
+
 patavi:
   apiKey: xxxxx
   host: patavi-patavi-server.patavi.svc

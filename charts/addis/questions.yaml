@@ -58,7 +58,7 @@ questions:
     description: Define the existing claim when the instance needs to be restored from an existing database
     required: true
     default: false
-    group: Database
+    group: Addis - Database
     show_subquestion_if: true
     subquestions:
     - variable: addis-core.postgresql.persistence.existingClaim
@@ -66,7 +66,14 @@ questions:
       label: Existing volume
       description: Define the existing claim when the instance needs to be restored from an existing database
       required: false
-      group: Database    
+      group: Addis - Database  
+  - variable: addis-core.postgresql.persistence.storageClass
+    type: string
+    label: Storage class for persistent volume
+    description: You can choose delete or retain. For production deployments use retain.
+    default: nfs-provisioner-retain
+    required: true
+    group: Addis - Database    
 #
   - variable: addis-core.patavi.apiKey
     type: password
@@ -172,6 +179,12 @@ questions:
       description: Define the existing claim when the instance needs to be restored from an existing volume
       required: false
       group: Jena-es
+  - variable: jena-es.persistence.storageClass
+    type: string
+    label: Storage class for persistent volume
+    description: You can choose delete or retain. For production deployments use retain.
+    default: nfs-provisioner-retain
+    group: Persistence
 #
   - variable: nct-import.image.repository
     type: string

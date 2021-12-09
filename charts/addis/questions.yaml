@@ -9,7 +9,7 @@ questions:
     label: Addis google oauth2 secret
     required: true
     group: Addis
-  #
+#
   - variable: addis-core.image.repository
     type: string
     label: Addis image repository
@@ -46,13 +46,35 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Addis - Provisioning
-  #
+#
   - variable: addis-core.postgresql.postgresqlPassword
     type: password
     label: Addis database password
     required: true
     group: Addis - Database
-  #
+  - variable: addis-core.postgresql.persistence.useExistingClaim
+    type: boolean
+    label: Use existing volume
+    description: Define the existing claim when the instance needs to be restored from an existing database
+    required: true
+    default: false
+    group: Addis - Database
+    show_subquestion_if: true
+    subquestions:
+    - variable: addis-core.postgresql.persistence.existingClaim
+      type: string
+      label: Existing volume
+      description: Define the existing claim when the instance needs to be restored from an existing database
+      required: false
+      group: Addis - Database  
+  - variable: addis-core.postgresql.persistence.storageClass
+    type: string
+    label: Storage class for persistent volume
+    description: You can choose delete or retain. For production deployments use retain.
+    default: nfs-provisioner-retain
+    required: true
+    group: Addis - Database    
+#
   - variable: addis-core.patavi.apiKey
     type: password
     label: Patavi API key
@@ -65,7 +87,7 @@ questions:
     required: true
     default: http://patavi-patavi-server.patavi.svc:3000
     group: Addis - Patavi
-  #
+#
   - variable: addis-core.jena.apiKey
     type: password
     label: Jena API key
@@ -85,14 +107,14 @@ questions:
     required: true
     default: http://addis-jena-es
     group: Addis - Jena
-  #
+#
   - variable: addis-core.addis.importer
     type: string
     label: NCT Importer endpoint
     required: true
     default: http://addis-nct-import
     group: Addis - NCT importer
-  #
+#
   - variable: jena-es.image.repository
     type: string
     label: Jena image repository
@@ -118,31 +140,52 @@ questions:
     description: Make sure to use the same prefix as the Jena base URI in ADDIS
     default: https://jena.dev.molgenis.org
     group: Jena-es
-  - variable: ingress.enabled
+  - variable: jena-es.ingress.enabled
     type: boolean
     label: Ingress enabled
     required: true
     default: true
     group: Jena-es
-  - variable: ingress.hosts[0].host
+  - variable: jena-es.ingress.hosts[0].host
     type: string
     label: Jena-as host
     required: true
     default: jena.dev.molgenis.org
     group: Jena-es
-  - variable: ingress.hosts[0].paths[0].path
+  - variable: jena-es.ingress.hosts[0].paths[0].path
     type: string
     label: Jena-es host path
     required: true
     default: /
     group: Jena-es
-  - variable: ingress.hosts[0].paths[0].pathType
+  - variable: jena-es.ingress.hosts[0].paths[0].pathType
     type: string
     label: Jena-es host pathtype
     required: true
     default: ImplementationSpecific
     group: Jena-es
-  #
+  - variable: jena-es.persistence.useExistingClaim
+    type: boolean
+    label: Use existing volume
+    description: Define the existing claim when the instance needs to be restored from an existing volume
+    required: true
+    default: false
+    group: Jena-es
+    show_subquestion_if: true
+    subquestions:
+    - variable: jena-es.persistence.existingClaim
+      type: string
+      label: Existing volume
+      description: Define the existing claim when the instance needs to be restored from an existing volume
+      required: false
+      group: Jena-es
+  - variable: jena-es.persistence.storageClass
+    type: string
+    label: Storage class for persistent volume
+    description: You can choose delete or retain. For production deployments use retain.
+    default: nfs-provisioner-retain
+    group: Jena-es
+#
   - variable: nct-import.image.repository
     type: string
     label: NCT-importer image repository

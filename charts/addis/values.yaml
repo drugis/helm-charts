@@ -1,6 +1,10 @@
 addis-core:
   postgresql:
     postgresqlPassword: xxxx
+    persistence:
+      useExistingClaim: false
+    # existingClaim: data-patavi-server-postgresql-0
+      storageClass: nfs-provisioner-retain
   image:
     repository: addis/addis
     tag: "test20211208-2"
@@ -37,6 +41,8 @@ jena-es:
   jena:
     apiKey: xxxx
     eventSourceUriPrefix: https://jena.dev.molgenis.org
+  # persistence:
+  #   existingClaim: addis-jena-es
 
 nct-import:
   image:

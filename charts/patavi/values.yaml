@@ -1,6 +1,11 @@
 patavi-server:
   postgresql:
     postgresqlPassword: xxxxx
+    persistence:
+      useExistingClaim: false
+    # existingClaim: data-patavi-server-postgresql-0
+      storageClass: nfs-provisioner-retain
+
   image:
     repository: addis/patavi
     tag: "secure6"

@@ -2,7 +2,7 @@ apiVersion: v1
 appVersion: "latest"
 description: Deployment of ADDIS with Jena-es and NCT-importer
 name: addis
-version: 0.1.0
+version: 0.2.0
 icon: https://raw.githubusercontent.com/drugis/addis-core/master/src/main/webapp/resources/public/img/favicon.ico
 maintainers:
   - name: sidohaakma

@@ -18,4 +18,8 @@ When you delete an application and delete the namespace the volume is still reco
 9. Click on "Add Volume", give it a *Name*, select the correct *Namespace* and select *Use existigin persistent volume* 
 10. Search for the *volume name* and select it
 11. Then redeploy the instance with an *existing volume claim* pointing to the one you just created.
+#### Database recovery
+**IMPORTANT: be sure you save the database password!** You will need it when you redeploy the instance.
+
+
 

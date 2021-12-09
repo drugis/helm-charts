@@ -20,6 +20,3 @@ When you delete an application and delete the namespace the volume is still reco
 11. Then redeploy the instance with an *existing volume claim* pointing to the one you just created.
 #### Database recovery
 **IMPORTANT: be sure you save the database password!** You will need it when you redeploy the instance.
-
-
-

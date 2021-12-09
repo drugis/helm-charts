@@ -4,7 +4,6 @@ image:
   repository: addis/gemtc
   pullPolicy: IfNotPresent
   tag: "test"
-  useImagePullSecrets: false
   # imagePullSecrets: 
   #   - name: drugis
 
@@ -31,6 +30,8 @@ gemtc:
   authenticationMethod: GOOGLE
   schema:
     version: develop
+  enterprise:
+    enabled: false
 
 imagePullSecrets: []
 nameOverride: ""

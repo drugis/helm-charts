@@ -25,6 +25,12 @@ questions:
     required: true
     default: develop
     group: Patavi
+  - variable: mcda.enterprise.enabled
+    type: boolean
+    required: true
+    label: Enable enterprise
+    default: false
+    group: Patavi
 #
   - variable: postgresql.postgresqlUsername
     type: string
@@ -78,23 +84,6 @@ questions:
     required: true
     default: secure6
     group: Provisioning
-  - variable: image.useImagePullSecrets
-    type: boolean
-    label: Use image pull secrets
-    description: You need to specify the image pull secret to pull from the private Drugis docker repository
-    required: true
-    default: false
-    group: Provisioning
-    show_subquestion_if: true
-    subquestions:
-    - variable: image.imagePullSecrets[0].name
-      type: string
-      label: Image pull secrets
-      description: You need to specify the image pull secret to pull from the private Drugis docker repository
-      required: true
-      showif: 
-      default: drugis
-      group: Provisioning
   - variable: ingress.enabled
     type: boolean
     label: Ingress enabled
@@ -138,3 +127,13 @@ questions:
     label: Patavi broker password
     required: true
     group: RabbitMQ
+
+#
+  - variable: image.imagePullSecrets[0].name
+    type: string
+    label: Image pull secrets
+    description: You need to specify the image pull secret to pull from the private Drugis docker repository
+    required: true
+    show_if: "patavi.enterprise.enabled=true"
+    default: drugis
+    group: Enterprise

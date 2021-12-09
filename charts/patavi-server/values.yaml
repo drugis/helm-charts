@@ -4,7 +4,6 @@ image:
   repository: addis/patavi
   pullPolicy: IfNotPresent
   tag: "secure6"
-  useImagePullSecrets: false
   # imagePullSecrets: 
   #   - name: drugis
 
@@ -23,6 +22,8 @@ patavi:
   apiKey: xxxxx
   schema:
     version: develop
+  enterprise:
+    enabled: false
 
 rabbitmq:
   brokerHost: rabbitmq.rabbitmq.svc

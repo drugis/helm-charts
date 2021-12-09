@@ -44,6 +44,12 @@ questions:
     label: Schema version for MCDA
     default: develop
     group: MCDA
+  - variable: mcda.enterprise.enabled
+    type: boolean
+    required: true
+    label: Enabled enterprise
+    default: false
+    group: MCDA
 #
   - variable: postgresql.postgresqlUsername
     type: string
@@ -116,23 +122,6 @@ questions:
     required: true
     default: test
     group: Provisioning
-  - variable: image.useImagePullSecrets
-    type: boolean
-    label: Use image pull secrets
-    description: You need to specify the image pull secret to pull from the private Drugis docker repository
-    required: true
-    default: false
-    group: Provisioning
-    show_subquestion_if: true
-    subquestions:
-    - variable: image.imagePullSecrets[0].name
-      type: string
-      label: Image pull secrets
-      description: You need to specify the image pull secret to pull from the private Drugis docker repository
-      required: true
-      showif: 
-      default: drugis
-      group: Provisioning
   - variable: ingress.enabled
     type: boolean
     label: Ingress enabled
@@ -157,3 +146,12 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Provisioning
+#
+  - variable: image.imagePullSecrets[0].name
+    type: string
+    label: Image pull secrets
+    description: You need to specify the image pull secret to pull from the private Drugis docker repository
+    required: true
+    show_if: "mcda.enterprise.enabled=true"
+    default: drugis
+    group: Enterprise

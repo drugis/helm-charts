@@ -128,7 +128,7 @@ questions:
     required: true
     group: RabbitMQ
 #
-  - variable: image.imagePullSecrets[0].name
+  - variable: imagePullSecrets[0].name
     type: string
     label: Image pull secrets
     description: You need to specify the image pull secret to pull from the private Drugis docker repository

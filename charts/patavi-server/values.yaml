@@ -9,8 +9,10 @@ postgresql:
   postgresqlUsername: patavi
   postgresqlDatabase: patavi
   postgresqlPassword: xxxxxx
-  # persistence:
+  persistence:
+    useExistingClaim: false
   #   existingClaim: data-patavi-server-postgresql-0
+    storageClass: nfs-provisioner-retain
 
 patavi:
   hostLink: patavi.dev.molgenis.org

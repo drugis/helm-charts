@@ -14,10 +14,12 @@ questions:
     default: https://gemtc.dev.molgenis.org
     group: GeMTC
   - variable: gemtc.authenticationMethod
-    type: string
+    type: enum
     label: GeMTC authentication method
     required: true
-    default: GOOGLE
+    options:
+     - GOOGLE
+     - LOCAL
     group: GeMTC
   - variable: gemtc.cookieSecret
     type: password
@@ -76,11 +78,27 @@ questions:
     label: Database password
     required: true
     group: Database
-  - variable: postgresql.persistence.existingClaim
-    type: string
-    label: Existing volume
+  - variable: postgresql.persistence.useExistingClaim
+    type: boolean
+    label: Use existing volume
     description: Define the existing claim when the instance needs to be restored from an existing database
-    required: false
+    required: true
+    default: false
+    group: Database
+    show_subquestion_if: true
+    subquestions:
+    - variable: postgresql.persistence.existingClaim
+      type: string
+      label: Existing volume
+      description: Define the existing claim when the instance needs to be restored from an existing database
+      required: false
+      group: Database
+  - variable: postgresql.persistence.storageClass
+    type: string
+    label: Storage class for persistent volume
+    description: You can choose delete or retain. For production deployments use retain.
+    default: nfs-provisioner-retain
+    required: true
     group: Database
   #
   - variable: image.repository
@@ -95,6 +113,23 @@ questions:
     required: true
     default: test
     group: Provisioning
+  - variable: image.useImagePullSecrets
+    type: boolean
+    label: Use image pull secrets
+    description: You need to specify the image pull secret to pull from the private Drugis docker repository
+    required: true
+    default: false
+    group: Provisioning
+    show_subquestion_if: true
+    subquestions:
+    - variable: image.imagePullSecrets[0].name
+      type: string
+      label: Image pull secrets
+      description: You need to specify the image pull secret to pull from the private Drugis docker repository
+      required: true
+      showif: 
+      default: drugis
+      group: Provisioning
   - variable: ingress.enabled
     type: boolean
     label: Ingress enabled

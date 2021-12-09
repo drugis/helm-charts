@@ -61,9 +61,18 @@ questions:
     label: Password for MariaDB
     required: true
     group: Database
-  - variable: mariadb.persistence.existingClaim
-    type: string
-    label: Existing volume
+  - variable: mariadb.persistence.useExistingClaim
+    type: boolean
+    label: Use existing volume
     description: Define the existing claim when the instance needs to be restored from an existing database
-    required: false
+    required: true
+    default: false
     group: Database
+    show_subquestion_if: true
+    subquestions:
+    - variable: mariadb.persistence.existingClaim
+      type: string
+      label: Existing volume
+      description: Define the existing claim when the instance needs to be restored from an existing database
+      required: false
+      group: Database

@@ -4,6 +4,9 @@ image:
   repository: addis/gemtc
   pullPolicy: IfNotPresent
   tag: "test"
+  useImagePullSecrets: false
+  # imagePullSecrets: 
+  #   - name: drugis
 
 patavi:
   apiKey: xxxxx
@@ -14,8 +17,10 @@ postgresql:
   postgresqlUsername: gemtc
   postgresqlDatabase: gemtc
   postgresqlPassword: xxxxx
-  # persistence:
-  #   existingClaim: data-gemtc-postgresql-0
+  persistence:
+    useExistingClaim: false
+  #   existingClaim: data-patavi-server-postgresql-0
+    storageClass: nfs-provisioner-retain
 
 gemtc:
   googleKey: xxxx

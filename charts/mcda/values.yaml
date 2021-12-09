@@ -4,7 +4,7 @@ image:
   repository: addis/mcda
   pullPolicy: IfNotPresent
   tag: "test"
-
+  
 patavi:
   apiKey: xxxxx
   host: patavi-patavi-server.patavi.svc
@@ -14,8 +14,10 @@ postgresql:
   postgresqlUsername: mcda
   postgresqlDatabase: mcda
   postgresqlPassword: xxxxx
-  # persistence:
-  #   existingClaim: data-mcda-postgresql-0
+  persistence:
+    useExistingClaim: false
+  #   existingClaim: data-patavi-server-postgresql-0
+    storageClass: nfs-provisioner-retain
 
 mcda:
   googleKey: xxxx

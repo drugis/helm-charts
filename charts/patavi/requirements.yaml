@@ -11,5 +11,5 @@ dependencies:
     repository: https://registry.molgenis.org/repository/helm
     alias: patavi-gemtc-worker
   - name: rabbitmq
-    version: 8.24.8
+    version: 7.7.1
     repository: https://charts.bitnami.com/bitnami

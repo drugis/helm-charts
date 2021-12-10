@@ -49,7 +49,28 @@ questions:
     label: Enable enterprise
     default: false
     group: GeMTC
-  #
+#
+  - variable: backup.persistence.enabled
+    type: boolean
+    required: true
+    label: Persistence enabled for backup
+    default: true
+    group: GeMTC - Backup
+    show_subquestion_if: true
+    subquestions:
+    - variable: backup.persistence.useExistingClaim
+      type: boolean
+      label: Use existing volume claim
+      required: false
+      group: GeMTC - Backup
+    - variable: backup.persistence.existingClaim
+      type: string
+      label: Existing volume
+      description: Define the existing claim when the instance needs to be restored from an existing volume
+      required: false
+      show_if: "backup.persistence.useExistingClaim=true"
+      group: GeMTC - Backup
+#
   - variable: patavi.host
     type: string
     label: Patavi host link
@@ -67,7 +88,7 @@ questions:
     label: Patavi API key
     required: true
     group: Patavi
-  #
+#
   - variable: postgresql.postgresqlUsername
     type: string
     label: Database username
@@ -107,7 +128,7 @@ questions:
     default: nfs-provisioner-retain
     required: true
     group: Database
-  #
+#
   - variable: image.repository
     type: string
     label: GeMTC image repository

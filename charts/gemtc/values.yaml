@@ -32,6 +32,15 @@ gemtc:
     enabled: false
     # adminPassword: xxxx
 
+backup:
+  persistence:
+    enabled: true
+    storageClass: "nfs-provisioner-retain"
+    accessMode: ReadWriteOnce
+    size: 5Gi
+    useExistingClaim: false
+    # existingClaim: jena-es
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""

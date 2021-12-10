@@ -50,6 +50,21 @@ questions:
     default: false
     group: GeMTC
 #
+  - variable: imagePullSecrets[0].name
+    type: string
+    label: Image pull secrets
+    description: You need to specify the image pull secret to pull from the private Drugis docker repository
+    required: true
+    show_if: "gemtc.enterprise.enabled=true"
+    default: drugis
+    group: GeMTC - Enterprise
+  - variable: gemtc.enterprise.adminPassword
+    type: password
+    label: Administrator password for GeMTC
+    required: true
+    show_if: "gemtc.enterprise.enabled=true"
+    group: GeMTC - Enterprise
+#
   - variable: backup.persistence.enabled
     type: boolean
     required: true
@@ -165,19 +180,4 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Provisioning
-#
-  - variable: imagePullSecrets[0].name
-    type: string
-    label: Image pull secrets
-    description: You need to specify the image pull secret to pull from the private Drugis docker repository
-    required: true
-    show_if: "gemtc.enterprise.enabled=true"
-    default: drugis
-    group: Enterprise
-  - variable: gemtc.enterprise.adminPassword
-    type: password
-    label: Administrator password for GeMTC
-    required: true
-    show_if: "gemtc.enterprise.enabled=true"
-    group: Enterprise
 

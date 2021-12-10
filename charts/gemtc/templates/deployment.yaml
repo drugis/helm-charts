@@ -79,8 +79,8 @@ spec:
                   key: admin-password
           command: ['sh', '-c']
           args:
-            - PGPASSWORD=${POSTGRES_PASSWORD} psql -h {{ include "call- nested" (list $ "postgresql" "postgresql.fullname") }} -U {{ .Values.postgresql.postgresqlDatabase }} -c "INSERT INTO Account (username, firstName, lastName, password) SELECT 'administrator', 'admin', '', '\\$2a\\$10\\$TmvbK5.HpkoPGDV5ykycsOFIJbvDHAtgwW.JfyLNGPrBCSABAq9Na' WHERE NOT EXISTS (SELECT * FROM account WHERE username = 'administrator')";
-              PGPASSWORD=${POSTGRES_PASSWORD} psql -h {{ include "call- nested" (list $ "postgresql" "postgresql.fullname") }} -U {{ .Values.postgresql.postgresqlDatabase }} -c "INSERT INTO administrator (accountid) (SELECT id FROM account WHERE username='administrator')";
+            - PGPASSWORD=${POSTGRES_PASSWORD} psql -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} -U {{ .Values.postgresql.postgresqlDatabase }} -c "INSERT INTO Account (username, firstName, lastName, password) SELECT 'administrator', 'admin', '', '\\$2a\\$10\\$TmvbK5.HpkoPGDV5ykycsOFIJbvDHAtgwW.JfyLNGPrBCSABAq9Na' WHERE NOT EXISTS (SELECT * FROM account WHERE username = 'administrator')";
+              PGPASSWORD=${POSTGRES_PASSWORD} psql -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} -U {{ .Values.postgresql.postgresqlDatabase }} -c "INSERT INTO administrator (accountid) (SELECT id FROM account WHERE username='administrator')";
         {{- end }}
       containers:
         - name: {{ .Chart.Name }}

@@ -18,6 +18,7 @@ postgresql:
     useExistingClaim: false
   #   existingClaim: data-patavi-server-postgresql-0
     storageClass: nfs-provisioner-retain
+  initdbScriptsConfigMap: 
 
 gemtc:
   googleKey: xxxx
@@ -30,6 +31,7 @@ gemtc:
     version: develop
   enterprise:
     enabled: false
+    # adminPassword: xxxx
 
 imagePullSecrets: []
 nameOverride: ""

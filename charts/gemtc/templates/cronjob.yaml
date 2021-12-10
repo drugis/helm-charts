@@ -1,0 +1,26 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: postgres-backup
+spec:
+  # Backup the database every day at 2AM
+  schedule: "0 2 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: postgres-backup
+            image: postgres:12
+            command: ["/bin/sh"]
+            args: ["-c", 'pg_dump -U {{ .Values.postgresql.postgresqlUsername }} -p {{ .Values.postgresql.postgresqlPassword }} -h {{ ????????? }} {{ .Values.postgresql.postgresqlDatabase }} > /var/backups/backup-$(date +"%m-%d-%Y-%H-%M").sql']
+            env:
+            - name: PGPASS
+              valueFrom:
+                secretKeyRef:
+                  name: pgpass
+                  key: pgpass
+            volumeMounts:
+            - name: postgres-storage 
+              mountPath: /var/backups
+          restartPolicy: Never

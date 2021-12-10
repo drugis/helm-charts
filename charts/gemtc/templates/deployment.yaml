@@ -41,7 +41,15 @@ spec:
           args: ["-c", "fabric8-dependency-wait-service-linux-amd64 $(POSTGRESQL_URI)"]
         - name: get-liquibase-changelog
           image: busybox:1.34.1
-          command: ['sh', '-c', "mkdir -p /liquibase/changelog && wget -O /liquibase/changelog/liquibase-changelog.sql https://raw.githubusercontent.com/drugis/gemtc-web/{{ .Values.gemtc.schema.version }}/liquibase/liquibase-changelog.sql"]
+          {{- if .Values.gemtc.enterprise.enabled }}
+          env:
+            - name: GITHUB_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: secret-{{ template "gemtc.fullname" . }}
+                  key: github-access-token
+          {{- end -}}
+          command: ['sh', '-c', "mkdir -p /liquibase/changelog && wget {{- if .Values.gemtc.enterprise.enabled -}}--header='Authorization: token $(GITHUB_ACCESS_TOKEN)'{{- end -}} -O /liquibase/changelog/liquibase-changelog.sql https://raw.githubusercontent.com/drugis/{{ .Values.gemtc.schema.repo }}/{{ .Values.gemtc.schema.version }}/liquibase/liquibase-changelog.sql"]
           volumeMounts:
             - name: liquibase-changelog
               mountPath: /liquibase/changelog
@@ -80,6 +88,7 @@ spec:
           command: ['sh', '-c']
           args:
             - PGPASSWORD=${POSTGRES_PASSWORD} psql -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} -U {{ .Values.postgresql.postgresqlDatabase }} -c "INSERT INTO Account (username, firstName, lastName, password) SELECT 'administrator', 'admin', '', '\\$2a\\$10\\$TmvbK5.HpkoPGDV5ykycsOFIJbvDHAtgwW.JfyLNGPrBCSABAq9Na' WHERE NOT EXISTS (SELECT * FROM account WHERE username = 'administrator')";
+              # TODO: add 'WHERE NOT EXISTS (SELECT * FROM ADMINISTRATOR)' to query
               PGPASSWORD=${POSTGRES_PASSWORD} psql -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} -U {{ .Values.postgresql.postgresqlDatabase }} -c "INSERT INTO administrator (accountid) (SELECT id FROM account WHERE username='administrator')";
         {{- end }}
       containers:

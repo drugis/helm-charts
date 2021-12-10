@@ -9,6 +9,7 @@ addis-core:
     repository: addis/addis
     tag: "test20211208-2"
   addis:
+    host: addis.dev.molgenis.org
     googleKey: xxxx
     googleSecret: xxxx
     importer: http://addis-nct-import.addis.svc

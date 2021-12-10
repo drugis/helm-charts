@@ -10,11 +10,15 @@ spec:
       template:
         spec:
           containers:
-          - name: postgres-backup
-            image: postgres:11
-            command: ["/bin/sh"]
-            args: ["-c", 'pg_dump -U {{ .Values.postgresql.postgresqlUsername }} -p {{ .Values.postgresql.postgresqlPassword }} -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} {{ .Values.postgresql.postgresqlDatabase }} > /var/backups/backup-$(date +"%m-%d-%Y-%H-%M").sql']
-            volumeMounts:
-            - name: {{ include "gemtc.fullname" . }}-backup
-              mountPath: /var/backups
+            - name: postgres-backup
+              image: postgres:11
+              command: ["/bin/sh"]
+              args: ["-c", 'pg_dump -U {{ .Values.postgresql.postgresqlUsername }} -p {{ .Values.postgresql.postgresqlPassword }} -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} {{ .Values.postgresql.postgresqlDatabase }} > /var/backups/backup-$(date +"%m-%d-%Y-%H-%M").sql']
+              volumeMounts:
+                - name: postgres-backup
+                  mountPath: /var/backups
           restartPolicy: Never
+          volumes:
+            - name: postgres-backup
+              persistentVolumeClaim:
+                claimName: {{ include "gemtc.fullname" . }}-backup

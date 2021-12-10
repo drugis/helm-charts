@@ -9,6 +9,12 @@ questions:
     label: Addis google oauth2 secret
     required: true
     group: Addis
+  - variable: addis-core.addis.host
+    type: string
+    label: Addis host url
+    required: true
+    default: addis.dev.molgenis.org
+    group: Addis
 #
   - variable: addis-core.image.repository
     type: string

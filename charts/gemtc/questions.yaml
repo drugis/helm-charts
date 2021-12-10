@@ -153,4 +153,10 @@ questions:
     show_if: "gemtc.enterprise.enabled=true"
     default: drugis
     group: Enterprise
+  - variable: gemtc.enterprise.adminPassword
+    type: password
+    label: Administrator password for GeMTC
+    required: true
+    show_if: "gemtc.enterprise.enabled=true"
+    group: Enterprise
 

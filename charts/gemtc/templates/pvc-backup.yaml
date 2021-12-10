@@ -1,0 +1,24 @@
+{{- if and .Values.backup.persistence.enabled (not .Values.backup.persistence.existingClaim) }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ include "gemtc.fullname" . }}-backup
+  labels:
+    app.kubernetes.io/name: {{ include "gemtc.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ include "gemtc.chart" . }}
+spec:
+  accessModes:
+    - {{ .Values.backup.persistence.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.backup.persistence.size | quote }}
+  {{- if .Values.backup.persistence.storageClass }}
+  {{- if (eq "-" .Values.backup.persistence.storageClass) }}
+  storageClassName: ""
+  {{- else }}
+  storageClassName: "{{ .Values.backup.persistence.storageClass }}"
+  {{- end }}
+  {{- end }}
+  {{- end }}

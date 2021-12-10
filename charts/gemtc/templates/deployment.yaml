@@ -56,10 +56,32 @@ spec:
            - name: LIQUIBASE_COMMAND_USERNAME
              value: {{ .Values.postgresql.postgresqlUsername }}
            - name: LIQUIBASE_COMMAND_PASSWORD
-             value: {{ .Values.postgresql.postgresqlPassword }}
+             valueFrom:
+                secretKeyRef:
+                  name: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
+                  key: postgresql-password
           volumeMounts:
             - name: liquibase-changelog
               mountPath: /liquibase/changelog
+        {{- if .Values.gemtc.enterprise.enabled }}
+        - name: create-enterprise-user
+          image: postgres:11
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
+                  key: postgresql-password
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret-{{ template "gemtc.fullname" . }}
+                  key: admin-password
+          command: ['sh', '-c']
+          args:
+            - PGPASSWORD=${POSTGRES_PASSWORD} psql -h {{ include "call- nested" (list $ "postgresql" "postgresql.fullname") }} -U {{ .Values.postgresql.postgresqlDatabase }} -c "INSERT INTO Account (username, firstName, lastName, password) SELECT 'administrator', 'admin', '', '\\$2a\\$10\\$TmvbK5.HpkoPGDV5ykycsOFIJbvDHAtgwW.JfyLNGPrBCSABAq9Na' WHERE NOT EXISTS (SELECT * FROM account WHERE username = 'administrator')";
+              PGPASSWORD=${POSTGRES_PASSWORD} psql -h {{ include "call- nested" (list $ "postgresql" "postgresql.fullname") }} -U {{ .Values.postgresql.postgresqlDatabase }} -c "INSERT INTO administrator (accountid) (SELECT id FROM account WHERE username='administrator')";
+        {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:

@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: postgres-backup
+  name: {{ include "gemtc.fullname" . }}-postgres-backup
 spec:
   # Backup the database every day at 2AM
   schedule: "0 2 * * *"
@@ -11,16 +11,10 @@ spec:
         spec:
           containers:
           - name: postgres-backup
-            image: postgres:12
+            image: postgres:11
             command: ["/bin/sh"]
-            args: ["-c", 'pg_dump -U {{ .Values.postgresql.postgresqlUsername }} -p {{ .Values.postgresql.postgresqlPassword }} -h {{ ????????? }} {{ .Values.postgresql.postgresqlDatabase }} > /var/backups/backup-$(date +"%m-%d-%Y-%H-%M").sql']
-            env:
-            - name: PGPASS
-              valueFrom:
-                secretKeyRef:
-                  name: pgpass
-                  key: pgpass
+            args: ["-c", 'pg_dump -U {{ .Values.postgresql.postgresqlUsername }} -p {{ .Values.postgresql.postgresqlPassword }} -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} {{ .Values.postgresql.postgresqlDatabase }} > /var/backups/backup-$(date +"%m-%d-%Y-%H-%M").sql']
             volumeMounts:
-            - name: postgres-storage 
+            - name: {{ include "gemtc.fullname" . }}-backup
               mountPath: /var/backups
           restartPolicy: Never

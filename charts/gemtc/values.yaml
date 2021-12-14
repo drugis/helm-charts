@@ -31,7 +31,6 @@ gemtc:
   enterprise:
     enabled: false
     # adminPassword: xxxx
-    # githubAccessToken: xxxx
 
 backup:
   persistence:

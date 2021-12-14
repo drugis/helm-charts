@@ -1,7 +1,7 @@
 apiVersion: v1
 name: gemtc
 description: A Helm chart for GEMTC service
-version: 0.4.1
+version: 0.5.0
 appVersion: "0.10.4"
 icon: https://raw.githubusercontent.com/drugis/gemtc-web/develop/public/img/favicon.png
 maintainers:

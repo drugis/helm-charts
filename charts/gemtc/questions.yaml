@@ -64,19 +64,6 @@ questions:
     required: true
     show_if: "gemtc.enterprise.enabled=true"
     group: GeMTC - Enterprise
-  - variable: gemtc.schema.repo
-    type: string
-    label: Private repo of the GeMTC
-    required: true
-    default: gemtc-private
-    show_if: "gemtc.enterprise.enabled=true"
-    group: GeMTC - Enterprise
-  - variable: gemtc.enterprise.githubAccessToken
-    type: password
-    label: Github Access Token to acquire liquibase schema
-    required: true
-    show_if: "gemtc.enterprise.enabled=true"
-    group: GeMTC - Enterprise
 #
   - variable: backup.persistence.enabled
     type: boolean

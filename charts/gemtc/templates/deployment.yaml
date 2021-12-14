@@ -39,17 +39,10 @@ spec:
               value: "true"
           command: ["/bin/sh"]
           args: ["-c", "fabric8-dependency-wait-service-linux-amd64 $(POSTGRESQL_URI)"]
+        {{- if not .Values.gemtc.enterprise.enabled }}
         - name: get-liquibase-changelog
           image: busybox:1.34.1
-          {{- if .Values.gemtc.enterprise.enabled }}
-          env:
-            - name: GITHUB_ACCESS_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: secret-{{ template "gemtc.fullname" . }}
-                  key: github-access-token
-          {{- end -}}
-          command: ['sh', '-c', "mkdir -p /liquibase/changelog && wget {{- if .Values.gemtc.enterprise.enabled -}}--header='Authorization: token $(GITHUB_ACCESS_TOKEN)'{{- end -}} -O /liquibase/changelog/liquibase-changelog.sql https://raw.githubusercontent.com/drugis/{{ .Values.gemtc.schema.repo }}/{{ .Values.gemtc.schema.version }}/liquibase/liquibase-changelog.sql"]
+          command: ['sh', '-c', "mkdir -p /liquibase/changelog && wget -O /liquibase/changelog/liquibase-changelog.sql https://raw.githubusercontent.com/drugis/gemtc-web/{{ .Values.gemtc.schema.version }}/liquibase/liquibase-changelog.sql"]
           volumeMounts:
             - name: liquibase-changelog
               mountPath: /liquibase/changelog
@@ -71,7 +64,21 @@ spec:
           volumeMounts:
             - name: liquibase-changelog
               mountPath: /liquibase/changelog
-        {{- if .Values.gemtc.enterprise.enabled }}
+        {{- else -}}
+        - name: update-database-liquibase
+          image: registry.drugis.org/liquibase-gemtc:latest
+          env:
+            - name: LIQUIBASE_URL
+              value: 'jdbc:postgresql://{{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}:5432/{{ .Values.postgresql.postgresqlDatabase}}'
+            - name: LIQUIBASE_USERNAME
+              value: '{{ .Values.postgresql.postgresqlUsername }}'
+            - name: LIQUIBASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
+                  key: postgresql-password
+          args:
+            - 'update'
         - name: create-enterprise-user
           image: postgres:11
           env:

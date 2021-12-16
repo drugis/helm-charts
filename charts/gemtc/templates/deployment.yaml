@@ -58,13 +58,13 @@ spec:
              value: {{ .Values.postgresql.postgresqlUsername }}
            - name: LIQUIBASE_COMMAND_PASSWORD
              valueFrom:
-                secretKeyRef:
-                  name: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
-                  key: postgresql-password
+               secretKeyRef:
+                 name: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
+                 key: postgresql-password
           volumeMounts:
             - name: liquibase-changelog
               mountPath: /liquibase/changelog
-        {{- else -}}
+        {{- else }}
         - name: update-database-liquibase
           image: registry.drugis.org/liquibase-gemtc:latest
           env:

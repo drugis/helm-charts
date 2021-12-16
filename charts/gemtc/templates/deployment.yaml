@@ -34,9 +34,9 @@ spec:
             - name: POSTGRESQL_URI
               value: postgres://{{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}:5432
             - name: DEPENDENCY_POLL_INTERVAL
-              value: "10"
+              value: 10
             - name: DEPENDENCY_LOG_VERBOSE
-              value: "true"
+              value: true
           command: ["/bin/sh"]
           args: ["-c", "fabric8-dependency-wait-service-linux-amd64 $(POSTGRESQL_URI)"]
         {{- if not .Values.gemtc.enterprise.enabled }}
@@ -50,21 +50,21 @@ spec:
           image: liquibase/liquibase:4.6.2
           command: ['sh', '-c', "docker-entrypoint.sh --url=$(LIQUIBASE_COMMAND_URL) --username=$(LIQUIBASE_COMMAND_USERNAME) --password=${LIQUIBASE_COMMAND_PASSWORD} --classpath=/liquibase/changelog/ --changeLogFile=$(LIQUIBASE_COMMAND_CHANGELOG_FILE) update"]
           env:
-           - name: LIQUIBASE_COMMAND_URL
-             value: jdbc:postgresql://{{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}:5432/{{ .Values.postgresql.postgresqlDatabase }}?currentSchema=public
-           - name: LIQUIBASE_COMMAND_CHANGELOG_FILE
-             value: liquibase-changelog.sql
-           - name: LIQUIBASE_COMMAND_USERNAME
-             value: {{ .Values.postgresql.postgresqlUsername }}
-           - name: LIQUIBASE_COMMAND_PASSWORD
-             valueFrom:
-               secretKeyRef:
-                 name: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
-                 key: postgresql-password
+            - name: LIQUIBASE_COMMAND_URL
+              value: jdbc:postgresql://{{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}:5432/{{ .Values.postgresql.postgresqlDatabase }}?currentSchema=public
+            - name: LIQUIBASE_COMMAND_CHANGELOG_FILE
+              value: liquibase-changelog.sql
+            - name: LIQUIBASE_COMMAND_USERNAME
+              value: {{ .Values.postgresql.postgresqlUsername }}
+            - name: LIQUIBASE_COMMAND_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
+                  key: postgresql-password
           volumeMounts:
             - name: liquibase-changelog
               mountPath: /liquibase/changelog
-        {{- else }}
+        {{- else -}}
         - name: update-database-liquibase
           image: registry.drugis.org/liquibase-gemtc:latest
           env:

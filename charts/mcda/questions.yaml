@@ -59,10 +59,18 @@ questions:
     show_if: "mcda.enterprise.enabled=true"
     default: drugis
     group: Enterprise
-  - variable: gemtc.enterprise.adminPassword
+  - variable: mcda.enterprise.adminPassword
     type: password
     label: Administrator password for MCDA
     required: true
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise
+  - variable: mcda.enterprise.survey.host
+    type: string
+    label: Host url for survey
+    description: This is usually service.namespace.svc
+    required: true
+    default: http://survey.survey.svc
     show_if: "mcda.enterprise.enabled=true"
     group: Enterprise
 #

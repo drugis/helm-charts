@@ -30,6 +30,8 @@ mcda:
     version: develop
   enterprise:
     enabled: false
+    survey:
+      host: http://survey.survey.svc
     # adminPassword: xxxx
 
 backup:

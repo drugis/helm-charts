@@ -1,0 +1,30 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ include "mcda.fullname" . }}-postgres-backup
+spec:
+  # Backup the database every day at 2AM
+  schedule: "0 2 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: postgres-backup
+              image: postgres:11
+              command: ["/bin/sh"]
+              args: ["-c", 'pg_dump -U {{ .Values.postgresql.postgresqlUsername }} -p $(POSTGRES_PASSWORD) -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} {{ .Values.postgresql.postgresqlDatabase }} > /var/backups/backup-$(date +"%m-%d-%Y-%H-%M").sql']
+              volumeMounts:
+                - name: postgres-backup
+                  mountPath: /var/backups
+              env: 
+                - name: POSTGRES_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
+                      key: postgresql-password
+          restartPolicy: Never
+          volumes:
+            - name: postgres-backup
+              persistentVolumeClaim:
+                claimName: {{ include "mcda.fullname" . }}-backup

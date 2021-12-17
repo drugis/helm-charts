@@ -30,6 +30,16 @@ mcda:
     version: develop
   enterprise:
     enabled: false
+    # adminPassword: xxxx
+
+backup:
+  persistence:
+    enabled: true
+    storageClass: "nfs-provisioner-retain"
+    accessMode: ReadWriteOnce
+    size: 5Gi
+    useExistingClaim: false
+    # existingClaim: mcda-backup
 
 imagePullSecrets: []
 nameOverride: ""

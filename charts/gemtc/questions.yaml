@@ -57,34 +57,34 @@ questions:
     required: true
     show_if: "gemtc.enterprise.enabled=true"
     default: drugis
-    group: GeMTC - Enterprise
+    group: Enterprise
   - variable: gemtc.enterprise.adminPassword
     type: password
     label: Administrator password for GeMTC
     required: true
     show_if: "gemtc.enterprise.enabled=true"
-    group: GeMTC - Enterprise
+    group: Enterprise
 #
   - variable: backup.persistence.enabled
     type: boolean
     required: true
     label: Persistence enabled for backup
     default: true
-    group: GeMTC - Backup
+    group: Backup
     show_subquestion_if: true
     subquestions:
     - variable: backup.persistence.useExistingClaim
       type: boolean
       label: Use existing volume claim
       required: false
-      group: GeMTC - Backup
+      group: Backup
     - variable: backup.persistence.existingClaim
       type: string
       label: Existing volume
       description: Define the existing claim when the instance needs to be restored from an existing volume
       required: false
       show_if: "backup.persistence.useExistingClaim=true"
-      group: GeMTC - Backup
+      group: Backup
 #
   - variable: patavi.host
     type: string

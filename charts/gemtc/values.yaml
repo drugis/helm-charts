@@ -33,13 +33,15 @@ gemtc:
     # adminPassword: xxxx
 
 backup:
+  enabled: true
+  cron: "0 2 * * *"
   persistence:
     enabled: true
     storageClass: "nfs-provisioner-retain"
     accessMode: ReadWriteOnce
     size: 5Gi
     useExistingClaim: false
-    # existingClaim: jena-es
+    # existingClaim: gemtc-backup
 
 imagePullSecrets: []
 nameOverride: ""

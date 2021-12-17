@@ -3,8 +3,7 @@ kind: CronJob
 metadata:
   name: {{ include "gemtc.fullname" . }}-postgres-backup
 spec:
-  # Backup the database every day at 2AM
-  schedule: "0 2 * * *"
+  schedule: "{{ .Values.backup.cron }}"
   jobTemplate:
     spec:
       template:

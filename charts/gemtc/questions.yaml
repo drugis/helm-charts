@@ -73,6 +73,12 @@ questions:
     group: Backup
     show_subquestion_if: true
     subquestions:
+    - variable: backup.cron
+      type: string
+      required: true
+      label: Backup cronjob
+      default: "0 2 * * *"
+      group: Backup
     - variable: backup.persistence.useExistingClaim
       type: boolean
       label: Use existing volume claim

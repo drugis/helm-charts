@@ -35,6 +35,8 @@ mcda:
     # adminPassword: xxxx
 
 backup:
+  enabled: true
+  cron: "0 2 * * *"
   persistence:
     enabled: true
     storageClass: "nfs-provisioner-retain"

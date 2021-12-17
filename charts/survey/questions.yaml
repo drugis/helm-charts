@@ -86,5 +86,5 @@ questions:
   type: string
   label: PostgreSQL existing secret
   required: true
-  default: postgresql
+  default: mcda-postgresql
   group: Database

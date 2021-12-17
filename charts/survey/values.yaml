@@ -16,7 +16,7 @@ postgresql:
   postgresqlHost: mcda.mcda.svc:5432
   postgresqlUsername: mcda
   postgresqlDatabase: mcda
-  existingSecret: xxxx
+  existingSecret: mcda-postgresql
 
 service:
   type: ClusterIP
@@ -49,9 +49,3 @@ resources: {}
 nodeSelector: {}
 tolerations: []
 affinity: {}
-
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80

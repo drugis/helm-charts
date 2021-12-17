@@ -3,4 +3,5 @@ name: survey
 description: A Helm chart for the MCDA survey tool
 type: application
 version: 0.1.0
+icon: https://github.com/drugis/helm-charts/blob/master/charts/survey/catalogIcon.png
 appVersion: "1.1.0"

@@ -2,3 +2,7 @@ dependencies:
 - name: postgresql
   version: 9.6.0
   repository: https://charts.bitnami.com/bitnami
+- name: survey
+  version: 0.1.0
+  repository: https://registry.molgenis.org/repository/helm
+  condition: mcda.enterprise.enabled

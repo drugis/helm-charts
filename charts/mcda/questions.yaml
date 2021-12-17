@@ -72,9 +72,81 @@ questions:
     required: true
     default: http://survey.survey.svc
     show_if: "mcda.enterprise.enabled=true"
-    group: Enterprise
+    group: Enterprise - Survey
+  - variable: survey.postgresql.postgresqlHost
+    type: string
+    label: Host for PostgreSQL
+    required: true
+    default: mcda.mcda.svc:5432
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey
+  - variable: survey.postgresql.postgresqlUsername
+    type: string
+    label: User for PostgreSQL
+    required: true
+    default: mcda
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey
+  - variable: survey.postgresql.postgresqlPassword
+    type: password
+    label: Password for PostgreSQL
+    required: true
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey
+  - variable: survey.postgresql.existingSecret
+    type: string
+    label: Existing secret for PostgreSQL
+    required: true
+    default: mcda-postgresql
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey
+  - variable: survey.mcda.cookieDomain
+    type: string
+    label: Cookie domein
+    required: true
+    default: dev.molgenis.org
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey  
+  - variable: survey.mcda.host
+    type: string
+    label: MCDA host
+    required: true
+    default: http://mcda.mcda.svc
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey
+  - variable: survey.mcda.existingSecret
+    type: string
+    label: MCDA existing secret
+    required: true
+    default: secret-mcda
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey  
+  - variable: survey.mcda.existingSecret
+    type: string
+    label: MCDA existing secret
+    required: true
+    default: secret-mcda
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey
+  - variable: ingress.hosts[0].host
+    type: string
+    label: Survey host
+    required: true
+    default: survey.dev.molgenis.org
+    group: Enterprise - Survey
+  - variable: ingress.hosts[0].paths[0].path
+    type: string
+    label: Survey host path
+    required: true
+    default: /
+    group: Enterprise - Survey
+  - variable: ingress.hosts[0].paths[0].pathType
+    type: string
+    label: Survey host pathtype
+    required: true
+    default: ImplementationSpecific
+    group: Enterprise - Survey
 #
-  
   - variable: backup.persistence.enabled
     type: boolean
     required: true

@@ -69,6 +69,13 @@ questions:
   required: true
   default: ImplementationSpecific
   group: Provisioning
+- variable: imagePullSecrets[0].name
+  type: string
+  label: Image pull secrets
+  description: You need to specify the image pull secret to pull from the private Drugis docker repository
+  required: true
+  default: drugis
+  group: Provisioning
 #
 - variable: postgresql.postgresqlUsername
   type: string

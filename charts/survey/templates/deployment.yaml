@@ -33,14 +33,14 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: MCDA_COOKIE_DOMAIN
-              value: {{ .Values.mcda.cookieDomain }}
+              value: "{{ .Values.mcda.cookieDomain }}"
             - name: MCDA_COOKIE_SECRET
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.mcda.existingSecret }}
                   key: cookie-secret
             - name: MCDA_SURVEY_DB_HOST
-              value: {{ .Values.postgresql.postgresqlHost }}
+              value: "{{ .Values.postgresql.postgresqlHost }}"
             - name: MCDA_SURVEY_DB_NAME
               value: {{ .Values.postgresql.postgresqlDatabase }}
             - name: MCDA_SURVEY_DB_USER
@@ -51,11 +51,11 @@ spec:
                   name: {{ .Values.postgresql.existingSecret }}
                   key: postgres-password
             - name: MCDA_HOST
-              value: {{ .Values.mcda.host }}
+              value: "{{ .Values.mcda.host }}"
             - name: PATAVI_HOST
-              value: {{ .Values.patavi.host }}
+              value: "{{ .Values.patavi.host }}"
             - name: PATAVI_PORT
-              value: {{ .Values.patavi.port }}
+              value: "{{ .Values.patavi.port }}"
             - name: PATAVI_API_KEY
               valueFrom:
                 secretKeyRef:

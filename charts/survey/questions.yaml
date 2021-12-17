@@ -1,11 +1,6 @@
 categories:
 - Survey
 questions:
-- variable: patavi.apiKey
-  type: password
-  label: Patavi API-key
-  required: true
-  group: Patavi
 - variable: patavi.port
   type: string
   label: Patavi host port
@@ -19,10 +14,11 @@ questions:
   default: "http://patavi-patavi-server.patavi.svc"
   group: Patavi
 #
-- variable: mcda.cookieSecret
-  type: password
-  label: MCDA cookie secret
+- variable: mcda.existingSecret
+  type: string
+  label: MCDA existing secret
   required: true
+  default: secret-mcda
   group: MCDA
 - variable: mcda.cookieDomain
   type: string
@@ -80,14 +76,15 @@ questions:
   required: true
   default: mcda
   group: Database
-- variable: postgresql.postgresqlPassword
-  type: password
-  label: PostgreSQL password
-  required: true
-  group: Database
 - variable: postgresql.postgresqlDatabase
   type: string
   label: PostgreSQL database
   required: true
   default: mcda
+  group: Database
+- variable: postgresql.existingSecret
+  type: string
+  label: PostgreSQL existing secret
+  required: true
+  default: postgresql
   group: Database

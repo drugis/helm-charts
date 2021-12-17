@@ -4,9 +4,9 @@ image:
   tag: "test"
 
 mcda:
-  cookieSecret: xxxx
   cookieDomain: dev.molgenis.org
   host: http://mcda.mcda.svc
+  existingSecret: 
 
 patavi:
   port: 3000
@@ -14,9 +14,10 @@ patavi:
   apiKey: xxxx
 
 postgresql:
+  postgresqlHost: mcda.mcda.svc:5432
   postgresqlUsername: mcda
   postgresqlDatabase: mcda
-  postgresqlPassword: xxxx
+  existingSecret: xxxx
 
 service:
   type: ClusterIP

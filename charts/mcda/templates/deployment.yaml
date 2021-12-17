@@ -72,8 +72,8 @@ spec:
             - name: MCDAWEB_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: secret-{{ include "mcda.fullname" . }}
-                  key: database-password
+                  name: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
+                  key: postgresql-password
             - name: MCDAWEB_DB_HOST
               value: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
             - name: MCDAWEB_DB_NAME
@@ -107,7 +107,7 @@ spec:
             - name: SECURE_TRAFFIC
               value: "{{ .Values.mcda.secure }}"
             - name: MCDAWEB_AUTHENTICATION_METHOD
-              value: {{ .Values.mcda.authenticationMethod }}
+              value: "{{ .Values.mcda.authenticationMethod }}"
           ports:
             - name: http
               containerPort: 3002

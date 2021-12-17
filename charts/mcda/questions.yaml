@@ -72,7 +72,7 @@ questions:
     required: true
     default: http://survey.survey.svc
     show_if: "mcda.enterprise.enabled=true"
-    group: Enterprise - Survey
+    group: Enterprise
   - variable: survey.postgresql.postgresqlHost
     type: string
     label: Host for PostgreSQL
@@ -85,12 +85,6 @@ questions:
     label: User for PostgreSQL
     required: true
     default: mcda
-    show_if: "mcda.enterprise.enabled=true"
-    group: Enterprise - Survey
-  - variable: survey.postgresql.postgresqlPassword
-    type: password
-    label: Password for PostgreSQL
-    required: true
     show_if: "mcda.enterprise.enabled=true"
     group: Enterprise - Survey
   - variable: survey.postgresql.existingSecret
@@ -128,23 +122,26 @@ questions:
     default: secret-mcda
     show_if: "mcda.enterprise.enabled=true"
     group: Enterprise - Survey
-  - variable: ingress.hosts[0].host
+  - variable: survey.ingress.hosts[0].host
     type: string
     label: Survey host
     required: true
     default: survey.dev.molgenis.org
+    show_if: "mcda.enterprise.enabled=true"
     group: Enterprise - Survey
-  - variable: ingress.hosts[0].paths[0].path
+  - variable: survey.ingress.hosts[0].paths[0].path
     type: string
     label: Survey host path
     required: true
     default: /
+    show_if: "mcda.enterprise.enabled=true"
     group: Enterprise - Survey
-  - variable: ingress.hosts[0].paths[0].pathType
+  - variable: survey.ingress.hosts[0].paths[0].pathType
     type: string
     label: Survey host pathtype
     required: true
     default: ImplementationSpecific
+    show_if: "mcda.enterprise.enabled=true"
     group: Enterprise - Survey
 #
   - variable: backup.persistence.enabled

@@ -6,12 +6,11 @@ image:
 mcda:
   cookieDomain: dev.molgenis.org
   host: http://mcda.mcda.svc
-  existingSecret: 
+  existingSecret: secret-mcda
 
 patavi:
   port: 3000
   host: http://patavi-patavi-server.patavi.svc
-  apiKey: xxxx
 
 postgresql:
   postgresqlHost: mcda.mcda.svc:5432

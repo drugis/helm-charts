@@ -42,7 +42,7 @@ spec:
                   name: {{ .Values.mcda.existingSecret }}
                   key: cookie-secret
             - name: MCDA_SURVEY_DB_HOST
-              value: {{ .Values.postgresql.host }}
+              value: {{ .Values.postgresql.postgresqlHost }}
             - name: MCDA_SURVEY_DB_NAME
               value: {{ .Values.postgresql.postgresqlDatabase }}
             - name: MCDA_SURVEY_DB_USER
@@ -51,7 +51,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.postgresql.existingSecret }}
-                  key: database-password
+                  key: postgres-password
             - name: MCDA_HOST
               value: {{ .Values.mcda.host }}
             - name: PATAVI_HOST
@@ -59,7 +59,10 @@ spec:
             - name: PATAVI_PORT
               value: {{ .Values.patavi.port }}
             - name: PATAVI_API_KEY
-              value: {{ .Values.patavi.apiKey }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mcda.existingSecret }}
+                  key: api-key
           ports:
             - name: http
               containerPort: 3003

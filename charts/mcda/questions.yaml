@@ -15,9 +15,12 @@ questions:
     default: https://mcda.dev.molgenis.org
     group: MCDA
   - variable: mcda.authenticationMethod
-    type: string
+    type: enum
     label: Authentication method
     required: true
+    options:
+     - GOOGLE
+     - LOCAL
     default: GOOGLE
     group: MCDA
   - variable: mcda.cookieSecret
@@ -41,6 +44,12 @@ questions:
     label: Schema version for MCDA
     default: develop
     group: MCDA
+  - variable: mcda.enterprise.enabled
+    type: boolean
+    required: true
+    label: Enable enterprise
+    default: false
+    group: MCDA
 #
   - variable: postgresql.postgresqlUsername
     type: string
@@ -59,11 +68,27 @@ questions:
     label: Database password
     required: true
     group: Database
-  - variable: postgresql.persistence.existingClaim
-    type: string
-    label: Existing volume
+  - variable: postgresql.persistence.useExistingClaim
+    type: boolean
+    label: Use existing volume
     description: Define the existing claim when the instance needs to be restored from an existing database
-    required: false
+    required: true
+    default: false
+    group: Database
+    show_subquestion_if: true
+    subquestions:
+    - variable: postgresql.persistence.existingClaim
+      type: string
+      label: Existing volume
+      description: Define the existing claim when the instance needs to be restored from an existing database
+      required: false
+      group: Database
+  - variable: postgresql.persistence.storageClass
+    type: string
+    label: Storage class for persistent volume
+    description: You can choose delete or retain. For production deployments use retain.
+    default: nfs-provisioner-retain
+    required: true
     group: Database
 #
   - variable: patavi.host
@@ -121,3 +146,12 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Provisioning
+#
+  - variable: imagePullSecrets[0].name
+    type: string
+    label: Image pull secrets
+    description: You need to specify the image pull secret to pull from the private Drugis docker repository
+    required: true
+    show_if: "mcda.enterprise.enabled=true"
+    default: drugis
+    group: Enterprise

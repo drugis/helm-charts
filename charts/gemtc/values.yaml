@@ -14,8 +14,10 @@ postgresql:
   postgresqlUsername: gemtc
   postgresqlDatabase: gemtc
   postgresqlPassword: xxxxx
-  # persistence:
-  #   existingClaim: data-gemtc-postgresql-0
+  persistence:
+    useExistingClaim: false
+  #   existingClaim: data-patavi-server-postgresql-0
+    storageClass: nfs-provisioner-retain
 
 gemtc:
   googleKey: xxxx
@@ -26,6 +28,8 @@ gemtc:
   authenticationMethod: GOOGLE
   schema:
     version: develop
+  enterprise:
+    enabled: false
 
 imagePullSecrets: []
 nameOverride: ""

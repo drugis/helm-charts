@@ -14,9 +14,12 @@ questions:
     default: https://gemtc.dev.molgenis.org
     group: GeMTC
   - variable: gemtc.authenticationMethod
-    type: string
+    type: enum
     label: GeMTC authentication method
     required: true
+    options:
+     - GOOGLE
+     - LOCAL
     default: GOOGLE
     group: GeMTC
   - variable: gemtc.cookieSecret
@@ -39,6 +42,12 @@ questions:
     required: true
     label: GeMTC database schema version
     default: develop
+    group: GeMTC
+  - variable: gemtc.enterprise.enabled
+    type: boolean
+    required: true
+    label: Enable enterprise
+    default: false
     group: GeMTC
   #
   - variable: patavi.host
@@ -76,11 +85,27 @@ questions:
     label: Database password
     required: true
     group: Database
-  - variable: postgresql.persistence.existingClaim
-    type: string
-    label: Existing volume
+  - variable: postgresql.persistence.useExistingClaim
+    type: boolean
+    label: Use existing volume
     description: Define the existing claim when the instance needs to be restored from an existing database
-    required: false
+    required: true
+    default: false
+    group: Database
+    show_subquestion_if: true
+    subquestions:
+    - variable: postgresql.persistence.existingClaim
+      type: string
+      label: Existing volume
+      description: Define the existing claim when the instance needs to be restored from an existing database
+      required: false
+      group: Database
+  - variable: postgresql.persistence.storageClass
+    type: string
+    label: Storage class for persistent volume
+    description: You can choose delete or retain. For production deployments use retain.
+    default: nfs-provisioner-retain
+    required: true
     group: Database
   #
   - variable: image.repository
@@ -119,3 +144,13 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Provisioning
+#
+  - variable: imagePullSecrets[0].name
+    type: string
+    label: Image pull secrets
+    description: You need to specify the image pull secret to pull from the private Drugis docker repository
+    required: true
+    show_if: "gemtc.enterprise.enabled=true"
+    default: drugis
+    group: Enterprise
+

@@ -11,9 +11,10 @@ jena:
 
 persistence:
   enabled: true
-  storageClass: ""
-  accessMode: ReadWriteMany
+  storageClass: "nfs-provisioner-retain"
+  accessMode: ReadWriteOnce
   size: 10Gi
+  useExistingClaim: false
   # existingClaim: jena-es
 
 imagePullSecrets: []

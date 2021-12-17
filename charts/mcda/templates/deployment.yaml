@@ -109,7 +109,7 @@ spec:
             - name: MCDAWEB_AUTHENTICATION_METHOD
               value: {{ .Values.mcda.authenticationMethod }}
           ports:
-            - name: https
+            - name: http
               containerPort: 3002
           livenessProbe:
             tcpSocket:

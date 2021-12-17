@@ -31,7 +31,7 @@ mcda:
   enterprise:
     enabled: false
     survey:
-      host: http://survey.survey.svc
+      host: http://survey:3003
     # adminPassword: xxxx
 
 survey:
@@ -39,13 +39,13 @@ survey:
     port: 3000
     host: http://patavi-patavi-server.patavi.svc
   postgresql:
-    postgresqlHost: mcda.mcda.svc:5432
+    postgresqlHost: mcda-postgresql:5432
     postgresqlUsername: mcda
     postgresqlDatabase: mcda
     existingSecret: mcda-postgresql
   mcda:
     cookieDomain: dev.molgenis.org
-    host: http://mcda.mcda.svc
+    host: http://mcda
     existingSecret: secret-mcda
   ingress:
     enabled: true

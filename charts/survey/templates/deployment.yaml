@@ -37,9 +37,12 @@ spec:
             - name: MCDA_COOKIE_DOMAIN
               value: {{ .Values.mcda.cookieDomain }}
             - name: MCDA_COOKIE_SECRET
-              value: {{ .Values.mcda.cookieSecret }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mcda.existingSecret }}
+                  key: cookie-secret
             - name: MCDA_SURVEY_DB_HOST
-              value: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
+              value: {{ .Values.postgresql.host }}
             - name: MCDA_SURVEY_DB_NAME
               value: {{ .Values.postgresql.postgresqlDatabase }}
             - name: MCDA_SURVEY_DB_USER
@@ -47,7 +50,7 @@ spec:
             - name: MCDA_SURVEY_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: secret-{{ include "survey.fullname" . }}
+                  name: {{ .Values.postgresql.existingSecret }}
                   key: database-password
             - name: MCDA_HOST
               value: {{ .Values.mcda.host }}

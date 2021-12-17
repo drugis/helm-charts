@@ -25,6 +25,18 @@ spec:
       serviceAccountName: {{ include "survey.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: init-mcda
+          image: fabric8/fabric8-dependency-wait-service
+          env:
+            - name: MCDA_URI
+              value: "{{ .Values.mcda.host }}"
+            - name: DEPENDENCY_POLL_INTERVAL
+              value: "10"
+            - name: DEPENDENCY_LOG_VERBOSE
+              value: "true"
+          command: ["/bin/sh"]
+          args: ["-c", "fabric8-dependency-wait-service-linux-amd64 $(MCDA_URI)"]
       containers:
         - name: {{ .Chart.Name }}
           securityContext:

@@ -4,7 +4,7 @@ metadata:
   name: {{ include "mcda.fullname" . }}-postgres-backup
 spec:
   # Backup the database every day at 2AM
-  schedule: "0 2 * * *"
+  schedule: "* * * * *"
   jobTemplate:
     spec:
       template:

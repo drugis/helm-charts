@@ -23,7 +23,7 @@ service:
   port: 3003
 
 ingress:
-  enabled: false
+  enabled: true
   className: ""
   annotations: {}
   hosts:

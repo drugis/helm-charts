@@ -39,6 +39,40 @@ spec:
               value: "true"
           command: ["/bin/sh"]
           args: ["-c", "fabric8-dependency-wait-service-linux-amd64 $(POSTGRESQL_URI)"]
+      {{- if .Values.gemtc.enterprise.enabled }}
+        - name: update-database-liquibase
+          image: registry.drugis.org/liquibase-gemtc:latest
+          env:
+            - name: LIQUIBASE_URL
+              value: 'jdbc:postgresql://{{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}:5432/{{ .Values.postgresql.postgresqlDatabase}}'
+            - name: LIQUIBASE_USERNAME
+              value: '{{ .Values.postgresql.postgresqlUsername }}'
+            - name: LIQUIBASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
+                  key: postgresql-password
+          args:
+            - 'update'
+        - name: create-enterprise-user
+          image: postgres:11
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
+                  key: postgresql-password
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret-{{ template "gemtc.fullname" . }}
+                  key: admin-password
+          command: ['sh', '-c']
+          args:
+            - PGPASSWORD=${POSTGRES_PASSWORD} psql -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} -U {{ .Values.postgresql.postgresqlDatabase }} -c "INSERT INTO Account (username, firstName, lastName, password) SELECT 'administrator', 'admin', '', '\\$2a\\$10\\$TmvbK5.HpkoPGDV5ykycsOFIJbvDHAtgwW.JfyLNGPrBCSABAq9Na' WHERE NOT EXISTS (SELECT * FROM account WHERE username = 'administrator')";
+              # TODO: add 'WHERE NOT EXISTS (SELECT * FROM ADMINISTRATOR)' to query
+            - PGPASSWORD=${POSTGRES_PASSWORD} psql -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} -U {{ .Values.postgresql.postgresqlDatabase }} -c "INSERT INTO administrator (accountid) (SELECT id FROM account WHERE username='administrator')";
+      {{- else }}
         - name: get-liquibase-changelog
           image: busybox:1.34.1
           command: ['sh', '-c', "mkdir -p /liquibase/changelog && wget -O /liquibase/changelog/liquibase-changelog.sql https://raw.githubusercontent.com/drugis/gemtc-web/{{ .Values.gemtc.schema.version }}/liquibase/liquibase-changelog.sql"]
@@ -49,17 +83,21 @@ spec:
           image: liquibase/liquibase:4.6.2
           command: ['sh', '-c', "docker-entrypoint.sh --url=$(LIQUIBASE_COMMAND_URL) --username=$(LIQUIBASE_COMMAND_USERNAME) --password=${LIQUIBASE_COMMAND_PASSWORD} --classpath=/liquibase/changelog/ --changeLogFile=$(LIQUIBASE_COMMAND_CHANGELOG_FILE) update"]
           env:
-           - name: LIQUIBASE_COMMAND_URL
-             value: jdbc:postgresql://{{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}:5432/{{ .Values.postgresql.postgresqlDatabase }}?currentSchema=public
-           - name: LIQUIBASE_COMMAND_CHANGELOG_FILE
-             value: liquibase-changelog.sql
-           - name: LIQUIBASE_COMMAND_USERNAME
-             value: {{ .Values.postgresql.postgresqlUsername }}
-           - name: LIQUIBASE_COMMAND_PASSWORD
-             value: {{ .Values.postgresql.postgresqlPassword }}
+            - name: LIQUIBASE_COMMAND_URL
+              value: jdbc:postgresql://{{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}:5432/{{ .Values.postgresql.postgresqlDatabase }}?currentSchema=public
+            - name: LIQUIBASE_COMMAND_CHANGELOG_FILE
+              value: liquibase-changelog.sql
+            - name: LIQUIBASE_COMMAND_USERNAME
+              value: {{ .Values.postgresql.postgresqlUsername }}
+            - name: LIQUIBASE_COMMAND_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
+                  key: postgresql-password
           volumeMounts:
             - name: liquibase-changelog
               mountPath: /liquibase/changelog
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:

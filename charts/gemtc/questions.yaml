@@ -49,7 +49,49 @@ questions:
     label: Enable enterprise
     default: false
     group: GeMTC
-  #
+#
+  - variable: imagePullSecrets[0].name
+    type: string
+    label: Image pull secrets
+    description: You need to specify the image pull secret to pull from the private Drugis docker repository
+    required: true
+    show_if: "gemtc.enterprise.enabled=true"
+    default: drugis
+    group: Enterprise
+  - variable: gemtc.enterprise.adminPassword
+    type: password
+    label: Administrator password for GeMTC
+    required: true
+    show_if: "gemtc.enterprise.enabled=true"
+    group: Enterprise
+#
+  - variable: backup.persistence.enabled
+    type: boolean
+    required: true
+    label: Persistence enabled for backup
+    default: true
+    group: Backup
+    show_subquestion_if: true
+    subquestions:
+    - variable: backup.cron
+      type: string
+      required: true
+      label: Backup cronjob
+      default: "0 2 * * *"
+      group: Backup
+    - variable: backup.persistence.useExistingClaim
+      type: boolean
+      label: Use existing volume claim
+      required: false
+      group: Backup
+    - variable: backup.persistence.existingClaim
+      type: string
+      label: Existing volume
+      description: Define the existing claim when the instance needs to be restored from an existing volume
+      required: false
+      show_if: "backup.persistence.useExistingClaim=true"
+      group: Backup
+#
   - variable: patavi.host
     type: string
     label: Patavi host link
@@ -67,7 +109,7 @@ questions:
     label: Patavi API key
     required: true
     group: Patavi
-  #
+#
   - variable: postgresql.postgresqlUsername
     type: string
     label: Database username
@@ -107,7 +149,7 @@ questions:
     default: nfs-provisioner-retain
     required: true
     group: Database
-  #
+#
   - variable: image.repository
     type: string
     label: GeMTC image repository
@@ -144,13 +186,4 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Provisioning
-#
-  - variable: imagePullSecrets[0].name
-    type: string
-    label: Image pull secrets
-    description: You need to specify the image pull secret to pull from the private Drugis docker repository
-    required: true
-    show_if: "gemtc.enterprise.enabled=true"
-    default: drugis
-    group: Enterprise
 

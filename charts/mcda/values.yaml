@@ -30,6 +30,38 @@ mcda:
     version: develop
   enterprise:
     enabled: false
+    survey:
+      host: http://survey:3003
+    # adminPassword: xxxx
+
+survey:
+  patavi:
+    port: 3000
+    host: http://patavi-patavi-server.patavi.svc
+  postgresql:
+    postgresqlHost: mcda-postgresql:5432
+    postgresqlUsername: mcda
+    postgresqlDatabase: mcda
+    existingSecret: mcda-postgresql
+  mcda:
+    cookieDomain: dev.molgenis.org
+    host: http://mcda
+    existingSecret: secret-mcda
+  ingress:
+    enabled: true
+    hosts:
+      - host: survey.dev.molgenis.org
+
+backup:
+  enabled: true
+  cron: "0 2 * * *"
+  persistence:
+    enabled: true
+    storageClass: "nfs-provisioner-retain"
+    accessMode: ReadWriteOnce
+    size: 5Gi
+    useExistingClaim: false
+    # existingClaim: mcda-backup
 
 imagePullSecrets: []
 nameOverride: ""

@@ -51,6 +51,119 @@ questions:
     default: false
     group: MCDA
 #
+  - variable: imagePullSecrets[0].name
+    type: string
+    label: Image pull secrets
+    description: You need to specify the image pull secret to pull from the private Drugis docker repository
+    required: true
+    show_if: "mcda.enterprise.enabled=true"
+    default: drugis
+    group: Enterprise
+  - variable: mcda.enterprise.adminPassword
+    type: password
+    label: Administrator password for MCDA
+    required: true
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise
+  - variable: mcda.enterprise.survey.host
+    type: string
+    label: Host url for survey
+    description: This is usually service.namespace.svc
+    required: true
+    default: http://survey
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise
+  - variable: survey.postgresql.postgresqlHost
+    type: string
+    label: Host for PostgreSQL
+    required: true
+    default: mcda-postgresql:5432
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey
+  - variable: survey.postgresql.postgresqlUsername
+    type: string
+    label: User for PostgreSQL
+    required: true
+    default: mcda
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey
+  - variable: survey.postgresql.existingSecret
+    type: string
+    label: Existing secret for PostgreSQL
+    required: true
+    default: mcda-postgresql
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey
+  - variable: survey.mcda.cookieDomain
+    type: string
+    label: Cookie domein
+    required: true
+    default: dev.molgenis.org
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey  
+  - variable: survey.mcda.host
+    type: string
+    label: MCDA host
+    required: true
+    default: http://mcda
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey
+  - variable: survey.mcda.existingSecret
+    type: string
+    label: MCDA existing secret
+    required: true
+    default: secret-mcda
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey  
+  - variable: survey.ingress.hosts[0].host
+    type: string
+    label: Survey host
+    required: true
+    default: survey.dev.molgenis.org
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey
+  - variable: survey.ingress.hosts[0].paths[0].path
+    type: string
+    label: Survey host path
+    required: true
+    default: /
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey
+  - variable: survey.ingress.hosts[0].paths[0].pathType
+    type: string
+    label: Survey host pathtype
+    required: true
+    default: ImplementationSpecific
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey
+#
+  - variable: backup.persistence.enabled
+    type: boolean
+    required: true
+    label: Persistence enabled for backup
+    default: true
+    group: Backup
+    show_subquestion_if: true
+    subquestions:
+    - variable: backup.cron
+      type: string
+      required: true
+      label: Backup cronjob
+      default: "0 2 * * *"
+      group: Backup
+    - variable: backup.persistence.useExistingClaim
+      type: boolean
+      label: Use existing volume claim
+      required: false
+      group: Backup
+    - variable: backup.persistence.existingClaim
+      type: string
+      label: Existing volume
+      description: Define the existing claim when the instance needs to be restored from an existing volume
+      required: false
+      show_if: "backup.persistence.useExistingClaim=true"
+      group: Backup
+#
   - variable: postgresql.postgresqlUsername
     type: string
     label: Database username
@@ -146,12 +259,3 @@ questions:
     required: true
     default: ImplementationSpecific
     group: Provisioning
-#
-  - variable: imagePullSecrets[0].name
-    type: string
-    label: Image pull secrets
-    description: You need to specify the image pull secret to pull from the private Drugis docker repository
-    required: true
-    show_if: "mcda.enterprise.enabled=true"
-    default: drugis
-    group: Enterprise

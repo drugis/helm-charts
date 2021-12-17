@@ -12,7 +12,7 @@ spec:
             - name: postgres-backup
               image: postgres:11
               command: ["/bin/sh"]
-              args: ["-c", 'pg_dump -U {{ .Values.postgresql.postgresqlUsername }} -p $(POSTGRES_PASSWORD) -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} {{ .Values.postgresql.postgresqlDatabase }} > /var/backups/backup-$(date +"%m-%d-%Y-%H-%M").sql']
+              args: ["-c", 'PGPASSWORD="$(POSTGRES_PASSWORD)" pg_dump -U {{ .Values.postgresql.postgresqlUsername }} -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} {{ .Values.postgresql.postgresqlDatabase }} > /var/backups/backup-$(date +"%m-%d-%Y-%H-%M").sql']
               volumeMounts:
                 - name: postgres-backup
                   mountPath: /var/backups

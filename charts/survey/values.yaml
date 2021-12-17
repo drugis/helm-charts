@@ -1,0 +1,51 @@
+image:
+  repository: registry.drugis.org/survey
+  pullPolicy: IfNotPresent
+  tag: "test"
+
+mcda:
+  cookieDomain: dev.molgenis.org
+  host: http://mcda.mcda.svc
+  existingSecret: secret-mcda
+
+patavi:
+  port: 3000
+  host: http://patavi-patavi-server.patavi.svc
+
+postgresql:
+  postgresqlHost: mcda.mcda.svc:5432
+  postgresqlUsername: mcda
+  postgresqlDatabase: mcda
+  existingSecret: mcda-postgresql
+
+service:
+  type: ClusterIP
+  port: 3003
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: survey.dev.molgenis.org
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+replicaCount: 1
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+podAnnotations: {}
+podSecurityContext: {}
+securityContext: {}
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}

@@ -1,0 +1,101 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "survey.fullname" . }}
+  labels:
+    {{- include "survey.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "survey.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "survey.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "survey.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: init-mcda
+          image: fabric8/fabric8-dependency-wait-service
+          env:
+            - name: MCDA_URI
+              value: "{{ .Values.mcda.host }}"
+            - name: DEPENDENCY_POLL_INTERVAL
+              value: "10"
+            - name: DEPENDENCY_LOG_VERBOSE
+              value: "true"
+          command: ["/bin/sh"]
+          args: ["-c", "fabric8-dependency-wait-service-linux-amd64 $(MCDA_URI)"]
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MCDA_COOKIE_DOMAIN
+              value: "{{ .Values.mcda.cookieDomain }}"
+            - name: MCDA_COOKIE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mcda.existingSecret }}
+                  key: cookie-secret
+            - name: MCDA_SURVEY_DB_HOST
+              value: "{{ .Values.postgresql.postgresqlHost }}"
+            - name: MCDA_SURVEY_DB_NAME
+              value: {{ .Values.postgresql.postgresqlDatabase }}
+            - name: MCDA_SURVEY_DB_USER
+              value: {{ .Values.postgresql.postgresqlUser }}
+            - name: MCDA_SURVEY_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresql.existingSecret }}
+                  key: postgres-password
+            - name: MCDA_HOST
+              value: "{{ .Values.mcda.host }}"
+            - name: PATAVI_HOST
+              value: "{{ .Values.patavi.host }}"
+            - name: PATAVI_PORT
+              value: "{{ .Values.patavi.port }}"
+            - name: PATAVI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mcda.existingSecret }}
+                  key: api-key
+          ports:
+            - name: http
+              containerPort: 3003
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

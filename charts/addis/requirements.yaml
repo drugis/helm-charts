@@ -3,7 +3,7 @@ dependencies:
     version: 0.5.0
     repository: https://registry.molgenis.org/repository/helm
   - name: jena-es
-    version: 0.4.1
+    version: 0.4.2
     repository: https://registry.molgenis.org/repository/helm
   - name: nct-import
     version: 0.2.1

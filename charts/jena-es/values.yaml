@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: addis/jena-es
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   tag: "test"
 
 jena:

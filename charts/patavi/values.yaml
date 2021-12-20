@@ -58,3 +58,4 @@ rabbitmq:
   auth:
     username: drugis
     password: xxxxxx
+    # existingPasswordSecret: xxxx

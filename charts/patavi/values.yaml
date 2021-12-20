@@ -58,4 +58,6 @@ rabbitmq:
   auth:
     username: drugis
     password: xxxxxx
+    # only needed on upgrade (not for first install)
     # existingPasswordSecret: xxxx
+    # existingErlangSecret: xxxx

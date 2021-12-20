@@ -111,6 +111,11 @@ questions:
     label: Existing password secret
     required: false
     group: RabbitMQ
+  - variable: rabbitmq.auth.existingErlangSecret
+    type: string
+    label: Existing cookie secret
+    required: false
+    group: RabbitMQ
 #
   - variable: patavi-smaa-worker.rabbitmq.password
     type: password

@@ -111,24 +111,82 @@ questions:
     type: password
     label: RabbitMQ password
     required: true
-    group: Patavi Worker SMAA
+    group: Patavi Worker - SMAA
   - variable: patavi-smaa-worker.rabbitmq.brokerHost
     type: string
     label: RabbitMQ host
     description: RabbitMQ host (point to the rabbitmq service, normally 'release-rabbitmq')
     default: patavi-rabbitmq
     required: true
-    group: Patavi Worker SMAA
+    group: Patavi Worker - SMAA
+  - variable: patavi-smaa-worker.image.repository
+    type: string
+    label: Repository
+    description: Image repository (enterprise or normal)
+    default: addis/patavi-smaa-worker
+    required: true
+    group: Patavi Worker - SMAA
+  - variable: patavi-smaa-worker.image.tag
+    type: string
+    label: Version
+    description: Version
+    default: latest
+    required: true
+    group: Patavi Worker - SMAA
+  - variable: patavi-smaa-worker.enterprise.enabled
+    type: boolean
+    label: Enterprise enabled
+    description: Enable enterprise
+    default: false
+    required: true
+    group: Patavi Worker - SMAA
+    show_subquestion_if: true
+    subquestions:
+    - variable: patavi-smaa-worker.imagePullSecrets[0].name
+      type: string
+      label: Image pull secret
+      default: drugis
+      required: false
+      group: Patavi Worker - SMAA
 #
   - variable: patavi-gemtc-worker.rabbitmq.password
     type: password
     label: RabbitMQ password
     required: true
-    group: Patavi Worker GEMTC
+    group: Patavi Worker - GeMTC
   - variable: patavi-gemtc-worker.rabbitmq.brokerHost
     type: string
     label: RabbitMQ host
     description: RabbitMQ host (point to the rabbitmq service, normally 'release-rabbitmq')
     default: patavi-rabbitmq
     required: true
-    group: Patavi Worker GEMTC
+    group: Patavi Worker - GeMTC
+  - variable: patavi-gemtc-worker.image.repository
+    type: string
+    label: Repository
+    description: Image repository (enterprise or normal)
+    default: addis/patavi-gemtc-worker
+    required: true
+    group: Patavi Worker - GeMTC
+  - variable: patavi-gemtc-worker.image.tag
+    type: string
+    label: Version
+    description: Version
+    default: latest
+    required: true
+    group: Patavi Worker - GeMTC
+  - variable: patavi-gemtc-worker.enterprise.enabled
+    type: boolean
+    label: Enterprise enabled
+    description: Enable enterprise
+    default: false
+    required: true
+    group: Patavi Worker - GeMTC
+    show_subquestion_if: true
+    subquestions:
+    - variable: patavi-gemtc-worker.imagePullSecrets[0].name
+      type: string
+      label: Image pull secret
+      default: drugis
+      required: false
+      group: Patavi Worker - GeMTC

@@ -106,6 +106,16 @@ questions:
     label: RabbitMQ password
     required: true
     group: RabbitMQ
+  - variable: rabbitmq.auth.existingPasswordSecret
+    type: string
+    label: Existing password secret
+    required: false
+    group: RabbitMQ
+  - variable: rabbitmq.auth.existingErlangSecret
+    type: string
+    label: Existing cookie secret
+    required: false
+    group: RabbitMQ
 #
   - variable: patavi-smaa-worker.rabbitmq.password
     type: password
@@ -175,18 +185,3 @@ questions:
     default: latest
     required: true
     group: Patavi Worker - GeMTC
-  - variable: patavi-gemtc-worker.enterprise.enabled
-    type: boolean
-    label: Enterprise enabled
-    description: Enable enterprise
-    default: false
-    required: true
-    group: Patavi Worker - GeMTC
-    show_subquestion_if: true
-    subquestions:
-    - variable: patavi-gemtc-worker.imagePullSecrets[0].name
-      type: string
-      label: Image pull secret
-      default: drugis
-      required: false
-      group: Patavi Worker - GeMTC

@@ -14,7 +14,7 @@ spec:
               command: ["/bin/sh"]
               args: ["-c", 'PGPASSWORD="$(POSTGRES_PASSWORD)" pg_dump -U {{ .Values.postgresql.postgresqlUsername }} -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} {{ .Values.postgresql.postgresqlDatabase }} > /var/backups/backup-$(date +"%m-%d-%Y-%H-%M").sql']
               volumeMounts:
-                - name: postgres-backup
+                - name: pv-postgres-backup
                   mountPath: /var/backups
               env: 
                 - name: POSTGRES_PASSWORD
@@ -24,6 +24,6 @@ spec:
                       key: postgresql-password
           restartPolicy: Never
           volumes:
-            - name: postgres-backup
+            - name: pv-postgres-backup
               persistentVolumeClaim:
                 claimName: {{ include "mcda.fullname" . }}-backup

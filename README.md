@@ -20,3 +20,12 @@ When you delete an application and delete the namespace the volume is still reco
 11. Then redeploy the instance with an *existing volume claim* pointing to the one you just created.
 #### Database recovery
 **IMPORTANT: be sure you save the database password!** You will need it when you redeploy the instance.
+
+### Add docker registry secret
+You can add a a registry to each project to be able to use the `imagePullSecret` value in the chart. This is needed for the Enterprise edition of the Addis platform.
+1. Click on "Resources"
+2. Click on "Secrets"
+3. Click on "Registry secrets"
+4. Select "Custom"
+5. Fill in "https://registry.molgenis.org/repository/helm"
+6. Fill in "Username" and "Password"

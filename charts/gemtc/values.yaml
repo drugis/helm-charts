@@ -18,6 +18,8 @@ postgresql:
     useExistingClaim: false
   #   existingClaim: data-patavi-server-postgresql-0
     storageClass: nfs-provisioner-retain
+  image:
+    debug: false
 
 gemtc:
   googleKey: xxxx

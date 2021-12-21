@@ -149,6 +149,12 @@ questions:
     default: nfs-provisioner-retain
     required: true
     group: Database
+  - variable: postgresql.image.debug
+    type: boolean
+    label: Debug for postgres
+    default: false
+    required: false
+    group: Database
 #
   - variable: image.repository
     type: string

@@ -14,6 +14,11 @@ questions:
     required: true
     default: https://mcda.dev.molgenis.org
     group: MCDA
+  - variable: mcda.cookieSecret
+    type: password
+    required: false
+    label: Secret for session cookie
+    group: MCDA
   - variable: mcda.authenticationMethod
     type: enum
     label: Authentication method
@@ -23,20 +28,17 @@ questions:
      - LOCAL
     default: GOOGLE
     group: MCDA
-  - variable: mcda.cookieSecret
-    type: password
-    required: false
-    label: Secret for session cookie
-    group: MCDA
-  - variable: mcda.googleKey
-    type: password
-    required: false
-    label: Key for google oauth2
-    group: MCDA
   - variable: mcda.googleSecret
     type: password
     required: false
     label: Secret for google oauth2
+    group: MCDA
+    show_if: "mcda.authenticationMethod=GOOGLE"
+  - variable: mcda.googleKey
+    type: password
+    required: false
+    label: Key for google oauth2
+    show_if: "mcda.authenticationMethod=GOOGLE"
     group: MCDA
   - variable: mcda.schema.version
     type: string

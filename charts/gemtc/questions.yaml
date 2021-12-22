@@ -13,6 +13,11 @@ questions:
     required: true
     default: https://gemtc.dev.molgenis.org
     group: GeMTC
+  - variable: gemtc.cookieSecret
+    type: password
+    required: false
+    label: Secret for session cookie
+    group: GeMTC
   - variable: gemtc.authenticationMethod
     type: enum
     label: GeMTC authentication method
@@ -22,20 +27,17 @@ questions:
      - LOCAL
     default: GOOGLE
     group: GeMTC
-  - variable: gemtc.cookieSecret
-    type: password
-    required: false
-    label: Secret for session cookie
-    group: GeMTC
   - variable: gemtc.googleKey
     type: password
     required: false
     label: Key for google oauth2
+    show_if: "gemtc.authenticationMethod=GOOGLE"
     group: GeMTC
   - variable: gemtc.googleSecret
     type: password
     required: false
     label: Secret for google oauth2
+    show_if: "gemtc.authenticationMethod=GOOGLE"
     group: GeMTC
   - variable: gemtc.schema.version
     type: string

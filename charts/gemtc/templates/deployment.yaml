@@ -69,9 +69,10 @@ spec:
                   key: admin-password
           command: ['sh', '-c']
           args:
-            - PGPASSWORD=${POSTGRES_PASSWORD} psql -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} -U {{ .Values.postgresql.postgresqlDatabase }} -c "INSERT INTO Account (username, firstName, lastName, password) SELECT 'administrator', 'admin', '', '\\$2a\\$10\\$TmvbK5.HpkoPGDV5ykycsOFIJbvDHAtgwW.JfyLNGPrBCSABAq9Na' WHERE NOT EXISTS (SELECT * FROM account WHERE username = 'administrator')";
-              # TODO: add 'WHERE NOT EXISTS (SELECT * FROM ADMINISTRATOR)' to query
-            - PGPASSWORD=${POSTGRES_PASSWORD} psql -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} -U {{ .Values.postgresql.postgresqlDatabase }} -c "INSERT INTO administrator (accountid) (SELECT id FROM account WHERE username='administrator')";
+            - PGPASSWORD=${POSTGRES_PASSWORD} psql -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} -U {{ .Values.postgresql.postgresqlDatabase }} -a -f /tmp/create_user.sql
+          volumeMounts:
+            - name: gemtc-enterprise-init
+              mountPath: /tmp
       {{- else }}
         - name: get-liquibase-changelog
           image: busybox:1.34.1
@@ -164,6 +165,11 @@ spec:
       volumes:
         - name: liquibase-changelog
           emptyDir: {}
+        {{- if .Values.gemtc.enterprise.enabled }}
+        - name: gemtc-enterprise-init
+          secret:
+            secretName: secret-enterprise-init-{{ include "gemtc.fullname" . }}
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

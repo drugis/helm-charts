@@ -4,6 +4,6 @@ dependencies:
   version: 9.6.0
 - name: survey
   repository: https://registry.molgenis.org/repository/helm
-  version: 0.1.1
-digest: sha256:7ed30d48236e6e57d01327b90cd55f153e6bf7f3c4c798c1b3b714235d197375
-generated: "2021-12-23T16:01:21.543077+01:00"
+  version: 0.1.2
+digest: sha256:e2d36fa0e6d0347921b0b60f8f0f11e0e8a939ec5aaaa11133bd53d6fdf62665
+generated: "2021-12-23T17:32:52.098549+01:00"

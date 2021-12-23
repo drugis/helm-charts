@@ -1,22 +1,22 @@
 image:
-  repository: registry.drugis.org/survey
+  repository: registry.drugis.org/mcda-survey
   pullPolicy: IfNotPresent
-  tag: "test"
+  tag: "k8s"
 
 mcda:
   cookieDomain: dev.molgenis.org
-  host: http://mcda.mcda.svc
-  existingSecret: secret-mcda
+  host: http://enterprise-mcda
+  existingSecret: secret-enterprise-mcda
 
 patavi:
   port: 3000
   host: http://patavi-patavi-server.patavi.svc
 
 postgresql:
-  postgresqlHost: mcda.mcda.svc:5432
+  postgresqlHost: enterprise-mcda-postgresql:5432
   postgresqlUsername: mcda
   postgresqlDatabase: mcda
-  existingSecret: mcda-postgresql
+  existingSecret: enterprise-mcda-postgresql
 
 service:
   type: ClusterIP
@@ -39,7 +39,8 @@ serviceAccount:
   name: ""
 
 replicaCount: 1
-imagePullSecrets: []
+imagePullSecrets:
+  - name: drugis
 nameOverride: ""
 fullnameOverride: ""
 podAnnotations: {}

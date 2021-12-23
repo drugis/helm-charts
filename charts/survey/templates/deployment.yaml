@@ -61,7 +61,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.postgresql.existingSecret }}
-                  key: postgres-password
+                  key: postgresql-password
             - name: MCDA_HOST
               value: "{{ .Values.mcda.host }}"
             - name: PATAVI_HOST

@@ -18,7 +18,7 @@ questions:
   type: string
   label: MCDA existing secret
   required: true
-  default: secret-mcda
+  default: secret-enterprise-mcda
   group: MCDA
 - variable: mcda.cookieDomain
   type: string
@@ -30,7 +30,7 @@ questions:
   type: string
   label: MCDA host url
   required: true
-  default: http://mcda.mcda.svc
+  default: http://enterprise-mcda
   group: MCDA
   # 
 - variable: image.repository
@@ -77,6 +77,12 @@ questions:
   default: drugis
   group: Provisioning
 #
+- variable: postgresql.postgresqlHost
+  type: string
+  label: PostgreSQL hostname
+  required: true
+  default: enterprise-mcda-postgresql
+  group: Database
 - variable: postgresql.postgresqlUsername
   type: string
   label: PostgreSQL username
@@ -93,5 +99,5 @@ questions:
   type: string
   label: PostgreSQL existing secret
   required: true
-  default: mcda-postgresql
+  default: enterprise-mcda-postgresql
   group: Database

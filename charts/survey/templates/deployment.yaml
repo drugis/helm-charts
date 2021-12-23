@@ -26,17 +26,17 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
-        - name: init-mcda
+        - name: init-db
           image: fabric8/fabric8-dependency-wait-service
           env:
-            - name: MCDA_URI
-              value: "{{ .Values.mcda.host }}"
+            - name: POSTGRES_URI
+              value: postgres://{{ .Values.postgresql.postgresqlHost }}:5432
             - name: DEPENDENCY_POLL_INTERVAL
               value: "10"
             - name: DEPENDENCY_LOG_VERBOSE
               value: "true"
           command: ["/bin/sh"]
-          args: ["-c", "fabric8-dependency-wait-service-linux-amd64 $(MCDA_URI)"]
+          args: ["-c", "fabric8-dependency-wait-service-linux-amd64 $(POSTGRES_URI)"]
       containers:
         - name: {{ .Chart.Name }}
           securityContext:

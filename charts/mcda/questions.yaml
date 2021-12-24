@@ -72,7 +72,7 @@ questions:
     label: Host url for survey
     description: This is usually service.namespace.svc
     required: true
-    default: http://survey
+    default: http://enterprise-mcda-survey
     show_if: "mcda.enterprise.enabled=true"
     group: Enterprise
   - variable: survey.postgresql.postgresqlHost

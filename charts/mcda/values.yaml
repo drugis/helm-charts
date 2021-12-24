@@ -39,7 +39,7 @@ mcda:
 survey:
   patavi:
     port: 3000
-    host: http://patavi-patavi-server.patavi.svc
+    host: patavi-patavi-server.patavi.svc
   postgresql:
     postgresqlHost: enterprise-mcda-postgresql:5432
     postgresqlUsername: mcda

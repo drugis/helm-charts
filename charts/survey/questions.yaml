@@ -11,7 +11,7 @@ questions:
   type: string
   label: Patavi host
   required: true
-  default: "http://patavi-patavi-server.patavi.svc"
+  default: "patavi-patavi-server.patavi.svc"
   group: Patavi
 #
 - variable: mcda.existingSecret

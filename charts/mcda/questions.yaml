@@ -96,6 +96,14 @@ questions:
     default: mcda-postgresql
     show_if: "mcda.enterprise.enabled=true"
     group: Enterprise - Survey
+  - variable: mcda.enterprise.survey.patavi.host
+    type: string
+    label: Host url for patavi server
+    description: This is usually service.namespace.svc
+    required: true
+    default: patavi-patavi-server.patavi.svc
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey
   - variable: survey.mcda.cookieDomain
     type: string
     label: Cookie domein
@@ -107,7 +115,7 @@ questions:
     type: string
     label: MCDA host
     required: true
-    default: http://mcda
+    default: http://enterprise-mcda
     show_if: "mcda.enterprise.enabled=true"
     group: Enterprise - Survey
   - variable: survey.mcda.existingSecret

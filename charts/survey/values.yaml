@@ -13,7 +13,7 @@ patavi:
   host: patavi-patavi-server.patavi.svc
 
 postgresql:
-  postgresqlHost: enterprise-mcda-postgresql:5432
+  postgresqlHost: enterprise-mcda-postgresql
   postgresqlUsername: mcda
   postgresqlDatabase: mcda
   existingSecret: enterprise-mcda-postgresql

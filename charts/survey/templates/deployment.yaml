@@ -46,7 +46,7 @@ spec:
           env:
             - name: MCDA_COOKIE_DOMAIN
               value: "{{ .Values.mcda.cookieDomain }}"
-            - name: MCDA_COOKIE_SECRET
+            - name: MCDAWEB_COOKIE_SECRET
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.mcda.existingSecret }}

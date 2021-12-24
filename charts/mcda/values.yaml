@@ -33,7 +33,7 @@ mcda:
   enterprise:
     enabled: false
     survey:
-      host: http://survey:3003
+      host: http://enterprise-mcda-survey:3003
     # adminPassword: xxxx
 
 survey:
@@ -41,7 +41,7 @@ survey:
     port: 3000
     host: patavi-patavi-server.patavi.svc
   postgresql:
-    postgresqlHost: enterprise-mcda-postgresql:5432
+    postgresqlHost: enterprise-mcda-postgresql
     postgresqlUsername: mcda
     postgresqlDatabase: mcda
     existingSecret: enterprise-mcda-postgresql

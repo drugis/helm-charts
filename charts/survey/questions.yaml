@@ -83,7 +83,7 @@ questions:
   required: true
   default: enterprise-mcda-postgresql
   group: Database
-- variable: postgresql.postgresqlUser
+- variable: postgresql.postgresqlUsername
   type: string
   label: PostgreSQL username
   required: true

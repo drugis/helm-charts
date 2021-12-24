@@ -70,16 +70,17 @@ questions:
   - variable: mcda.enterprise.survey.host
     type: string
     label: Host url for survey
-    description: This is usually service.namespace.svc
+    description: This is usually service.namespace.svc or only the service name
     required: true
-    default: http://enterprise-mcda-survey
+    default: http://enterprise-mcda-survey:3003
     show_if: "mcda.enterprise.enabled=true"
     group: Enterprise
   - variable: survey.postgresql.postgresqlHost
     type: string
     label: Host for PostgreSQL
     required: true
-    default: mcda-postgresql:5432
+    description: This is usually service.namespace.svc or only the service name
+    default: enterprise-mcda-postgresql
     show_if: "mcda.enterprise.enabled=true"
     group: Enterprise - Survey
   - variable: survey.postgresql.postgresqlUsername

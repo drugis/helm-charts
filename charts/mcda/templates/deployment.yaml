@@ -73,6 +73,17 @@ spec:
           volumeMounts:
             - name: mcda-enterprise-init
               mountPath: /tmp
+        - name: init-survey
+          image: fabric8/fabric8-dependency-wait-service
+          env:
+            - name: SURVEY_URI
+              value: "{{ .Values.mcda.survey.host }}"
+            - name: DEPENDENCY_POLL_INTERVAL
+              value: "10"
+            - name: DEPENDENCY_LOG_VERBOSE
+              value: "true"
+          command: ["/bin/sh"]
+          args: ["-c", "fabric8-dependency-wait-service-linux-amd64 $(SURVEY_URI)"]
       {{- else }}
         - name: get-liquibase-changelog
           image: busybox:1.34.1

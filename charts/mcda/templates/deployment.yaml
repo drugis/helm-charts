@@ -77,7 +77,7 @@ spec:
           image: fabric8/fabric8-dependency-wait-service
           env:
             - name: SURVEY_URI
-              value: "{{ .Values.mcda.survey.host }}"
+              value: "{{ .Values.mcda.enterprise.survey.host }}"
             - name: DEPENDENCY_POLL_INTERVAL
               value: "10"
             - name: DEPENDENCY_LOG_VERBOSE

@@ -27,6 +27,7 @@ postgresql:
   postgresqlUsername: addis
   postgresqlDatabase: addis
   postgresqlPassword: xxxxx
+  postgresqlPostgresPassword: xxxxx
   persistence:
     useExistingClaim: false
   #   existingClaim: data-patavi-server-postgresql-0

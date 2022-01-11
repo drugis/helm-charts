@@ -192,6 +192,11 @@ questions:
     label: Database password
     required: true
     group: Database
+  - variable: postgresql.postgresqlPostgresPassword
+    type: password
+    label: Database root password for user postgres
+    required: true
+    group: Database
   - variable: postgresql.persistence.useExistingClaim
     type: boolean
     label: Use existing volume

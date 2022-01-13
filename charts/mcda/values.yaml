@@ -39,7 +39,7 @@ mcda:
     # adminPassword: xxxx
 
 survey:
-  image: 
+  image:
     repository: registry.drugis.org/mcda-survey
     tag: test
   patavi:

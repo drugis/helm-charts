@@ -32,12 +32,16 @@ mcda:
   schema:
     version: develop
   enterprise:
+    cookieDomain: dev.molgenis.org
     enabled: false
     survey:
-      host: http://enterprise-mcda-survey:3003
+      host: http://survey.dev.molgenis.org
     # adminPassword: xxxx
 
 survey:
+  image: 
+    repository: registry.drugis.org/mcda-survey
+    tag: test
   patavi:
     port: 3000
     host: patavi-patavi-server.patavi.svc
@@ -48,7 +52,7 @@ survey:
     existingSecret: enterprise-mcda-postgresql
   mcda:
     cookieDomain: dev.molgenis.org
-    host: http://enterprise-mcda
+    host: https://mcda-enterprise.dev.molgenis.org
     existingSecret: secret-enterprise-mcda
   ingress:
     enabled: true

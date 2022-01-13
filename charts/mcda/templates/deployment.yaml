@@ -155,8 +155,12 @@ spec:
               value: "{{ .Values.mcda.secure }}"
             - name: MCDAWEB_AUTHENTICATION_METHOD
               value: {{ .Values.mcda.authenticationMethod }}
+            {{- if .Values.mcda.enterprise.enabled }}
             - name: MCDA_SURVEY_HOST
               value: "{{ .Values.mcda.enterprise.survey.host }}"
+            - name: MCDA_COOKIE_DOMAIN
+              value: "{{ .Values.mcda.enterprise.cookieDomain }}"
+            {{- end }}
           ports:
             - name: http
               containerPort: 3002

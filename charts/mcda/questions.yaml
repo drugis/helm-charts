@@ -67,12 +67,19 @@ questions:
     required: true
     show_if: "mcda.enterprise.enabled=true"
     group: Enterprise
+  - variable: mcda.enterprise.cookieDomain
+    type: string
+    label: Cookie domain for MCDA
+    required: true
+    show_if: "mcda.enterprise.enabled=true"
+    default: dev.molgenis.org
+    group: Enterprise
   - variable: mcda.enterprise.survey.host
     type: string
     label: Host url for survey
     description: This is usually service.namespace.svc or only the service name
     required: true
-    default: http://enterprise-mcda-survey:3003
+    default: https://survey.dev.molgenis.org
     show_if: "mcda.enterprise.enabled=true"
     group: Enterprise
   - variable: survey.postgresql.postgresqlHost
@@ -105,9 +112,23 @@ questions:
     default: patavi-patavi-server.patavi.svc
     show_if: "mcda.enterprise.enabled=true"
     group: Enterprise - Survey
+  - variable: survey.image.repository
+    type: string
+    label: Image repository of Survey
+    required: true
+    default: registry.drugis.org/mcda-survey
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey  
+  - variable: survey.image.tag
+    type: string
+    label: Version of Survey
+    required: true
+    default: test
+    show_if: "mcda.enterprise.enabled=true"
+    group: Enterprise - Survey  
   - variable: survey.mcda.cookieDomain
     type: string
-    label: Cookie domein
+    label: Cookie domain
     required: true
     default: dev.molgenis.org
     show_if: "mcda.enterprise.enabled=true"
@@ -116,7 +137,7 @@ questions:
     type: string
     label: MCDA host
     required: true
-    default: http://enterprise-mcda
+    default: https://mcda-enterprise.dev.molgenis.org
     show_if: "mcda.enterprise.enabled=true"
     group: Enterprise - Survey
   - variable: survey.mcda.existingSecret

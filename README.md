@@ -20,6 +20,56 @@ When you delete an application and delete the namespace the volume is still reco
 11. Then redeploy the instance with an *existing volume claim* pointing to the one you just created.
 #### Database recovery
 **IMPORTANT: be sure you save the database password!** You will need it when you redeploy the instance.
+Copy the backup dump to the container.
+
+`rancher kubectl cp ~/backups/2022-01-13_test_jena_es_backup.n4.gz addis-jena-es:/tmp/. -n addis`
+
+Shell into the pod
+
+`rancher kubectl exec -it pod/addis-jena-es bash -n addis`
+
+Drop the existing database
+
+`dropdb database -U rootUser`
+
+Fill password for postgres root-user
+
+Create the database again
+
+`createdb database -U applicationUser`
+
+Fill in password for application user and load the dump.
+
+`psql database -U applicationUser < /tmp/database-dump.sql`
+
+#### Jena recovery
+**Apache Jena 2.13 is needed**
+Copy the backup dump to the container.
+
+`rancher kubectl cp ~/backups/2022-01-13_test_jena_es_backup.n4.gz addis-jena-es:/tmp/. -n addis`
+
+Shell into the pod
+
+`rancher kubectl exec -it pod/addis-jena-es bash -n addis`
+
+Get Apache Jena
+
+`wget http://archive.apache.org/dist/jena/binaries/apache-jena-2.13.0.zip`
+
+Unzip the archive
+
+`unzip apache-jena-2.13.0.zip`
+
+Remove the lock and cd to `/`
+
+`rm /DB/tdb.lock`
+`cd  /`
+
+To recover Jene you need the tdbloader command
+
+`/#jena-path#/bin/tdbloader --loc=DB /#backup-path#/$(date +%Y-%m-%d)_test_jena_es_backup.n4.gz`
+
+The --loc=DB is sub-directory location where you at.
 
 ### Add docker registry secret
 You can add a a registry to each project to be able to use the `imagePullSecret` value in the chart. This is needed for the Enterprise edition of the Addis platform.

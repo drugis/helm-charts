@@ -63,7 +63,7 @@ spec:
           args: ["-c", "fabric8-dependency-wait-service-linux-amd64 $(POSTGRESQL_URI)"]
         - name: get-liquibase-changelog
           image: busybox:1.34.1
-          command: ['sh', '-c', "mkdir -p /liquibase/changelog && wget -O /liquibase/changelog/liquibase-changelog.sql https://raw.githubusercontent.com/drugis/addis-core/{{ .Values.addis.schema.version }}/database.sql"]
+          command: ['sh', '-c', "mkdir -p /liquibase/changelog && wget -O /liquibase/changelog/database.sql https://raw.githubusercontent.com/drugis/addis-core/{{ .Values.addis.schema.version }}/database.sql"]
           volumeMounts:
             - name: liquibase-changelog
               mountPath: /liquibase/changelog
@@ -74,7 +74,7 @@ spec:
            - name: LIQUIBASE_COMMAND_URL
              value: jdbc:postgresql://{{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}:5432/{{ .Values.postgresql.postgresqlDatabase }}?currentSchema=public
            - name: LIQUIBASE_COMMAND_CHANGELOG_FILE
-             value: liquibase-changelog.sql
+             value: database.sql
            - name: LIQUIBASE_COMMAND_USERNAME
              value: {{ .Values.postgresql.postgresqlUsername }}
            - name: LIQUIBASE_COMMAND_PASSWORD

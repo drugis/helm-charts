@@ -62,8 +62,9 @@ Unzip the archive
 
 Remove the lock and cd to `/`
 
-`rm /DB/tdb.lock`
-`cd  /`
+`rm -rf /DB/`
+`mkdir /DB/`
+`cd /`
 
 To recover Jene you need the tdbloader command
 

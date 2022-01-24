@@ -5,18 +5,19 @@
 replicaCount: 1
 
 image:
-  repository: addis/website
+  repository: registry.drugis.org/drugis-website
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  tag: "20220118"
 
 init:
   image:
-    repository: 
-    tag:
+    repository: registry/git-sync
+    tag: 3.3.5
     pullPolicy: IfNotPresent
 
-imagePullSecrets: []
+imagePullSecrets: 
+  - name: drugis
 nameOverride: ""
 fullnameOverride: ""
 

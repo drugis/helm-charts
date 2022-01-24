@@ -1,6 +1,7 @@
 addis-core:
   postgresql:
     postgresqlPassword: xxxx
+    postgresqlPostgresPassword: xxxxx
     persistence:
       useExistingClaim: false
     # existingClaim: data-patavi-server-postgresql-0

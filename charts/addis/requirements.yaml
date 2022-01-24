@@ -1,6 +1,6 @@
 dependencies:
   - name: addis-core
-    version: 0.5.1
+    version: 0.5.2
     repository: https://registry.molgenis.org/repository/helm
   - name: jena-es
     version: 0.4.2

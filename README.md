@@ -62,10 +62,11 @@ Unzip the archive
 
 Remove the lock and cd to `/`
 
-`rm /DB/tdb.lock`
-`cd  /`
+`rm -rf /DB/`
+`mkdir /DB/`
+`cd /`
 
-To recover Jene you need the tdbloader command
+To recover Jena you need the tdbloader command
 
 `/#jena-path#/bin/tdbloader --loc=DB /#backup-path#/$(date +%Y-%m-%d)_test_jena_es_backup.n4.gz`
 

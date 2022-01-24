@@ -58,6 +58,11 @@ questions:
     label: Addis database password
     required: true
     group: Addis - Database
+  - variable: addis-core.postgresql.postgresqlPostgresPassword
+    type: password
+    label: Addis database password for root user
+    required: true
+    group: Addis - Database
   - variable: addis-core.postgresql.persistence.useExistingClaim
     type: boolean
     label: Use existing volume

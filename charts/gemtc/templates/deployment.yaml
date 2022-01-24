@@ -54,6 +54,20 @@ spec:
                   key: postgresql-password
           args:
             - 'update'
+        - name: hash-enterprise-user
+          image: node:latest
+          command: ['sh', '-c']
+          env:
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret-{{ template "gemtc.fullname" . }}
+                  key: admin-password
+          args:
+            - npm install -g bcrypt-cli && echo HASHED_ADMIN_PASSWORD=$(npx bcrypt-cli ${ADMIN_PASSWORD} 10) > /tmp/admin_password
+          volumeMounts:
+            - name: gemtc-enterprise-init
+              mountPath: /tmp
         - name: create-enterprise-user
           image: postgres:11
           env:
@@ -62,14 +76,9 @@ spec:
                 secretKeyRef:
                   name: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
                   key: postgresql-password
-            - name: ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: secret-{{ template "gemtc.fullname" . }}
-                  key: admin-password
           command: ['sh', '-c']
           args:
-            - PGPASSWORD=${POSTGRES_PASSWORD} psql -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} -U {{ .Values.postgresql.postgresqlDatabase }} -a -f /tmp/create_user.sql
+            - source /tmp/admin_password && PGPASSWORD=${POSTGRES_PASSWORD} psql -h {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} -U {{ .Values.postgresql.postgresqlDatabase }} -a -f /tmp/create_user.sql
           volumeMounts:
             - name: gemtc-enterprise-init
               mountPath: /tmp

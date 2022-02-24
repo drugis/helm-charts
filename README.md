@@ -52,6 +52,13 @@ Shell into the pod
 
 `rancher kubectl exec -it pod/addis-jena-es bash -n addis`
 
+<<<<<<< HEAD
+=======
+Get prerequisites
+
+`apt install wget zip`
+
+>>>>>>> b890eec... feat: add website for drugis
 Get Apache Jena
 
 `wget http://archive.apache.org/dist/jena/binaries/apache-jena-2.13.0.zip`
@@ -62,11 +69,18 @@ Unzip the archive
 
 Remove the lock and cd to `/`
 
+<<<<<<< HEAD
 `rm -rf /DB/`
 `mkdir /DB/`
 `cd /`
 
 To recover Jena you need the tdbloader command
+=======
+`rm /DB/tdb.lock`
+`cd  /`
+
+To recover Jene you need the tdbloader command
+>>>>>>> b890eec... feat: add website for drugis
 
 `/#jena-path#/bin/tdbloader --loc=DB /#backup-path#/$(date +%Y-%m-%d)_test_jena_es_backup.n4.gz`
 

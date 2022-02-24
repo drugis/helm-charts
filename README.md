@@ -22,11 +22,11 @@ When you delete an application and delete the namespace the volume is still reco
 **IMPORTANT: be sure you save the database password!** You will need it when you redeploy the instance.
 Copy the backup dump to the container.
 
-`rancher kubectl cp ~/backups/2022-01-13_test_jena_es_backup.n4.gz addis-jena-es:/tmp/. -n addis`
+`rancher kubectl cp ~/backups/2021-12-10_test_addis_backup.psql addis-postgresql:/tmp/. -n addis`
 
 Shell into the pod
 
-`rancher kubectl exec -it pod/addis-jena-es bash -n addis`
+`rancher kubectl exec -it pod/addis-postgresql bash -n addis`
 
 Drop the existing database
 
@@ -42,6 +42,11 @@ Fill in password for application user and load the dump.
 
 `psql database -U applicationUser < /tmp/database-dump.sql`
 
+When migrating from Addis VM's at Transip to kubernetes you need to change the liquibase changelog file in the `databasechangelogs` table from `database.sql` --> `liquibase-changelog.sql`
+
+`psql -U addis addis`
+`UPDATE databasechangelog SET filename='liquibase-changelog.sql';`
+
 #### Jena recovery
 **Apache Jena 2.13 is needed**
 Copy the backup dump to the container.
@@ -52,6 +57,11 @@ Shell into the pod
 
 `rancher kubectl exec -it pod/addis-jena-es bash -n addis`
 
+Install prequisites:
+
+`apt update`
+`apt install unzip wget -y`
+
 Get Apache Jena
 
 `wget http://archive.apache.org/dist/jena/binaries/apache-jena-2.13.0.zip`
@@ -60,11 +70,16 @@ Unzip the archive
 
 `unzip apache-jena-2.13.0.zip`
 
-Remove the lock and cd to `/`
+Remove the data inside the persistent volume via the NFS-server
+First you need to switch to the CIT project.
 
-`rm -rf /DB/`
-`mkdir /DB/`
-`cd /`
+```bash
+rancher context switch dev-drugis
+rancher kubectl exec -it pod/#nfs-client-provisioner# -n nfs-client-provisioner
+`cd persistentvolumes`
+`cd #jena-volume-location#`
+`rm -rf *`
+```
 
 To recover Jena you need the tdbloader command
 

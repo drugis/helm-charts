@@ -9,4 +9,4 @@ dependencies:
   repository: https://registry.molgenis.org/repository/helm
   version: 0.2.1
 digest: sha256:53287615ba8ec4424457dfa9a87094961fb07bcc913037170da1464d0d0785b9
-generated: "2022-01-24T11:55:29.405472+01:00"
+generated: "2022-09-08T15:33:57.371451+02:00"

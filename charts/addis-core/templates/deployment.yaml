@@ -54,7 +54,7 @@ spec:
           image: fabric8/fabric8-dependency-wait-service
           env:
             - name: POSTGRESQL_URI
-              value: postgres://{{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}:5432
+              value: postgres://{{ include "call-nested" (list $ "postgresql" "common.names.fullname") }}:5432
             - name: DEPENDENCY_POLL_INTERVAL
               value: "10"
             - name: DEPENDENCY_LOG_VERBOSE
@@ -72,7 +72,7 @@ spec:
           command: ['sh', '-c', "docker-entrypoint.sh --url=$(LIQUIBASE_COMMAND_URL) --username=$(LIQUIBASE_COMMAND_USERNAME) --password=${LIQUIBASE_COMMAND_PASSWORD} --classpath=/liquibase/changelog/ --changeLogFile=$(LIQUIBASE_COMMAND_CHANGELOG_FILE) update"]
           env:
            - name: LIQUIBASE_COMMAND_URL
-             value: jdbc:postgresql://{{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}:5432/{{ .Values.postgresql.postgresqlDatabase }}?currentSchema=public
+             value: jdbc:postgresql://{{ include "call-nested" (list $ "postgresql" "common.names.fullname") }}:5432/{{ .Values.postgresql.postgresqlDatabase }}?currentSchema=public
            - name: LIQUIBASE_COMMAND_CHANGELOG_FILE
              value: liquibase-changelog.sql
            - name: LIQUIBASE_COMMAND_USERNAME
@@ -121,7 +121,7 @@ spec:
             - name: ADDIS_CORE_DB
               value: {{ .Values.postgresql.postgresqlDatabase }}
             - name: ADDIS_CORE_DB_HOST
-              value: {{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}
+              value: {{ include "call-nested" (list $ "postgresql" "common.names.fullname") }}
             - name: ADDIS_CORE_DB_USERNAME
               value: {{ .Values.postgresql.postgresqlUsername }}
             - name: CLINICALTRIALS_IMPORTER_URL
@@ -139,7 +139,7 @@ spec:
                 -DtomcatProxyName={{ .Values.addis.host }} 
                 -DtomcatProxyPort=443
                 -DADDIS_CORE_DB_DRIVER=org.postgresql.Driver 
-                -DADDIS_CORE_DB_HOST={{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }} 
+                -DADDIS_CORE_DB_HOST={{ include "call-nested" (list $ "postgresql" "common.names.fullname") }} 
                 -DADDIS_CORE_DB={{ .Values.postgresql.postgresqlDatabase }}
                 -DADDIS_CORE_DB_USERNAME={{ .Values.postgresql.postgresqlUsername }}
                 -DADDIS_CORE_DB_PASSWORD={{ .Values.postgresql.postgresqlPassword }}"

@@ -1,8 +1,12 @@
-apiVersion: v1
+apiVersion: v2
 name: addis-core
 description: A Helm chart for Addis Core service
-version: 0.5.2
+version: 0.6.0
 appVersion: "0.14.0"
+dependencies:
+- name: postgresql
+  version: 11.8.1
+  repository: https://charts.bitnami.com/bitnami
 icon: https://raw.githubusercontent.com/drugis/addis-core/master/src/main/webapp/resources/public/img/favicon.ico
 maintainers:
   - name: chinook25

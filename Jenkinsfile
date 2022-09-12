@@ -1,7 +1,8 @@
 pipeline {
     agent {
         kubernetes {
-            inheritFrom 'helm'
+            inheritFrom 'shared'
+            yaml libraryResource("pod-templates/helm.yaml")
         }
     }
     stages {

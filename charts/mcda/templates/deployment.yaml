@@ -41,7 +41,7 @@ spec:
           args: ["-c", "fabric8-dependency-wait-service-linux-amd64 $(POSTGRESQL_URI)"]
       {{- if .Values.mcda.enterprise.enabled }}
         - name: update-database-liquibase
-          image: registry.drugis.org/mcda-closed-liquibase:test1
+          image: registry.drugis.org/mcda-enterprise-liquibase:test
           env:
             - name: LIQUIBASE_URL
               value: 'jdbc:postgresql://{{ include "call-nested" (list $ "postgresql" "postgresql.fullname") }}:5432/{{ .Values.postgresql.postgresqlDatabase}}'

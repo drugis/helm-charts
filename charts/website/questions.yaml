@@ -1,0 +1,51 @@
+questions:
+  - variable: image.repository
+    type: string
+    label: Repository
+    required: true
+    default: addis/website
+    group: Provisioning
+  - variable: image.tag
+    type: string
+    label: Version of website
+    required: true
+    group: Provisioning
+  - variable: ingress.enabled
+    type: boolean
+    label: Enable ingress
+    required: true
+    group: Provisioning
+    show_subquestion_if: true
+    subquestions:
+    - variable: ingress.hosts[0].host
+      type: string
+      label: Host for website
+      required: true
+      default: drugis.org
+      group: Provisioning
+    - variable: ingress.hosts[0].path
+      type: string
+      label: Path for website
+      required: true
+      default: /
+      group: Provisioning
+    - variable: ingress.hosts[0].pathType
+      type: string
+      label: Path prefix for website
+      required: false
+      default: Prefix
+      group: Provisioning
+  - variable: persistence.enabled
+    type: boolean
+    label: Enable persistence
+    required: false
+    default: true
+    group: Persistence
+    show_subquestion_if: true
+    subquestions:
+    - variable: persistence.existingClaim
+      type: string
+      label: Existing volume
+      description: Define the existing claim when the instance needs to be restored from an existing volume
+      required: false
+      group: Persistence
